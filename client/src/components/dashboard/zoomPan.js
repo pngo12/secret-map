@@ -5,6 +5,7 @@ import {
     Geographies,
     Geography,
 } from "react-simple-maps"
+
 import ZoomObject from "../static/world-50m.json"
 
 const wrapperStyles = {

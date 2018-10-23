@@ -5,7 +5,7 @@ import {
   getProductByCountry,
   addProductToCountry,
   deleteProductFromCountry
-} from "../../redux/actions/index";
+} from '../../redux/actions/index';
 
 const productForm = {
     width: 400

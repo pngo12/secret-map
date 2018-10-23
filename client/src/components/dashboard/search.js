@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import './dashboard.css'
 
 class Search extends Component {
 
