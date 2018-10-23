@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 
 import HomePage from './components/homePage';
+import AdminPage from './components/adminHome';
 
 
 class App extends Component {
@@ -8,6 +9,7 @@ class App extends Component {
     return (
 
       <div className="App">
+
         <HomePage />
 
       </div>
