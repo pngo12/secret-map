@@ -1,11 +1,13 @@
-#map {
-    border: 2px black;
+.login-page {
+    width: 400px;
+    padding: 10% 0 0;
+    margin: auto; 
 }
-
 .input {
     width: 100px;
 }
 
-.productForm {
-    width: 200px;
+.form {
+    max-width: 400px;
 }
+
