@@ -2,15 +2,16 @@ import React, { Component } from 'react';
 import Logo from './logo';
 import ZoomPan from '../components/pages/zoomPan';
 import Search from '../components/search';
-import styles from '../App.css'
+import AdminCRUD from './admin/crud';
 
-class HomePage extends Component {
+class AdminPage extends Component {
 
     render() { 
         return ( 
             <div>
                 <Logo />
                 <ZoomPan />
+                <AdminCRUD />
                 <Search />
             </div>
          );
@@ -19,4 +20,4 @@ class HomePage extends Component {
 
 
  
-export default HomePage;
+export default AdminPage;

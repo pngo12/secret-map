@@ -1,3 +1,4 @@
+
 #mapBox {
     border: 1px solid black;
 }
@@ -27,3 +28,16 @@ h1 {
 #resetButton {
     margin: 5px;
 }
+.login-page {
+    width: 400px;
+    padding: 10% 0 0;
+    margin: auto; 
+}
+.input {
+    width: 100px;
+}
+
+.form {
+    max-width: 400px;
+}
+

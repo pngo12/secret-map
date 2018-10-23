@@ -118,4 +118,8 @@ class ZoomPan extends Component {
     }
 }
 
+const mapStateToProps = state => ({
+    
+})
+
 export default ZoomPan
