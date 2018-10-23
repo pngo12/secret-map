@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Logo from './logo';
 import ZoomPan from '../components/pages/zoomPan';
 import Search from '../components/search';
+import styles from '../App.css'
 
 class HomePage extends Component {
 

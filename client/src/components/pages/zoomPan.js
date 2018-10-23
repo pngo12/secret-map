@@ -49,11 +49,12 @@ class ZoomPan extends Component {
     render() {
         return (
             <div>
-                <div style={wrapperStyles}>
+                <div className="container" style={wrapperStyles}>
                     {
                         this.state.region.map((region, i) => (
                             <button
                                 key={i}
+                                id="continentButtons"
                                 className="button is-info is-small is-outlined"
                                 data-region={i}
                                 onClick={this.handleregionSelection}
@@ -62,14 +63,14 @@ class ZoomPan extends Component {
                             </button>
                         ))
                     }
-                    <button className="button is-danger is-small is-outlined" onClick={this.handleReset}>
+                    <button id="resetButton" className="button is-danger is-small is-outlined" onClick={this.handleReset}>
                         {"Reset"}
                     </button>
                 </div>
-                <div style={wrapperStyles}>
+                <div style={wrapperStyles} id="mapBox">
                     <ComposableMap
                         projectionConfig={{
-                            scale: 205,
+                            scale: 245,
                         }}
                         width={980}
                         height={551}
