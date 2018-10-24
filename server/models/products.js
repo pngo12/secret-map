@@ -2,22 +2,20 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const ProductSchema = new Schema({
-    product: {
-        type: Schema.Types.ObjectId,
-
-    },
+    _id: Schema.Types.ObjectId,
     name: {
-        type: string
+        type: String
     },
-    type: {
-        type: string
+    image: {
+        type: String
     },
-
     description: {
-        type: string
-    }
-
-});
+        type: String
+    },
+    countries: [{
+        type: String
+    }]
+})
 
 
 

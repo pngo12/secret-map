@@ -20,7 +20,7 @@ const rootReducer = (state = initialState, action) => {
         //     return ({...state, country: [...state.country, ...action.newProductToCountry]}) 
         // case DELETE_PRODUCT_FROM_COUNTRY:
         //     return ({ ...state, country: [...action.deletedProduct]})           
-        // default: return state
+        default: return state
     }
 }
 
