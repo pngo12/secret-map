@@ -1,7 +1,10 @@
 import React, { Component } from "react"
 import { Redirect } from 'react-router-dom';
-import Glidewell from '../../assets/glidewellLogo.jpeg';
 import './login.css'
+import Glidewell from '../../assets/glidewellLogo.jpeg';
+import { connect } from "http2";
+import { connect } from 'react-redux';
+
 
 class Login extends Component {
 
@@ -39,15 +42,15 @@ class Login extends Component {
   render() {
     return (
       <div>
-        {this.state.submitClicked ? <Redirect to='/' />
+        {this.state.submitClicked ? <Redirect to='./homepage' />
           :
-          <div id="login-page">
+          <div className="login-page">
             <img src={Glidewell} style={{ margin: 25 }} alt="logo"/>
             <div className="form">
-              <h1 style={{ margin: 10 }}>Username</h1>
+              <h2 style={{ margin: 10 }}>Username</h2>
               <input class="input" style={{ margin: 10 }} type="text" value={this.state.username} onChange={this.onUsernameChange} placeholder="username" />
-              <h1 style={{ margin: 10 }}>Password</h1>
-              <input id="test" class="input" style={{ margin: 10 }} type="password" value={this.state.password} onChange={this.onPasswordChange} placeholder="password" />
+              <h2 style={{ margin: 10 }}>Password</h2>
+              <input class="input" style={{ margin: 10 }} type="password" value={this.state.password} onChange={this.onPasswordChange} placeholder="password" />
               <div class="control">
                 <a class="button is-danger" style={{ margin: 10 }}>Login</a>
               </div>
@@ -61,4 +64,8 @@ class Login extends Component {
   }
 }
 
-export default Login
+const mapPropsToDispatch = dispatch => ({ 
+  login: (user) => { dispatch(login(user))}
+});
+
+export default connect(null, mapPropsToDispatch)(Login)

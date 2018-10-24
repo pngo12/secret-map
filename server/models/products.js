@@ -4,10 +4,21 @@ const Schema = mongoose.Schema;
 const ProductSchema = new Schema({
     product: {
         type: Schema.Types.ObjectId,
-        
+
+    },
+    name: {
+        type: string
+    },
+    type: {
+        type: string
+    },
+
+    description: {
+        type: string
     }
-})
+
+});
 
 
 
-module.exports = Products = mongoose.model('products', ProductSchema);
+module.exports = Product = mongoose.model('product', ProductSchema)
