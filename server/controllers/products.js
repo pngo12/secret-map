@@ -1,20 +1,22 @@
 const express = require('express');
 const app = express();
-const Products = require('../models/products')
+const Product = require('../models/products')
 
 
-const getProducts = (req,res) => {
-    Products.find()
-    .then(products => {
-        if(!products) {
-            return res.status(404).json({message: 'Could not find products'})
-        }
-        res.status(200).json(products)
-    })
-    .catch(err => {
-        res.status(404).json(err)
-    })
+const getProduct = async (req,res) => {
+    try{
+    let product = await Product.find().exec();
+    if(product === null || product === undefined) {
+        res.status(400).send({ message: "There are no products here!!"});
+    }
+        res.status(200).send({ product, message: "Here are your products" })
+}  
+    catch(err) {
+        res.status(500).send({
+            message: "There is an error",
+            error: err.message
+        })
+    }
 }
 
-
-module.exports = getProducts
+module.exports = getProduct
