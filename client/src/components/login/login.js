@@ -1,7 +1,10 @@
 import React, { Component } from "react"
 import { Redirect } from 'react-router-dom';
-import Glidewell from '../../assets/glidewellLogo.jpeg';
 import './login.css'
+import Glidewell from '../../assets/glidewellLogo.jpeg';
+import { connect } from "http2";
+import { connect } from 'react-redux';
+
 
 class Login extends Component {
 
@@ -26,6 +29,7 @@ class Login extends Component {
   render() {
     return (
       <div>
+
         {
           this.state.submitClicked
             ? <Redirect to='/' />
@@ -49,4 +53,10 @@ class Login extends Component {
   }
 }
 
-export default Login;
+
+const mapPropsToDispatch = dispatch => ({ 
+  login: (user) => { dispatch(login(user))}
+});
+
+export default connect(null, mapPropsToDispatch)(Login)
+
