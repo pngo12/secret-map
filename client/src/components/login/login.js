@@ -35,9 +35,9 @@ class Login extends Component {
               <img src={Glidewell} style={{ margin: 25 }} alt="logo" />
               <div className="form">
                 <h1 style={{ margin: 10 }}>Username</h1>
-                <input class="input" style={{ margin: 10 }} type="text" value={this.state.username} onChange={this.handleOnChange} placeholder="username" />
+                <input class="input" style={{ margin: 10 }} type="text" value={this.state.username} name="username" onChange={this.handleOnChange} placeholder="username" />
                 <h1 style={{ margin: 10 }}>Password</h1>
-                <input id="test" class="input" style={{ margin: 10 }} type="password" value={this.state.password} onChange={this.handleOnChange} placeholder="password" />
+                <input id="test" class="input" style={{ margin: 10 }} type="password" value={this.state.password} name="password" onChange={this.handleOnChange} placeholder="password" />
                 <div class="control">
                   <a class="button is-danger" style={{ margin: 10 }}>Login</a>
                 </div>

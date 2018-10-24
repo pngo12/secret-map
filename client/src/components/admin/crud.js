@@ -60,6 +60,7 @@ class AdminCRUD extends Component {
             placeholder="Choose Product"
             onChange={this.handleOnChange}
             value={this.state.product1}
+            name="product1"
           />
           <h2> to </h2>
           <input
@@ -68,6 +69,7 @@ class AdminCRUD extends Component {
             type="text"
             placeholder="Choose Country"
             value={this.state.country1}
+            name="country1"
           />
           <div>
             <button className='button is-info'>
@@ -83,6 +85,7 @@ class AdminCRUD extends Component {
             type="text"
             placeholder="Choose Product"
             value={this.state.product2}
+            name="product2"
           />
           <h2> from </h2>
           <input
@@ -91,6 +94,7 @@ class AdminCRUD extends Component {
             type="text"
             placeholder="Choose Country"
             value={this.state.country2}
+            name="country2"
           />
           <div>
             <button
