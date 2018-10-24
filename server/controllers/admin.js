@@ -1,4 +1,5 @@
 const Product = require('../models/products');
+const Country = require('../models/countries')
 
 const getCountryByProduct = async (req, res) => {
     try {
@@ -16,6 +17,23 @@ const getCountryByProduct = async (req, res) => {
     }
 }
 
+
+const getCountry = async (req, res) => {
+    try {
+        let country = await Country.find().exec();
+        if (country === null || country === undefined) {
+            res.status(400).send({ message: "There are no countries here!!" });
+        }
+        res.status(200).send( country )
+    }
+    catch (err) {
+        res.status(500).send({
+            message: "There is an error",
+            error: err.message
+        })
+    }
+}
+
 const getProductByCountry = async (req,res) => {
     try {
         let products = await Country.findById(req.params.id).exec();
@@ -28,14 +46,43 @@ const getProductByCountry = async (req,res) => {
     }
 }
 
-const addProductToCountry = async (req, res) => {
-    let product = req.body;
-        try {
-            let newProductToCountry = await Country.create(product);
-            res.status(200).send({ newProductToCountry, message: "Added to country"});
-        }   catch(err) {
-            res.status(500).send({ Error: err.message})
-        }
+const createCountry = async (req, res) => {
+    try {
+        const country = await Country({
+            name: req.body.name,
+        })
+        Country.create(country)
+        res.status(200).send(country)
+            // (country => res.json(country))
+    }
+    catch (err) {
+        res.status(404).send({ error: err.message })
+    }
+}
+
+// const addProductToCountry = async (req, res) => {
+//     try {
+//         const product = await Country({
+            
+//         })
+//         const {name, image, description} = req.body;
+//             let newProductToCountry = await Country.create(product);
+//             res.status(200).json({ newProductToCountry, message: "Added to country"});
+//         }   catch(err) {
+//             res.status(500).json({ Error: err.message})
+//         }
+// }
+
+const deleteProduct = async (req, res) => {
+    try {
+        let deletedProduct = await Product.findByIdAndRemove(req.params.id).exec();
+        res.status(200).send({ deletedProduct, message: "DELETED" });
+        if(index == undefined) {
+            res.status(404).send({ message: "Please try again" })
+        } 
+    }catch (err) {
+        res.status(500).send({ Error: err.message })
+    }
 }
 
 const deleteProductFromCountry = async (req, res) => {
@@ -50,4 +97,4 @@ const deleteProductFromCountry = async (req, res) => {
     }
 }
 
-module.exports = { getCountryByProduct, getProductByCountry, addProductToCountry, deleteProductFromCountry }
+module.exports = { getCountryByProduct, getCountry, getProductByCountry, createCountry, deleteProductFromCountry, deleteProduct }
