@@ -1,18 +1,36 @@
-import React, { Component } from "react"
+import React, { Component } from "react";
 import {
     ComposableMap,
     ZoomableGroup,
     Geographies,
     Geography,
-} from "react-simple-maps"
+} from "react-simple-maps";
+import Search from './search';
+import chroma from "chroma-js";
 
 import ZoomObject from "../static/world-50m.json"
 
 const wrapperStyles = {
     width: "100%",
-    maxWidth: 980,
+    maxWidth: 1100,
     margin: "0 auto",
 }
+
+const colorScale = chroma
+    .scale([
+        '#FF5E40'
+        
+    ])
+    .mode('rgb')
+    .colors(4)
+
+const countries = [
+    "United States",
+    "Mexico",
+    "China"
+]
+
+
 
 class ZoomPan extends Component {
     constructor() {
@@ -32,6 +50,7 @@ class ZoomPan extends Component {
         this.handleregionSelection = this.handleregionSelection.bind(this)
         this.handleReset = this.handleReset.bind(this)
     }
+
     handleregionSelection(evt) {
         const regionId = evt.target.getAttribute("data-region")
         const region = this.state.region[regionId]
@@ -41,12 +60,14 @@ class ZoomPan extends Component {
         })
         console.log(region)
     }
+
     handleReset() {
         this.setState({
             center: [0, 20],
             zoom: 1,
         })
     }
+
     render() {
         return (
             <div>
@@ -89,7 +110,7 @@ class ZoomPan extends Component {
                                         projection={projection}
                                         style={{
                                             default: {
-                                                fill: "#ECEFF1",
+                                                fill: colorScale[countries.indexOf(geography.properties.name)] ? colorScale[countries.indexOf(geography.properties.name)] : "#ECEFF1",
                                                 stroke: "#607D8B",
                                                 strokeWidth: 0.75,
                                                 outline: "none",
@@ -119,8 +140,8 @@ class ZoomPan extends Component {
     }
 }
 
-const mapStateToProps = state => ({
+// const mapStateToProps = state => ({
     
-})
+// })
 
 export default ZoomPan
