@@ -1,5 +1,6 @@
 const Product = require('../models/products')
 const Country = require('../models/countries')
+const { data } = require('../data/products')
 
 const getProduct = async (req, res) => {
     try {
@@ -54,4 +55,16 @@ const findProduct = async (req, res) => {
     }
 }
 
-module.exports = { getProduct, createProduct, findProduct, createCountry }
+
+// Use the below method to upload data, remove once done
+// const upload = (req, res) => {
+//     Product.insertMany(data, function (error, docs) {
+//         if (error) {
+//             console.log(error)
+//         } else {
+//             res.send(docs)
+//         }
+//     })
+// }
+
+module.exports = { getProduct, createProduct, findProduct, createCountry, upload }
