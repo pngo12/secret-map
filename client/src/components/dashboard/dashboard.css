@@ -17,7 +17,7 @@
 }
 
 #drop {
-    margin: 5px;
+    margin: 8px;
 }
 
 h1 {
@@ -31,8 +31,18 @@ h1 {
 
 #continentButtons {
     margin: 5px;
+    display: inline-block;
 }
 
-#resetButton {
+#productDescription {
     margin: 5px;
+}
+
+#search {
+    display: inline-block;
+    font-size: 20px;
+}
+
+.searchBar {
+    margin-left: 281px;
 }

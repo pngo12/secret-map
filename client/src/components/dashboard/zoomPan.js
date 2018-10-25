@@ -1,14 +1,19 @@
-import React, { Component } from "react";
+import React, { Component } from "react"
+// import withRedux from "next-redux-wrapper"
 import {
-    ComposableMap,
-    ZoomableGroup,
-    Geographies,
-    Geography,
-} from "react-simple-maps";
-import Search from './search';
+  ComposableMap,
+  ZoomableGroup,
+  Geographies,
+  Geography,
+} from "react-simple-maps"
+// import {
+//   Tooltip,
+//   actions,
+// } from "redux-tooltip"
 import chroma from "chroma-js";
-
-import ZoomObject from "../static/world-50m.json"
+import ZoomObject from "../static/world-50m.json";
+// import { initStore } from "../../index";
+import Search from './search';
 
 const wrapperStyles = {
     width: "100%",
@@ -16,28 +21,46 @@ const wrapperStyles = {
     margin: "0 auto",
 }
 
+// const { show, hide } = actions
+
 const colorScale = chroma
     .scale([
-        '#FF5E40'
-        
+        '#f2718b'
+
     ])
     .mode('rgb')
-    .colors(4)
+    .colors(100)
 
 const countries = [
     "United States",
     "Mexico",
-    "China"
+    "China",
+    "Egypt",
+    "Australia",
+    "Brazil",
+    "Japan",
+    "Korea",
+    "India",
+    "United Kingdom",
+    "France",
+    "Spain",
+    "Germany",
+    "Italy",
+    "South Africa"
 ]
 
 
 
 class ZoomPan extends Component {
+
     constructor() {
         super()
+        // this.handleMove = this.handleMove.bind(this)
+        // this.handleLeave = this.handleLeave.bind(this)
         this.state = {
             center: [0, 20],
             zoom: 1,
+            countriers: [],
             region: [
                 { name: "Europe", coordinates: [8.5417, 47.3769] },
                 { name: "Asia", coordinates: [103.8198, 1.3521] },
@@ -50,6 +73,21 @@ class ZoomPan extends Component {
         this.handleregionSelection = this.handleregionSelection.bind(this)
         this.handleReset = this.handleReset.bind(this)
     }
+
+    // handleMove(geography, evt) {
+    //     const x = evt.clientX
+    //     const y = evt.clientY + window.pageYOffset
+    //     this.props.dispatch(
+    //         show({
+    //             origin: { x, y },
+    //             content: geography.properties.name
+    //         })
+    //     )
+    // }
+
+    // handleLeave() {
+    //     this.props.dispatch(hide())
+    // }
 
     handleregionSelection(evt) {
         const regionId = evt.target.getAttribute("data-region")
@@ -85,7 +123,7 @@ class ZoomPan extends Component {
                             </button>
                         ))
                     }
-                    <button id="resetButton" className="button is-danger is-small is-outlined" onClick={this.handleReset}>
+                    <button id="continentButtons" className="button is-danger is-small is-outlined" onClick={this.handleReset}>
                         {"Reset"}
                     </button>
                 </div>
@@ -108,6 +146,8 @@ class ZoomPan extends Component {
                                         key={i}
                                         geography={geography}
                                         projection={projection}
+                                        // onMouseMove={this.handleMove}
+                                        // onMouseLeave={this.handleLeave}
                                         style={{
                                             default: {
                                                 fill: colorScale[countries.indexOf(geography.properties.name)] ? colorScale[countries.indexOf(geography.properties.name)] : "#ECEFF1",
@@ -120,6 +160,9 @@ class ZoomPan extends Component {
                                                 stroke: "#607D8B",
                                                 strokeWidth: 0.75,
                                                 outline: "none",
+                                                show: {
+                                                  content: geography.properties.name
+                                                }
                                             },
                                             pressed: {
                                                 fill: "#FF5722",
@@ -134,6 +177,7 @@ class ZoomPan extends Component {
                             </Geographies>
                         </ZoomableGroup>
                     </ComposableMap>
+                    {/* <Tooltip /> */}
                 </div>
             </div>
         )
@@ -141,7 +185,7 @@ class ZoomPan extends Component {
 }
 
 // const mapStateToProps = state => ({
-    
+
 // })
 
-export default ZoomPan
+export default ZoomPan;
