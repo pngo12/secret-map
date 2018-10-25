@@ -33,14 +33,19 @@ const getCountryByProduct = async (req, res) => {
 //     }
 // }
 
-
 const getCountry = async (req, res) => {
     try {
-        let country = await Country.find().exec();
-        if (country === null || country === undefined) {
+
+     Country.find()
+        .populate( 'products').exec((err, name) => {
+            console.log("Populated name: " + name)
+
+            if (name === null || name === undefined) {
             res.status(400).send({ message: "There are no countries here!!" });
         }
-        res.status(200).send( country )
+        res.status(200).send( name )
+        })
+        
     }
     catch (err) {
         res.status(500).send({
@@ -49,6 +54,24 @@ const getCountry = async (req, res) => {
         })
     }
 }
+
+
+// const getCountry = async (req, res) => {
+//     try {
+//         let country = await Country.find()
+//         .populate('product', 'name').exec();
+//         if (country === null || country === undefined) {
+//             res.status(400).send({ message: "There are no countries here!!" });
+//         }
+//         res.status(200).send( country )
+//     }
+//     catch (err) {
+//         res.status(500).send({
+//             message: "There is an error",
+//             error: err.message
+//         })
+//     }
+// }
 
 // const getProductByCountry = async (req,res) => {
 //     try {

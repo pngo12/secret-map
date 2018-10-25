@@ -5,6 +5,7 @@ import Glidewell from '../../assets/glidewellLogo.jpeg';
 import { connect } from 'react-redux';
 
 
+
 class Login extends Component {
 
   state = {
@@ -110,9 +111,13 @@ class Login extends Component {
 
 
 // const mapPropsToDispatch = dispatch => ({ 
+
+//   login: (user) => { dispatch(login(user))}
 // });
 
-// export default connect(null, mapPropsToDispatch)(Login)
+
+
 
 export default connect(null, mapDispatchToProps)(Login); 
+
 
