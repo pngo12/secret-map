@@ -12,6 +12,7 @@ class HomePage extends Component {
                 <Logo />
                 <ZoomPan />
                 <Search />
+
             </div>
          );
     }

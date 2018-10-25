@@ -9,9 +9,12 @@ class Search extends Component {
 
     state = {
         country: '',
-        product: [{
-            name: 'dentures', description: 'These teeth are freaken awesome', countries: ['United States', 'Japan', 'Mexico', 'United Kingdom']
-        }],
+        product: [
+            { name: 'dentures', description: 'These dentures are great.', countries: ['United States, ', 'Japan, ', 'Mexico, ', 'United Kingdom'] },
+            { name: 'teeth', description: 'These dentures are great.', countries: ['United States, ', 'Japan, ', 'Mexico, ', 'United Kingdom'] },
+            { name: 'molars', description: 'These dentures are great.', countries: ['United States, ', 'Japan, ', 'Mexico, ', 'United Kingdom'] },
+            { name: 'canine', description: 'These dentures are asdfasdfdsafasdfsafdasfawfasdffsdafasdfsdafsadfadsfdasfwefaweewafewfwafewafwaefwfawfweafaewfaewfwafewafawefawefwaefaewfeawfawefeawfaw.', countries: ['United States, ', 'Japan, ', 'Mexico, ', 'United Kingdom'] },
+        ],
         title: '',
         isShowing: false
     }
@@ -30,29 +33,27 @@ class Search extends Component {
 
     render() {
         return (
-            <div className="searchBar">
-                <h3 id="search">Search By:
-                    <select id="drop" className="dropdown">
-                        <option value="country">Country</option>
-                        <option value="product">Product</option>
-                    </select>
-                </h3>   
-                <form id="search" onSubmit={this.formSubmit}>
-                    <input id="countryInput" type="text" value={this.state.country} onChange={this.handleOnChange} className="input is-small" name="country" />
-                    <button id="searchButton" className="button is-link is-small" type="submit ">Search</button>
-                    </form>
-                    <div className="container">
-                    {
-                        this.state.isShowing && (
-                            <ProductList
-                                title={this.state.title}
-                                product={this.state.product}
-                            />
-                        )
-                    }
-                    </div>
+            <div className="searchBar columns">
                 
-              
+                            <h3 id="search">Search By:
+                    <select id="drop" className="dropdown">
+                                    <option value="country">Country</option>
+                                    <option value="product">Product</option>
+                                </select>
+                            </h3>
+                            <form id="search" onSubmit={this.formSubmit}>
+                                <input id="countryInput" type="text" value={this.state.country} onChange={this.handleOnChange} className="input is-small" name="country" />
+                                <button id="searchButton" className="button is-link is-small" type="submit ">Search</button>
+                            </form>
+                            
+                                {
+                                    this.state.isShowing && (
+                                        <ProductList
+                                            title={this.state.title}
+                                            product={this.state.product}
+                                        />
+                                    )
+                                }
                 {/* <CountryList /> */}
             </div>
         );
