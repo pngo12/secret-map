@@ -6,7 +6,7 @@ import styles from '../../App.css'
 
 class HomePage extends Component {
 
-    render() { 
+    render() {
         return ( 
             <div>
                 <Logo />
@@ -18,5 +18,5 @@ class HomePage extends Component {
 }
 
 
- 
+
 export default HomePage;

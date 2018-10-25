@@ -67,4 +67,5 @@ const findProduct = async (req, res) => {
 //     })
 // }
 
-module.exports = { getProduct, createProduct, findProduct, createCountry }
+
+module.exports = { getProduct, createProduct, findProduct, createCountry}

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-const CountryList = props => {
+const ProductDetails = props => {
     return (
         <div className="modal is-active">
             <div className="modal-background"></div>
@@ -22,4 +22,4 @@ const CountryList = props => {
     );
 }
 
-export default CountryList;
+export default ProductDetails;

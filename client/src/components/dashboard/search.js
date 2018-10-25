@@ -3,13 +3,15 @@ import { connect } from 'react-redux';
 import { getProductByCountry } from '../../redux/actions'
 import './dashboard.css'
 import ProductList from './productList';
-import CountryList from './countryList';
+import CountryList from './productDetails';
 
 class Search extends Component {
 
     state = {
         country: '',
-        product: ['dentures', 'braces', ' retainers', 'teeth'],
+        product: [{
+            name: 'dentures', description: 'These teeth are freaken awesome', countries: ['United States', 'Japan', 'Mexico', 'United Kingdom']
+        }],
         title: '',
         isShowing: false
     }
@@ -28,16 +30,18 @@ class Search extends Component {
 
     render() {
         return (
-            <div className="container">
-                <h3>Search By:
+            <div className="searchBar">
+                <h3 id="search">Search By:
                     <select id="drop" className="dropdown">
                         <option value="country">Country</option>
                         <option value="product">Product</option>
                     </select>
-                </h3>
-                <form onSubmit={this.formSubmit}>
+                </h3>   
+                <form id="search" onSubmit={this.formSubmit}>
                     <input id="countryInput" type="text" value={this.state.country} onChange={this.handleOnChange} className="input is-small" name="country" />
                     <button id="searchButton" className="button is-link is-small" type="submit ">Search</button>
+                    </form>
+                    <div className="container">
                     {
                         this.state.isShowing && (
                             <ProductList
@@ -46,7 +50,9 @@ class Search extends Component {
                             />
                         )
                     }
-                </form>
+                    </div>
+                
+              
                 {/* <CountryList /> */}
             </div>
         );

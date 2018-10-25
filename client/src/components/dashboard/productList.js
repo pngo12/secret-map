@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import CountryList from './countryList';
+import ProductDetails from './productDetails';
 // const ProductList = props => {
 //     return (
 //         <div>
@@ -39,28 +39,35 @@ class ProductList extends Component {
             <div>
                 <h1>Products in: {this.state.title}</h1>
                 {/* <button onClick={this.displayModal}>TEST MODAL</button> */}
-                <div className="row">
-                    <table>
+
+                <table id="productDescription" border="1">
+                    <thead>
                         <tr>
-                        <th>Product</th>
-                        <th>Descrtiption</th>
+                            <th>Name</th>
+                            <th>Description</th>
+                            <th>Countries</th>
                         </tr>
-                    </table>
-                </div>
+                    </thead>
+
+                    <tbody>
+                        {
+                            this.props.product.map((product, index) => {
+                                return (
+
+                                    <div id="productList" key={index}>
+                                        <tr>
+                                            <td onClick={this.displayModal}>{product.name}</td>
+                                            <td>{product.description}</td>
+                                            <td>{product.countries}</td>
+                                        </tr>
+                                    </div>
+                                )
+                            })
+                        }
+                    </tbody>
+                </table>
                 {
-
-                    this.props.product.map((product, index) => {
-                        return (
-
-                            <div id="productList" key={index}>
-
-                                <p onClick={this.displayModal}>{product}</p>
-                            </div>
-                        )
-                    })
-                }
-                {
-                    this.state.modalOn && <CountryList closeModal={this.closeModal} />
+                    this.state.modalOn && <ProductDetails closeModal={this.closeModal} />
                 }
             </div>
         );
