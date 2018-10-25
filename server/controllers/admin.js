@@ -17,6 +17,22 @@ const getCountryByProduct = async (req, res) => {
     }
 }
 
+// const getProduct = async (req, res) => {
+//     try {
+//         let product = await Product.find().exec();
+//         if (product === null || product === undefined) {
+//             res.status(400).send({ message: "There are no products here!!" });
+//         }
+//         res.status(200).send({ product, message: "Here are your products" })
+//     }
+//     catch (err) {
+//         res.status(500).send({
+//             message: "There is an error",
+//             error: err.message
+//         })
+//     }
+// }
+
 
 const getCountry = async (req, res) => {
     try {
@@ -34,17 +50,17 @@ const getCountry = async (req, res) => {
     }
 }
 
-const getProductByCountry = async (req,res) => {
-    try {
-        let products = await Country.findById(req.params.id).exec();
-        if( products === null || products === undefined) {
-            res.status(400).send({ message: "The country was incorrect. Please try again"})
-        }
-            res.status(200).send({ products, message: "Here are the products associated with this country"})
-    }   catch(err) {
-        res.status(500).send({ Error: err.message })
-    }
-}
+// const getProductByCountry = async (req,res) => {
+//     try {
+//         let products = await Country.findById(req.params.id).exec();
+//         if( products === null || products === undefined) {
+//             res.status(400).send({ message: "The country was incorrect. Please try again"})
+//         }
+//             res.status(200).send({ products, message: "Here are the products associated with this country"})
+//     }   catch(err) {
+//         res.status(500).send({ Error: err.message })
+//     }
+// }
 
 const createCountry = async (req, res) => {
     try {
@@ -85,16 +101,16 @@ const deleteProduct = async (req, res) => {
     }
 }
 
-const deleteProductFromCountry = async (req, res) => {
-    try {
-        let deletedProduct = await Country.findByIdAndRemove(req.params.id).exec();
-        res.status(200).send({ deletedProduct, message: "You have removed this product from the country"});
-    if(index == undefined) {
-        res.status(404).send({ message: "something went wrong"})
-    }
-    }catch (err) {
-        res.status(500).send({ Error: err.message })
-    }
-}
+// const deleteProductFromCountry = async (req, res) => {
+//     try {
+//         let deletedProduct = await Country.findByIdAndRemove(req.params.id).exec();
+//         res.status(200).send({ deletedProduct, message: "You have removed this product from the country"});
+//     if(index == undefined) {
+//         res.status(404).send({ message: "something went wrong"})
+//     }
+//     }catch (err) {
+//         res.status(500).send({ Error: err.message })
+//     }
+// }
 
-module.exports = { getCountryByProduct, getCountry, getProductByCountry, createCountry, deleteProductFromCountry, deleteProduct }
+module.exports = { getCountryByProduct, getCountry,  createCountry, deleteProduct }
