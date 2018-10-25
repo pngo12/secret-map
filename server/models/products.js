@@ -3,20 +3,10 @@ const Schema = mongoose.Schema;
 
 const ProductSchema = new Schema({
     // _id: Schema.Types.ObjectId,
-    name: {
-        type: String
-    },
-    image: {
-        type: String
-    },
-    description: {
-        type: String
-    },
-    countries: [{
-        type: String
-    }]
-})
-
-
+    name: String,
+    type: String,
+    image: String,
+    description: String,
+});
 
 module.exports = Product = mongoose.model('product', ProductSchema)
