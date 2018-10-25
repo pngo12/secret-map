@@ -2,13 +2,10 @@ const express = require('express');
 const app = express();
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
-const adminRoutes = require('./routes/admin');
+const country = require('./routes/country');
 const Products = require('./routes/products');
 const newUsers = require('./routes/users');
 const passport = require('passport');
-const data = require('./data/products')
-const Product = require('./models/products')
-
 
 // Body parser
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -28,9 +25,9 @@ require('./config/passport')(passport)
 
 const port = process.env.PORT || 5000;
 
-app.use('/admin', adminRoutes);
+app.use('/country', country);
 app.use('/product', Products);
-app.use('/create', newUsers);
+app.use('/auth', newUsers);
 
 app.listen(port, () => console.log(`🏃 Running on port: ${port}`));
 
