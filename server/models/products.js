@@ -4,9 +4,9 @@ const Schema = mongoose.Schema;
 const ProductSchema = new Schema({
     // _id: Schema.Types.ObjectId,
     name: String,
+    type: String,
     image: String,
     description: String,
-    countries: [{ type: Schema.Types.ObjectId, ref: 'countries' }]
 });
 
 module.exports = Product = mongoose.model('product', ProductSchema)

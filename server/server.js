@@ -6,6 +6,9 @@ const adminRoutes = require('./routes/admin');
 const Products = require('./routes/products');
 const newUsers = require('./routes/users');
 const passport = require('passport');
+const data = require('./data/products')
+const Product = require('./models/products')
+
 
 // Body parser
 app.use(bodyParser.urlencoded({ extended: true }));
