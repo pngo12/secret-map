@@ -1,11 +1,12 @@
-import React, { Component } from "react"
+import React, { Component } from "react";
 import {
     ComposableMap,
     ZoomableGroup,
     Geographies,
     Geography,
-} from "react-simple-maps"
+} from "react-simple-maps";
 import Search from './search';
+import chroma from "chroma-js";
 
 import ZoomObject from "../static/world-50m.json"
 
@@ -14,6 +15,22 @@ const wrapperStyles = {
     maxWidth: 1100,
     margin: "0 auto",
 }
+
+const colorScale = chroma
+    .scale([
+        '#FF5E40'
+        
+    ])
+    .mode('rgb')
+    .colors(4)
+
+const countries = [
+    "United States",
+    "Mexico",
+    "China"
+]
+
+
 
 class ZoomPan extends Component {
     constructor() {
@@ -43,12 +60,14 @@ class ZoomPan extends Component {
         })
         console.log(region)
     }
+
     handleReset() {
         this.setState({
             center: [0, 20],
             zoom: 1,
         })
     }
+
     render() {
         return (
             <div>
@@ -91,7 +110,7 @@ class ZoomPan extends Component {
                                         projection={projection}
                                         style={{
                                             default: {
-                                                fill: "#ECEFF1",
+                                                fill: colorScale[countries.indexOf(geography.properties.name)] ? colorScale[countries.indexOf(geography.properties.name)] : "#ECEFF1",
                                                 stroke: "#607D8B",
                                                 strokeWidth: 0.75,
                                                 outline: "none",

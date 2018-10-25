@@ -16,7 +16,6 @@ class Search extends Component {
 
     handleOnChange = e => this.setState({ [e.target.name]: e.target.value })
 
-   
     formSubmit = e => {
         e.preventDefault();
         let countryInput = this.state.country;

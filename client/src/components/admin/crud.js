@@ -8,7 +8,19 @@ import {
 } from '../../redux/actions/index';
 
 const productForm = {
-  width: 400
+  width: 500
+}
+
+const wrapperStyles = {
+  width: "100%",
+  maxWidth: 980,
+  margin: "0 auto",
+  marginBottom: 100
+}
+
+const spacingOfForm = {
+  marginTop: 8,
+  marginBottom: 8,
 }
 
 class AdminCRUD extends Component {
@@ -51,12 +63,13 @@ class AdminCRUD extends Component {
   };
   render() {
     return (
-      <div className="container">
+      <div className="container" style={wrapperStyles}>
         <div style={productForm}>
-          <h1> Add Product to Country </h1>
+          <h2 style={{fontSize: 35}}> Add Product to Country </h2>
           <input
             className='input is-small'
             type="text"
+            style={spacingOfForm}
             placeholder="Choose Product"
             onChange={this.handleOnChange}
             value={this.state.product1}
@@ -67,22 +80,26 @@ class AdminCRUD extends Component {
             className='input is-small'
             onChange={this.handleOnChange}
             type="text"
+            style={spacingOfForm}
             placeholder="Choose Country"
             value={this.state.country1}
             name="country1"
           />
           <div>
-            <button className='button is-info'>
+            <button 
+            className='button is-info'
+            style ={{marginTop: 7}}>
               submit
             </button>
           </div>
         </div>
         <div style={productForm}>
-          <h1> Remove Product from Country </h1>
+          <h2 style={{fontSize: 35}}> Remove Product from Country </h2>
           <input
             className='input is-small'
             onChange={this.handleOnChange}
             type="text"
+            style={spacingOfForm}
             placeholder="Choose Product"
             value={this.state.product2}
             name="product2"
@@ -92,12 +109,14 @@ class AdminCRUD extends Component {
             className='input is-small'
             onChange={this.handleOnChange}
             type="text"
+            style={spacingOfForm}
             placeholder="Choose Country"
             value={this.state.country2}
             name="country2"
           />
           <div>
             <button
+            style ={{marginTop: 7}}
               onClick={this.submitProductToCountry}
               className='button is-info'>
               submit
