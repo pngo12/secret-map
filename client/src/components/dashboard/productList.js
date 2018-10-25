@@ -36,40 +36,40 @@ class ProductList extends Component {
     render() {
         console.log("MODAL", this.state.modalOn)
         return (
-            <div>
-                <h1>Products in: {this.state.title}</h1>
-                {/* <button onClick={this.displayModal}>TEST MODAL</button> */}
+            <div className="container">
+                
+                    <h2>Products in: {this.state.title}</h2>
+                    {/* <button onClick={this.displayModal}>TEST MODAL</button> */}
 
-                <table id="productDescription" border="1">
-                    <thead>
-                        <tr>
-                            <th>Name</th>
-                            <th>Description</th>
-                            <th>Countries</th>
-                        </tr>
-                    </thead>
+                    <table id="productDescription" border="1" className="table is-hoverable is-bordered">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Description</th>
+                                <th>Countries</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {
+                                this.props.product.map((product, index) => {
+                                    return (
 
-                    <tbody>
-                        {
-                            this.props.product.map((product, index) => {
-                                return (
 
-                                    <div id="productList" key={index}>
-                                        <tr>
+                                        <tr key={index}>
                                             <td onClick={this.displayModal}>{product.name}</td>
                                             <td>{product.description}</td>
                                             <td>{product.countries}</td>
                                         </tr>
-                                    </div>
-                                )
-                            })
-                        }
-                    </tbody>
-                </table>
-                {
-                    this.state.modalOn && <ProductDetails closeModal={this.closeModal} />
-                }
-            </div>
+
+                                    )
+                                })
+                            }
+                        </tbody>
+                    </table>
+                    {
+                        this.state.modalOn && <ProductDetails closeModal={this.closeModal} />
+                    }
+                </div>
         );
     }
 }
