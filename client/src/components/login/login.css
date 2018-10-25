@@ -1,10 +1,36 @@
-.login-page {
-    width: 400px;
-    padding: 10% 0 0;
-    margin: auto; 
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-.form {
-    max-width: 400px;
+.loggingOn {
+    background-color: hsl(0, 0%, 71%);
+    
+}
+
+#login-page {
+    height: 100%;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: auto;
+    margin-bottom: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    border-radius: 15px;
+  }
+
+.formGrouping {
+    border-width: 1; 
+    border-color: grey;
+    border-style: solid;
+    width: 65%;
+    background-color: hsl(0, 0%, 86%);
+    height: 75%;
+    padding-top: 2%
 }
 

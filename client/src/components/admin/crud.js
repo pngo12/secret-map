@@ -7,52 +7,64 @@ import {
   deleteProductFromCountry
 } from '../../redux/actions/index';
 
-const productForm = {
-  width: 500
-}
-
 const wrapperStyles = {
   width: "100%",
   maxWidth: 980,
   margin: "0 auto",
-  marginBottom: 100
+  marginBottom: 100,
+  marginTop: 50,
+  borderWidth: 1,
+  borderColor: 'black',
+  borderStyle: 'solid',
+  padding: 30,
+  backgroundColor: 'hsl(0, 0%, 86%)'
 }
+const productForm = {
+  width: '55%',
+  marginLeft: 'auto',
+  marginRight: 'auto',
+  textAlign: 'center'
+}
+
 
 const spacingOfForm = {
   marginTop: 8,
   marginBottom: 8,
+  borderWidth: 1,
+  borderColor: 'black',
+  borderStyle: 'solid',
 }
 
 class AdminCRUD extends Component {
   state = {
-    country1: "",
-    product1: "",
-    country2: '',
-    product2: ''
+    addedToCountry: "",
+    productToAdd: "",
+    deletedFromCountry: '',
+    productToDelete: ''
   };
 
-  // productChange = e => {
-  //     this.setState({
-  //         product1: e.target.value
-  //     })
-  // }
-  // countryChange = e => {
-  //     this.setState({
-  //         country1: e.target.value
-  //     })
-  // }
-  // productChange1 = e => {
-  //     this.setState({
-  //         product2: e.target.value
-  //     })
-  // }
-  // countryChange1 = e => {
-  //     this.setState({
-  //         country2: e.target.value
-  //     })
-  // }
+  addingProductChange = e => {
+      this.setState({
+          productToAdd: e.target.value
+      })
+  }
+  addingCountryChange = e => {
+      this.setState({
+          addedToCountry: e.target.value
+      })
+  }
+  deletingProductChange = e => {
+      this.setState({
+          productToDelete: e.target.value
+      })
+  }
+  deletingCountryChange = e => {
+      this.setState({
+          deletedFromCountry: e.target.value
+      })
+  }
 
-  handleOnChange = e => this.setState({ [e.target.name]: e.target.value })
+  // handleOnChange = e => this.setState({ [e.target.name]: e.target.value })
 
   submitProductToCountry = () => {
     let { country, product } = this.state;
@@ -71,25 +83,25 @@ class AdminCRUD extends Component {
             type="text"
             style={spacingOfForm}
             placeholder="Choose Product"
-            onChange={this.handleOnChange}
-            value={this.state.product1}
-            name="product1"
+            onChange={this.addingProductChange}
+            value={this.state.productToAdd}
+            name="productToAdd"
           />
           <h2> to </h2>
           <input
             className='input is-small'
-            onChange={this.handleOnChange}
+            onChange={this.addingCountryChange}
             type="text"
             style={spacingOfForm}
             placeholder="Choose Country"
-            value={this.state.country1}
-            name="country1"
+            value={this.state.addedToCountry}
+            name="addedToCountry"
           />
           <div>
             <button 
             className='button is-info'
-            style ={{marginTop: 7}}>
-              submit
+            style ={{marginTop: 7, width: 88, marginBottom: 20}}>
+              ADD
             </button>
           </div>
         </div>
@@ -97,29 +109,29 @@ class AdminCRUD extends Component {
           <h2 style={{fontSize: 35}}> Remove Product from Country </h2>
           <input
             className='input is-small'
-            onChange={this.handleOnChange}
+            onChange={this.deletingProductChange}
             type="text"
             style={spacingOfForm}
             placeholder="Choose Product"
-            value={this.state.product2}
-            name="product2"
+            value={this.state.productToDelete}
+            name="productToDelete"
           />
           <h2> from </h2>
           <input
             className='input is-small'
-            onChange={this.handleOnChange}
+            onChange={this.deletingCountryChange}
             type="text"
             style={spacingOfForm}
             placeholder="Choose Country"
-            value={this.state.country2}
-            name="country2"
+            value={this.state.deletedFromCountry}
+            name="deletedFromCountry"
           />
           <div>
             <button
-            style ={{marginTop: 7}}
+            style ={{marginTop: 7, width: 88}}
               onClick={this.submitProductToCountry}
-              className='button is-info'>
-              submit
+              className='button is-danger'>
+              REMOVE
             </button>
           </div>
         </div>

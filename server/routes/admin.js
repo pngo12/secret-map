@@ -2,12 +2,12 @@ const express = require('express');
 const router = express.Router();
 const { 
     getCountryByProduct,
-    getProductByCountry, 
+    // getProductByCountry, 
     createCountry,
-    addProductToCountry, 
+    // addProductToCountry, 
     deleteProduct,
     getCountry,
-    deleteProductFromCountry 
+    // deleteProductFromCountry 
 } = require ('../controllers/admin')
 
 
@@ -26,10 +26,10 @@ router.post('/country/new', createCountry)
 // router.post('/', addProductToCountry)
 
 // getting the products by country ID
-router.get( '/:id', getProductByCountry)
+// router.get( '/:id', getProductByCountry)
 
 // deleting the product from the country
-router.delete('/:id', deleteProductFromCountry)
+// router.delete('/:id', deleteProductFromCountry)
 
 // deleting the product from the country
 router.delete('/product/:id', deleteProduct)
