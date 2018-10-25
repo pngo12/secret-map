@@ -8,6 +8,7 @@ import rootReducer from './redux/reducer'
 import App from './App'
 import AdminPage from './components/admin/adminHome'
 import Login from './components/login/login'
+import CountryList from './components/dashboard/countryList';
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
@@ -24,6 +25,7 @@ const store = createStore (
           <Route exact path='/' component={App} />
           <Route path='/admin' component={Login} />
           <Route path='/dashboard' component={AdminPage} />
+          <Route path='/product' component={CountryList} />
 
         </Switch>
       </BrowserRouter>

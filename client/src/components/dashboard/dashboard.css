@@ -4,11 +4,19 @@
 }
 
 #countryInput {
-    width: 100px;
+    width: 200px;
     margin: 5px;
 }
 
 #searchInput {
+    margin: 5px;
+}
+
+#searchButton {
+    margin: 5px;
+}
+
+#drop {
     margin: 5px;
 }
 

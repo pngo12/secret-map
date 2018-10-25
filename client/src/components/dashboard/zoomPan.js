@@ -5,12 +5,13 @@ import {
     Geographies,
     Geography,
 } from "react-simple-maps"
+import Search from './search';
 
 import ZoomObject from "../static/world-50m.json"
 
 const wrapperStyles = {
     width: "100%",
-    maxWidth: 980,
+    maxWidth: 1100,
     margin: "0 auto",
 }
 
@@ -32,6 +33,7 @@ class ZoomPan extends Component {
         this.handleregionSelection = this.handleregionSelection.bind(this)
         this.handleReset = this.handleReset.bind(this)
     }
+
     handleregionSelection(evt) {
         const regionId = evt.target.getAttribute("data-region")
         const region = this.state.region[regionId]
@@ -119,8 +121,8 @@ class ZoomPan extends Component {
     }
 }
 
-const mapStateToProps = state => ({
+// const mapStateToProps = state => ({
     
-})
+// })
 
 export default ZoomPan
