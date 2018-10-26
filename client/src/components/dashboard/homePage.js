@@ -7,15 +7,30 @@ import styles from '../../App.css'
 
 class HomePage extends Component {
 
+    state = {
+        countryName: '',
+        showListing: false
+    }
+
+    updateCountryName = countryName => {
+        this.setState({
+            countryName,
+            showListing: true
+        });
+    }
+
+
     render() {
-        return ( 
+        return (
             <div>
                 <Logo />
-                <ZoomPan />
-                <Search />
-                {/* <ProductList /> */}
+                <ZoomPan updateCountryName={this.updateCountryName} />
+                <Search
+                    countryName={this.state.countryName}
+                    showListing={this.state.showListing}
+                />
             </div>
-         );
+        )
     }
 }
 
