@@ -21,13 +21,31 @@ const getCountryAll = async (req, res) => {
     }
 }
 
+const findOneCountry = (req, res) => {
+    let name = req.params
+    console.log(name)
+        Country.findOne(name , function(err,docs){
+            res.status(200).json(docs)
+        }).exec()
+    //   catch(err) {
+    //     res.status(500).send({
+    //         message: 'There was an error',
+    //         error: err.message
+    //     })
+    // }
+}
+
 const addProductToCountry = async (req, res) => {
     try {
-        const product = await Country({
-
+        const product = await Product({
+            name: req.body.name,
+            image: req.body.image,
+            description: req.body.description,
+            type: req.body.type
         })
-        const { name, image, description } = req.body;
-        let newProductToCountry = await Country.create(product);
+        let newProductToCountry = await Product.create(product)
+        .then(Country.isNew = false)
+        .then(Country.update({},{$set: {}}))
         res.status(200).json({ newProductToCountry, message: "Added to country" });
     } catch (err) {
         res.status(500).json({ Error: err.message })
@@ -50,4 +68,5 @@ module.exports = {
     getCountryAll,
     deleteProductFromCountry,
     addProductToCountry,
+    findOneCountry
 }
