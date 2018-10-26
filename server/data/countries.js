@@ -1,63 +1,63 @@
- let data = [
+module.exports.data = [
     {
-        "name": "United States of America",
-        "Products": []
+         "name": "United States of America",
+        "products": ["5bd22cf182bd5b0d600de654", "5bd22cf182bd5b0d600de653" ]
     },
     {
         "name": "Mexico",
-        "Products": []
+        "products": ["5bd22cf182bd5b0d600de653"]
     },
     {
         "name": "China",
-        "Products": []
+        "products": ["5bd22cf182bd5b0d600de655"]
     },
     {
         "name": "Egypt",
-        "Products": []
+        "products": ["5bd22cf182bd5b0d600de655"]
     },
     {
         "name": "Australia",
-        "Products": []
+        "products": []
     },
     {
         "name": "Brazil",
-        "Products": []
+        "products": []
     },
     {
         "name": "Japan",
-        "Products": []
+        "products": []
     },
     {
         "name": "Korea",
-        "Products": []
+        "products": []
     },
     {
         "name": "India",
-        "Products": []
+        "products": []
     },
     {
         "name": "United Kingdom",
-        "Products": []
+        "products": []
     },
     {
         "name": "France",
-        "Products": []
+        "products": []
     },
     {
         "name": "Spain",
-        "Products": []
+        "products": []
     },
     {
         "name": "Germany",
-        "Products": []
+        "products": []
     },
     {
         "name": "Italy",
-        "Products": []
+        "products": []
     },
     {
         "name": "South Africa",
-        "Products": []
+        "products": []
     }
 ]
 
