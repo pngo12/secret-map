@@ -99,6 +99,11 @@ class ZoomPan extends Component {
         })
     }
 
+    passToParent = (e) => {
+        this.props.updateCountryName(e.properties.name)
+        console.log(e.properties.name)
+    }
+
     render() {
         return (
             <div>
@@ -164,7 +169,7 @@ class ZoomPan extends Component {
                                                 outline: "none",
                                             },
                                         }}
-                                        onClick={e => console.log(e)}
+                                        onClick={this.passToParent}
                                     />
                                 ))}
                             </Geographies>
