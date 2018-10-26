@@ -37,3 +37,28 @@ export const login = (user) => dispatch => {
         console.log("Login error: ", err.data)
     })
 }
+
+
+
+// export const AUTHENTICATED = 'authenticated_user';
+// export const UNAUTHENTICATED = 'unauthenticated_user';
+// export const AUTHENTICATION_ERROR = 'authentication_error'
+
+// const URL = 'http://localhost:5000/api/GlidewellUser/login';
+
+// export function signIn({email, password}, history) {
+//     return async (dispatch) => {
+//         try {
+//             const res = await axios.post(`${URL}`, {email,password});
+
+//             dispatch({ type: AUTHENTICATED });
+//             localStorage.setItem('user', res.data.token);
+//             history.push('/secret');
+//         } catch(err){
+//             dispatch({
+//             type: AUTHENTICATION_ERROR,
+//             payload: 'Invalid email or password!'
+//         })
+//     }
+// }
+// }

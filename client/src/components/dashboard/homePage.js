@@ -3,7 +3,8 @@ import Logo from './logo';
 import ZoomPan from './zoomPan';
 import Search from './search';
 import ProductList from './productList';
-import styles from '../../App.css'
+import styles from '../../App.css';
+import Footer from '../admin/footer'
 
 class HomePage extends Component {
 
@@ -29,6 +30,8 @@ class HomePage extends Component {
                     countryName={this.state.countryName}
                     showListing={this.state.showListing}
                 />
+                <Footer/>
+                
             </div>
         )
     }

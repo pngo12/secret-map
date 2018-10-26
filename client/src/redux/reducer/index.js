@@ -4,7 +4,8 @@ import {
     LOG_IN
     // ADD_PRODUCT_TO_COUNTRY,
     // DELETE_PRODUCT_FROM_COUNTRY,
-} from '../constants'
+} from '../constants';
+import authReducer from './auth_reducer'
 
 const initialState = {
     country: [],
@@ -12,7 +13,7 @@ const initialState = {
     userToken: "",
     authorized: false  
 }
-
+// combineReducers????
 const rootReducer = (state = initialState, action) => {
     switch(action.type) {
         case GET_COUNTRY_BY_PRODUCT:
@@ -24,7 +25,8 @@ const rootReducer = (state = initialState, action) => {
         // case ADD_PRODUCT_TO_COUNTRY:
         //     return ({...state, country: [...state.country, ...action.newProductToCountry]}) 
         // case DELETE_PRODUCT_FROM_COUNTRY:
-        //     return ({ ...state, country: [...action.deletedProduct]})           
+        //     return ({ ...state, country: [...action.deletedProduct]}) 
+        // auth: authReducer          
         default: return state
     }
 }

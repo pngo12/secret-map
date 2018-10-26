@@ -3,6 +3,7 @@ import { Redirect } from 'react-router-dom';
 import './login.css'
 import Glidewell from '../../assets/glidewellLogo.jpeg';
 import { connect } from 'react-redux';
+// import {signIn} from '../../redux/actions/index'
 
 
 
@@ -22,7 +23,36 @@ class Login extends Component {
     }
     this.props.login(user)
     this.setState({ loginClicked: true })
+    // add a redirect to admin dashboard page from here inside the setState
+    // possible:
+    // <Redirect to='/dashboard'/>
   }
+
+  // timerId = setTimeout(dashboard, 1800000) 
+// the number refers to 30 minutes, have to reframe
+// it so that the timer is going to the dashboard and to logout after timer has hit 30 minutes
+
+// once it hits 0 seconds
+// if(timerId = 0) {
+//   clearInterval(timerId)
+//  return <Redirect to='/admin'/>
+// }
+
+  
+//   onLoginClick = (values) =>
+//  {
+//    this.props.signIn(values, this.props.history);
+//  }
+
+//   errorMessage() {
+//     if (this.props.errorMessage) {
+//       return (
+//         <div>
+//           {this.props.errorMessage}
+//         </div>
+//       )
+//     }
+//   }
 
   onUsernameChange = e => {
     this.setState({
@@ -40,6 +70,7 @@ class Login extends Component {
 
 
   render() {
+    const {handleSubmit} = this.props;
     return (
       <section className = "hero is-fullheight has-background-grey">
 
@@ -50,8 +81,8 @@ class Login extends Component {
             <div className = "section is-medium">
             <div className = "container notification loggingOn" style={{height: 500, paddingRight: 24}}>
               <div id="login-page">
-                <form className="formGrouping">
-               <img src={Glidewell} style={{width: '41%', height: '30%', marginBottom: '2%'}} alt="logo" />
+                <form className="formGrouping" >
+               <img src={Glidewell} style={{width: '41%', height: '30%', marginBottom: '1%'}} alt="logo" />
                   <div className = "form-group">
                   <label style={{fontSize: '1em'}}> Username </label>
                   <br/>
@@ -84,6 +115,7 @@ class Login extends Component {
                   Submit
                   </button>
                 </form>
+                {/* {this.errorMessage()} */}
               </div>
 
             </div>
@@ -108,6 +140,10 @@ class Login extends Component {
     );
   }
 }
+
+// function mapStateToProps(state){
+//   return {errorMessage: state.auth.error}
+// }
 
 
 // const mapPropsToDispatch = dispatch => ({ 
