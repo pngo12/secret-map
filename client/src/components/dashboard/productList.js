@@ -42,8 +42,8 @@ class ProductList extends Component {
                 <div className="row">
                     <table>
                         <tr>
-                        <th>Product</th>
-                        <th>Descrtiption</th>
+                            <th>Product</th>
+                            <th>Descrtiption</th>
                         </tr>
                     </table>
                 </div>
@@ -55,7 +55,14 @@ class ProductList extends Component {
                             <div id="productList" key={index}>
 
                                 <p onClick={this.displayModal}>{product}</p>
+                                <tr key={index}>
+                                    <td>{product.name}</td>
+                                    <td>{product.descrtiption}</td>
+                                    <td>{product.country}</td>
+                                </tr>
+
                             </div>
+
                         )
                     })
                 }

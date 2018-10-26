@@ -2,7 +2,6 @@ import React, { Component } from "react"
 import { Redirect } from 'react-router-dom';
 import './login.css'
 import Glidewell from '../../assets/glidewellLogo.jpeg';
-// import { connect } from "http2";
 import { connect } from 'react-redux';
 
 
@@ -111,9 +110,9 @@ class Login extends Component {
 
 
 // const mapPropsToDispatch = dispatch => ({ 
-//   login: (user) => { dispatch(login(user))}
 // });
 
 // export default connect(null, mapPropsToDispatch)(Login)
 
-export default Login;
+export default Login; 
+
