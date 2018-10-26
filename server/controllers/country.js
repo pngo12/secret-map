@@ -12,7 +12,6 @@ const getCountryAll = async (req, res) => {
                 }
                 res.status(200).send(name)
             })
-
     }
     catch (err) {
         res.status(500).send({

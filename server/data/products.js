@@ -47,5 +47,67 @@ module.exports.data = [
         image: '',
         description: 'Simply Natural Dentures™ provide a unique custom arrangement of denture teeth based on patient age, desired tooth shade, masculine or feminine features and natural tissue contours.',
     },
-
 ]
+
+// let data = [
+//     {
+//         "name": "United States of America",
+//         "Products": ["5bd22cf182bd5b0d600de654"]
+//     },
+//     {
+//         "name": "Mexico",
+//         "Products": ["5bd22cf182bd5b0d600de655"]
+//     },
+//     {
+//         "name": "China",
+//         "Products": ["5bd22cf182bd5b0d600de655"]
+//     },
+//     {
+//         "name": "Egypt",
+//         "Products": []
+//     },
+//     {
+//         "name": "Australia",
+//         "Products": []
+//     },
+//     {
+//         "name": "Brazil",
+//         "Products": []
+//     },
+//     {
+//         "name": "Japan",
+//         "Products": []
+//     },
+//     {
+//         "name": "Korea",
+//         "Products": []
+//     },
+//     {
+//         "name": "India",
+//         "Products": []
+//     },
+//     {
+//         "name": "United Kingdom",
+//         "Products": []
+//     },
+//     {
+//         "name": "France",
+//         "Products": []
+//     },
+//     {
+//         "name": "Spain",
+//         "Products": []
+//     },
+//     {
+//         "name": "Germany",
+//         "Products": []
+//     },
+//     {
+//         "name": "Italy",
+//         "Products": []
+//     },
+//     {
+//         "name": "South Africa",
+//         "Products": []
+//     }
+// ]
