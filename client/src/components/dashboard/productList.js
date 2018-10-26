@@ -34,42 +34,35 @@ class ProductList extends Component {
     }
 
     render() {
-        console.log("MODAL", this.state.modalOn)
         return (
-            <div className="container">
-                
-                    <h2>Products in: {this.state.title}</h2>
-                    {/* <button onClick={this.displayModal}>TEST MODAL</button> */}
-
-                    <table id="productDescription" border="1" className="table is-hoverable is-bordered">
-                        <thead>
-                            <tr>
-                                <th>Name</th>
-                                <th>Description</th>
-                                <th>Countries</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {
-                                this.props.product.map((product, index) => {
-                                    return (
-
-
-                                        <tr key={index}>
-                                            <td onClick={this.displayModal}>{product.name}</td>
-                                            <td>{product.description}</td>
-                                            <td>{product.countries}</td>
-                                        </tr>
-
-                                    )
-                                })
-                            }
-                        </tbody>
-                    </table>
-                    {
-                        this.state.modalOn && <ProductDetails closeModal={this.closeModal} />
-                    }
-                </div>
+            <div className="productList">
+                <h2>Products in: {this.state.title}</h2>
+                <table id="productDescription" border="1" className="table is-hoverable is-bordered">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Description</th>
+                            <th>Countries</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {
+                            this.props.product.map((product, index) => {
+                                return (
+                                    <tr key={index}>
+                                        <td onClick={this.displayModal}>{product.name}</td>
+                                        <td>{product.description}</td>
+                                        <td>{product.countries}</td>
+                                    </tr>
+                                )
+                            })
+                        }
+                    </tbody>
+                </table>
+                {
+                    this.state.modalOn && <ProductDetails closeModal={this.closeModal} />
+                }
+            </div>
         );
     }
 }

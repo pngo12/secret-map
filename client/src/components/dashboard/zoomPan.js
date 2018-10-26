@@ -26,30 +26,9 @@ const wrapperStyles = {
 const colorScale = chroma
     .scale([
         '#f2718b'
-
     ])
     .mode('rgb')
     .colors(100)
-
-const countries = [
-    "United States",
-    "Mexico",
-    "China",
-    "Egypt",
-    "Australia",
-    "Brazil",
-    "Japan",
-    "Korea",
-    "India",
-    "United Kingdom",
-    "France",
-    "Spain",
-    "Germany",
-    "Italy",
-    "South Africa"
-]
-
-
 
 class ZoomPan extends Component {
 
@@ -60,7 +39,21 @@ class ZoomPan extends Component {
         this.state = {
             center: [0, 20],
             zoom: 1,
-            countriers: [],
+            countries: ["United States",
+            "Mexico",
+            "China",
+            "Egypt",
+            "Australia",
+            "Brazil",
+            "Japan",
+            "Korea",
+            "India",
+            "United Kingdom",
+            "France",
+            "Spain",
+            "Germany",
+            "Italy",
+            "South Africa"],
             region: [
                 { name: "Europe", coordinates: [8.5417, 47.3769] },
                 { name: "Asia", coordinates: [103.8198, 1.3521] },
@@ -150,7 +143,7 @@ class ZoomPan extends Component {
                                         // onMouseLeave={this.handleLeave}
                                         style={{
                                             default: {
-                                                fill: colorScale[countries.indexOf(geography.properties.name)] ? colorScale[countries.indexOf(geography.properties.name)] : "#ECEFF1",
+                                                fill: colorScale[this.state.countries.indexOf(geography.properties.name)] ? colorScale[this.state.countries.indexOf(geography.properties.name)] : "#ECEFF1",
                                                 stroke: "#607D8B",
                                                 strokeWidth: 0.75,
                                                 outline: "none",

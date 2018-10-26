@@ -26,7 +26,6 @@ h1 {
 }
 
 h2 {
-    margin-left: -20px;
     font-size: 30px;
 }
 
@@ -40,11 +39,10 @@ h2 {
 }
 
 #productDescription {
-    margin-left: -20px;
     margin-top: 5px;
-    width: 33%;
+    /* width: 100%; */
     height: auto;
-    float: left;
+    /* float: left; */
 }
 
 #search {
@@ -55,4 +53,9 @@ h2 {
 .searchBar {
     margin-left: 281px;
     margin-top: 5px;
+}
+
+.productList {
+    margin: 0;
+    width: 79%;
 }
