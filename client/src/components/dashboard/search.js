@@ -20,7 +20,7 @@ class Search extends Component {
     }
 
     componentDidUpdate(prevProps) {
-        // Typical usage (don't forget to compare props):
+        // Typical usage and compare props
         if (this.props.countryName !== prevProps.countryName) {
             this.setState({
                 title: this.props.countryName
@@ -56,7 +56,6 @@ class Search extends Component {
                         <button id="searchButton" className="button is-link is-small" type="submit ">Search</button>
                     </form>
                 </div>
-
                 {
                     (this.state.isShowing || this.props.showListing) && (
                         <ProductList
@@ -65,8 +64,6 @@ class Search extends Component {
                         />
                     )
                 }
-
-                {/* <CountryList /> */}
             </div>
         );
     }
