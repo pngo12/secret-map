@@ -17,12 +17,16 @@
 }
 
 #drop {
-    margin: 5px;
+    margin: 8px;
 }
 
 h1 {
     text-align: center;
     font-size: 40px;
+}
+
+h2 {
+    font-size: 30px;
 }
 
 #logo {
@@ -31,8 +35,27 @@ h1 {
 
 #continentButtons {
     margin: 5px;
+    display: inline-block;
 }
 
-#resetButton {
-    margin: 5px;
+#productDescription {
+    margin-top: 5px;
+    /* width: 100%; */
+    height: auto;
+    /* float: left; */
+}
+
+#search {
+    display: inline-block;
+    font-size: 20px;
+}
+
+.searchBar {
+    margin-left: 281px;
+    margin-top: 5px;
+}
+
+.productList {
+    margin: 0;
+    width: 79%;
 }

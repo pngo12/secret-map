@@ -5,6 +5,7 @@ import Glidewell from '../../assets/glidewellLogo.jpeg';
 import { connect } from 'react-redux';
 
 
+
 class Login extends Component {
 
   state = {
@@ -50,7 +51,7 @@ class Login extends Component {
             <div className = "container notification loggingOn" style={{height: 500, paddingRight: 24}}>
               <div id="login-page">
                 <form className="formGrouping">
-               <img src={Glidewell} style={{width: '40%', height: '30%', marginBottom: '2%'}} alt="logo" />
+               <img src={Glidewell} style={{width: '41%', height: '30%', marginBottom: '2%'}} alt="logo" />
                   <div className = "form-group">
                   <label style={{fontSize: '1em'}}> Username </label>
                   <br/>
@@ -110,9 +111,14 @@ class Login extends Component {
 
 
 // const mapPropsToDispatch = dispatch => ({ 
+
+//   login: (user) => { dispatch(login(user))}
 // });
 
-// export default connect(null, mapPropsToDispatch)(Login)
 
-export default Login; 
 
+
+// export default connect(null, mapDispatchToProps)(Login); 
+
+
+export default Login;

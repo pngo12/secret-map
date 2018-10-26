@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import CountryList from './countryList';
+import ProductDetails from './productDetails';
 // const ProductList = props => {
 //     return (
 //         <div>
@@ -20,8 +20,7 @@ import CountryList from './countryList';
 
 class ProductList extends Component {
     state = {
-        modalOn: false,
-        title: this.props.title
+        modalOn: false       
     }
 
     displayModal = () => {
@@ -34,20 +33,33 @@ class ProductList extends Component {
     }
 
     render() {
-        console.log("MODAL", this.state.modalOn)
         return (
-            <div>
-                <h1>Products in: {this.state.title}</h1>
-                {/* <button onClick={this.displayModal}>TEST MODAL</button> */}
-                <div className="row">
-                    <table>
+            <div className="productList">
+                <h2>Products in: {this.props.title}</h2>
+                <table id="productDescription" border="1" className="table is-hoverable is-bordered">
+                    <thead>
                         <tr>
-                            <th>Product</th>
-                            <th>Descrtiption</th>
+                            <th>Name</th>
+                            <th>Description</th>
+                            <th>Countries</th>
                         </tr>
-                    </table>
-                </div>
+                    </thead>
+                    <tbody>
+                        {
+                            this.props.product.map((product, index) => {
+                                return (
+                                    <tr key={index}>
+                                        <td onClick={this.displayModal}>{product.name}</td>
+                                        <td>{product.description}</td>
+                                        <td>{product.countries}</td>
+                                    </tr>
+                                )
+                            })
+                        }
+                    </tbody>
+                </table>
                 {
+<<<<<<< HEAD
 
                     this.props.product.map((product, index) => {
                         return (
@@ -68,6 +80,9 @@ class ProductList extends Component {
                 }
                 {
                     this.state.modalOn && <CountryList closeModal={this.closeModal} />
+=======
+                    this.state.modalOn && <ProductDetails closeModal={this.closeModal} />
+>>>>>>> c0679a3b6f894ec2b76b07a1a1d4b4e55bbd1bdf
                 }
             </div>
         );
