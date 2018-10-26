@@ -3,19 +3,16 @@ import { connect } from 'react-redux';
 import { getProductByCountry } from '../../redux/actions'
 import './dashboard.css'
 import ProductList from './productList';
-import CountryList from './productDetails';
 
 class Search extends Component {
-
     state = {
         country: '',
-        product: [
-            { name: 'dentures', description: 'These dentures are great.', countries: ['United States, ', 'Japan, ', 'Mexico, ', 'United Kingdom'] },
-            { name: 'teeth', description: 'These dentures are great.', countries: ['United States, ', 'Japan, ', 'Mexico, ', 'United Kingdom'] },
-            { name: 'molars', description: 'These dentures are great.', countries: ['United States, ', 'Japan, ', 'Mexico, ', 'United Kingdom'] },
-            { name: 'canine', description: 'Lorem ipsum dolor sit amet conctetur, adipisicing elit. Dolorum ratione ducimus totam quas quod veritatis, iure unde itaque quia perferendis iusto id pariatur nesciunt architecto odit placeat ipsa qui natus.', countries: ['United States, ', 'Japan, ', 'Mexico, ', 'United Kingdom'] },
-        ],
-        title: this.props.countryName,
+        // product: [
+        //     { name: 'dentures', description: 'These dentures are great.', countries: ['United States, ', 'Japan, ', 'Mexico, ', 'United Kingdom'] },
+        //     { name: 'teeth', description: 'These dentures are great.', countries: ['United States, ', 'Japan, ', 'Mexico, ', 'United Kingdom'] },
+        //     { name: 'molars', description: 'These dentures are great.', countries: ['United States, ', 'Japan, ', 'Mexico, ', 'United Kingdom'] },
+        //     { name: 'canine', description: 'Lorem ipsum dolor sit amet conctetur, adipisicing elit. Dolorum ratione ducimus totam quas quod veritatis, iure unde itaque quia perferendis iusto id pariatur nesciunt architecto odit placeat ipsa qui natus.', countries: ['United States, ', 'Japan, ', 'Mexico, ', 'United Kingdom'] },
+        // ],
         isShowing: false
     }
 
@@ -32,16 +29,16 @@ class Search extends Component {
 
     formSubmit = e => {
         e.preventDefault();
-        let countryInput = this.state.country;
+        let country = this.state.country
+        country = (country.charAt(0).toUpperCase() + country.slice(1))
+        this.props.getProductByCountry(country)
         this.setState({
             country: '',
             isShowing: true,
-            title: countryInput
-        })
+        });
     }
 
     render() {
-        console.log("TITLE:", this.state.title);
         return (
             <div className="searchBar columns" style={{ flexDirection: 'column' }}>
                 <div>
@@ -57,12 +54,7 @@ class Search extends Component {
                     </form>
                 </div>
                 {
-                    (this.state.isShowing || this.props.showListing) && (
-                        <ProductList
-                            title={this.state.title}
-                            product={this.state.product}
-                        />
-                    )
+                    this.state.isShowing && <ProductList/>
                 }
             </div>
         );
@@ -70,7 +62,7 @@ class Search extends Component {
 }
 
 const mapDispatchToProps = dispatch => ({
-    getProductByCountry: product => dispatch(getProductByCountry(product))
-})
+    getProductByCountry: country => dispatch(getProductByCountry(country))
+});
 
 export default connect(null, mapDispatchToProps)(Search);

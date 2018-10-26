@@ -18,7 +18,7 @@ const getProduct = async (req, res) => {
     }
 }
 
-// const createProduct = (req, res) => {
+// const createProduct = async (req, res) => {
 //     // try {
 //     const product = new Product({
 //         name: req.body.name,
@@ -48,19 +48,18 @@ const getProduct = async (req, res) => {
 
 
 // Use the below method to upload data, remove once done
-const upload = (req, res) => {
-    Country.insertMany(data, function (error, docs) {
-        if (error) {
-            console.log(error)
-        } else {
-            res.send(docs);
-        }
-    })
-}
+// const upload = (req, res) => {
+//     Country.insertMany(data, function (error, docs) {
+//         if (error) {
+//             console.log(error)
+//         } else {
+//             res.send(docs);
+//         }
+//     })
+// }
 
 
 module.exports = {
     getProduct,
     // createProduct
-    upload
 }
