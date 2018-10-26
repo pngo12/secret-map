@@ -6,13 +6,28 @@ import AdminCRUD from './crud';
 
 class AdminPage extends Component {
 
+    state = {
+        countryName: '',
+        showListing: false
+    }
+
+    updateCountryName = countryName => {
+        this.setState({
+            countryName,
+            showListing: true
+        });
+    }
+
     render() { 
         return ( 
             <div>
                 <Logo />
-                <ZoomPan />
+                <ZoomPan updateCountryName={this.updateCountryName}/>
                 <AdminCRUD />
-                <Search />
+                <Search 
+                    countryName={this.state.countryName}
+                    showListing={this.state.showListing}
+                    />
             </div>
          );
     }

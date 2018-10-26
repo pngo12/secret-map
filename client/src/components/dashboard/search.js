@@ -16,6 +16,15 @@ class Search extends Component {
         isShowing: false
     }
 
+    componentDidUpdate(prevProps) {
+        // Typical usage (don't forget to compare props):
+        if (this.props.countryName !== prevProps.countryName) {
+            this.setState({
+                title: this.props.countryName
+            })
+        }
+    }
+
     handleOnChange = e => this.setState({ [e.target.name]: e.target.value })
 
     formSubmit = e => {

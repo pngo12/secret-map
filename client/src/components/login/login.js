@@ -51,7 +51,7 @@ class Login extends Component {
             <div className = "container notification loggingOn" style={{height: 500, paddingRight: 24}}>
               <div id="login-page">
                 <form className="formGrouping">
-               <img src={Glidewell} style={{width: '40%', height: '30%', marginBottom: '2%'}} alt="logo" />
+               <img src={Glidewell} style={{width: '41%', height: '30%', marginBottom: '2%'}} alt="logo" />
                   <div className = "form-group">
                   <label style={{fontSize: '1em'}}> Username </label>
                   <br/>
