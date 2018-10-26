@@ -30,10 +30,11 @@ export const getProductByCountry = country => async dispatch => {
 // }
 
 export const login = user => async dispatch => {
-    let response = axios.post('http://localhost:5000/auth/login', user)
-    if (response.data.success !== true) {
-        dispatch({ type: LOG_IN_ERROR, payload: response.data })
-    } else {
-        dispatch({ type: LOG_IN, payload: response.data })
-    }
+    let response = await axios.post('http://localhost:5000/auth/login', user)
+    console.log(response)
+    // if (response.data.success !== true) {
+    //     dispatch({ type: LOG_IN_ERROR, payload: response.data })
+    // } else {
+    //     dispatch({ type: LOG_IN, payload: response.data })
+    // }
 }
