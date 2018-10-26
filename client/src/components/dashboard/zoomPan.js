@@ -39,7 +39,8 @@ class ZoomPan extends Component {
         this.state = {
             center: [0, 20],
             zoom: 1,
-            countries: ["United States",
+            countries: [
+            "United States",
             "Mexico",
             "China",
             "Egypt",
