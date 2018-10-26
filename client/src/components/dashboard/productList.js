@@ -1,57 +1,36 @@
 import React, { Component } from 'react';
 import ProductDetails from './productDetails';
-// const ProductList = props => {
-//     return (
-//         <div>
-//             <h1>Products in: {props.title}</h1>
-//             {
-//                 props.product.map((x, index) => {
-//                     return (
-//                         <div id="productList" key={index}>
-//                             <button onClick={() => this.displayModal(props.product[index])}>{props.product[index]}</button>
-//                         </div>
-//                     )
-//                 })
-//             }
-//         </div>
-
-//     );
-// }
+import { connect } from 'react-redux';
 
 class ProductList extends Component {
     state = {
-        modalOn: false       
+        modalOn: false
     }
 
-    displayModal = () => {
-        console.log("HERE")
-        this.setState({ modalOn: true })
-    }
-
-    closeModal = () => {
-        this.setState({ modalOn: false })
-    }
+    displayModal = () => this.setState({ modalOn: true })
+    closeModal = () => this.setState({ modalOn: false })
 
     render() {
         return (
             <div className="productList">
-                <h2>Products in: {this.props.title}</h2>
+                <h2>Products in: {this.props.country}</h2>
                 <table id="productDescription" border="1" className="table is-hoverable is-bordered">
                     <thead>
                         <tr>
                             <th>Name</th>
-                            <th>Description</th>
+                            <th>Type</th>
                             <th>Countries</th>
                         </tr>
                     </thead>
                     <tbody>
                         {
-                            this.props.product.map((product, index) => {
+                            this.props.products.map((item, index) => {
                                 return (
                                     <tr key={index}>
-                                        <td onClick={this.displayModal}>{product.name}</td>
-                                        <td>{product.description}</td>
-                                        <td>{product.countries}</td>
+                                        <td onClick={this.displayModal}>{item.name}</td>
+                                        <td>{item.type}</td>
+                                        <td>{item.description}</td>
+                                        {/* <td>{this.props.products.countries}</td> */}
                                     </tr>
                                 )
                             })
@@ -66,4 +45,9 @@ class ProductList extends Component {
     }
 }
 
-export default ProductList;
+const mapStateToProps = state => ({
+    country: state.country,
+    products: state.products
+})
+
+export default connect(mapStateToProps, null)(ProductList)
