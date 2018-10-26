@@ -20,8 +20,7 @@ import ProductDetails from './productDetails';
 
 class ProductList extends Component {
     state = {
-        modalOn: false,
-        title: this.props.title
+        modalOn: false       
     }
 
     displayModal = () => {
@@ -36,7 +35,7 @@ class ProductList extends Component {
     render() {
         return (
             <div className="productList">
-                <h2>Products in: {this.state.title}</h2>
+                <h2>Products in: {this.props.title}</h2>
                 <table id="productDescription" border="1" className="table is-hoverable is-bordered">
                     <thead>
                         <tr>

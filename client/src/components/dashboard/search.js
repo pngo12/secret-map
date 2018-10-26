@@ -13,7 +13,7 @@ class Search extends Component {
             { name: 'dentures', description: 'These dentures are great.', countries: ['United States, ', 'Japan, ', 'Mexico, ', 'United Kingdom'] },
             { name: 'teeth', description: 'These dentures are great.', countries: ['United States, ', 'Japan, ', 'Mexico, ', 'United Kingdom'] },
             { name: 'molars', description: 'These dentures are great.', countries: ['United States, ', 'Japan, ', 'Mexico, ', 'United Kingdom'] },
-            { name: 'canine', description: 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Dolorum ratione ducimus totam quas quod veritatis, iure unde itaque quia perferendis iusto id pariatur nesciunt architecto odit placeat ipsa qui natus.', countries: ['United States, ', 'Japan, ', 'Mexico, ', 'United Kingdom'] },
+            { name: 'canine', description: 'Lorem ipsum dolor sit amet conctetur, adipisicing elit. Dolorum ratione ducimus totam quas quod veritatis, iure unde itaque quia perferendis iusto id pariatur nesciunt architecto odit placeat ipsa qui natus.', countries: ['United States, ', 'Japan, ', 'Mexico, ', 'United Kingdom'] },
         ],
         title: '',
         isShowing: false
@@ -32,6 +32,7 @@ class Search extends Component {
     }
 
     render() {
+        console.log("TITLE:", this.state.title);
         return (
             <div className="searchBar columns" style={{ flexDirection: 'column' }}>
                 <div>
