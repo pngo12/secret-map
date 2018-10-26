@@ -10,6 +10,8 @@ import {
 //   Tooltip,
 //   actions,
 // } from "redux-tooltip"
+import { connect } from 'react-redux';
+import { getProductByCountry } from '../../redux/actions';
 import chroma from "chroma-js";
 import ZoomObject from "../static/world-50m.json";
 // import { initStore } from "../../index";
@@ -102,7 +104,9 @@ class ZoomPan extends Component {
 
     passToParent = (e) => {
         this.props.updateCountryName(e.properties.name)
+        this.props.getProductByCountry(e.properties.name)
         console.log(e.properties.name)
+
     }
 
     render() {
@@ -183,8 +187,8 @@ class ZoomPan extends Component {
     }
 }
 
-// const mapStateToProps = state => ({
+const mapDispatchToProps = dispatch => ({
+    getProductByCountry: country => dispatch(getProductByCountry(country))
+})
 
-// })
-
-export default ZoomPan;
+export default connect (null, mapDispatchToProps)(ZoomPan);

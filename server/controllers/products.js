@@ -1,6 +1,6 @@
 const Product = require('../models/products')
 const Country = require('../models/countries')
-const { data } = require('../data/countries')
+// const { data } = require('../data/countries')
 
 const getProduct = async (req, res) => {
     try {
