@@ -22,26 +22,11 @@ class Login extends Component {
     console.log("Login clicked")
 
     let { username, password } = this.state
-    let user = {
-      username, password
-    }
-    this.props.login(user)
+    this.props.login({username, password})
     this.setState({ loginClicked: true })
   }
 
-  onUsernameChange = e => {
-    this.setState({
-      username: e.target.value
-    })
-  }
-
-  onPasswordChange = e => {
-    this.setState({
-      password: e.target.value
-    })
-  }
-
-  // handleOnChange = e => this.setState({ [e.target.name]: e.target.value })
+  handleOnChange = e => this.setState({ [e.target.name]: e.target.value })
 
 
   render() {
@@ -65,8 +50,9 @@ class Login extends Component {
                         style={{ width: '25%' }}
                         value={this.state.username}
                         type="text"
+                        name="username"
                         placeholder="Username"
-                        onChange={this.onUsernameChange}
+                        onChange={this.handleOnChange}
                       />
                     </div>
                     <div className="form-group">
@@ -77,8 +63,9 @@ class Login extends Component {
                         style={{ width: '25%' }}
                         value={this.state.password}
                         type="password"
+                        name="password"
                         placeholder="Password"
-                        onChange={this.onPasswordChange}
+                        onChange={this.handleOnChange}
                       />
                     </div>
                     <button
@@ -124,8 +111,7 @@ class Login extends Component {
  * - Make sure reducer is updating state properly by using the redux dev tools in your browser
  */
 const mapPropsToDispatch = dispatch => ({
-
-  login: (user) => { dispatch(login(user)) }
+  login: user => dispatch(login(user))
 });
 
 export default connect(null, mapPropsToDispatch)(Login);

@@ -1,7 +1,7 @@
 const Product = require('../models/products');
 const Country = require('../models/countries')
 
-const getCountryAll = async (req, res) => {
+const getCountryAll = async (req, res, next) => {
     try {
         Country.find()
             .populate('products').exec((err, name) => {
@@ -21,18 +21,20 @@ const getCountryAll = async (req, res) => {
     }
 }
 
-const findOneCountry = (req, res) => {
-    let name = req.params
-    console.log(name)
-        Country.findOne(name , function(err,docs){
-            res.status(200).json(docs)
-        }).exec()
-    //   catch(err) {
-    //     res.status(500).send({
-    //         message: 'There was an error',
-    //         error: err.message
-    //     })
-    // }
+const findOneCountry = async (req, res, next) => {
+    let name = req.params;
+    try {
+        Country.findOne(name)
+            .populate('products').exec((err, country) => {
+                res.status(200).send(country)
+            })
+        }
+    catch (err) {
+        res.status(500).send({
+            message: 'There was an error in finding a country',
+            error: err.message
+        })
+    }
 }
 
 const addProductToCountry = async (req, res) => {
@@ -44,8 +46,8 @@ const addProductToCountry = async (req, res) => {
             type: req.body.type
         })
         let newProductToCountry = await Product.create(product)
-        .then(Country.isNew = false)
-        .then(Country.update({},{$set: {}}))
+            .then(Country.isNew = false)
+            .then(Country.update({}, { $set: {} }))
         res.status(200).json({ newProductToCountry, message: "Added to country" });
     } catch (err) {
         res.status(500).json({ Error: err.message })

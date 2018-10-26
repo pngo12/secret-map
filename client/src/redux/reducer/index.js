@@ -7,18 +7,26 @@ import {
 } from '../constants'
 
 const initialState = {
-    country: [],
-    product: [],
-    userToken: "",
+    country: '',
+    products: [],
+    userToken: '',
     authorized: false  
 }
 
 const rootReducer = (state = initialState, action) => {
     switch(action.type) {
-        case GET_COUNTRY_BY_PRODUCT:
-            return ({...state, country: [...action.country]})
+        // case GET_COUNTRY_BY_PRODUCT:
+        //     return {
+        //         ...state, 
+        //         country: action.payload.name,
+        //         products: [action.payload.products]
+        //     }
         case GET_PRODUCT_BY_COUNTRY:
-            return ({...state, product: [...action.product]})
+            return {
+                ...state,
+                country: action.payload.name,
+                products: [...action.payload.products]
+            }
         case LOG_IN:
             return ({...state, userToken: action.payload, authorized: true})
         // case ADD_PRODUCT_TO_COUNTRY:
