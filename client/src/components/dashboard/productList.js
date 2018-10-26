@@ -59,30 +59,7 @@ class ProductList extends Component {
                     </tbody>
                 </table>
                 {
-<<<<<<< HEAD
-
-                    this.props.product.map((product, index) => {
-                        return (
-
-                            <div id="productList" key={index}>
-
-                                <p onClick={this.displayModal}>{product}</p>
-                                <tr key={index}>
-                                    <td>{product.name}</td>
-                                    <td>{product.descrtiption}</td>
-                                    <td>{product.country}</td>
-                                </tr>
-
-                            </div>
-
-                        )
-                    })
-                }
-                {
-                    this.state.modalOn && <CountryList closeModal={this.closeModal} />
-=======
                     this.state.modalOn && <ProductDetails closeModal={this.closeModal} />
->>>>>>> c0679a3b6f894ec2b76b07a1a1d4b4e55bbd1bdf
                 }
             </div>
         );
