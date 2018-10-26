@@ -1,18 +1,12 @@
 import React, { Component } from "react"
-// import withRedux from "next-redux-wrapper"
 import {
   ComposableMap,
   ZoomableGroup,
   Geographies,
   Geography,
 } from "react-simple-maps"
-// import {
-//   Tooltip,
-//   actions,
-// } from "redux-tooltip"
 import chroma from "chroma-js";
 import ZoomObject from "../static/world-50m.json";
-// import { initStore } from "../../index";
 import Search from './search';
 
 const wrapperStyles = {
@@ -20,8 +14,6 @@ const wrapperStyles = {
     maxWidth: 1100,
     margin: "0 auto",
 }
-
-// const { show, hide } = actions
 
 const colorScale = chroma
     .scale([
@@ -31,7 +23,6 @@ const colorScale = chroma
     .colors(100)
 
 class ZoomPan extends Component {
-
     constructor() {
         super()
         // this.handleMove = this.handleMove.bind(this)

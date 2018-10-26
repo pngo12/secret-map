@@ -7,12 +7,6 @@ import ProductList from './productList';
 class Search extends Component {
     state = {
         country: '',
-        // product: [
-        //     { name: 'dentures', description: 'These dentures are great.', countries: ['United States, ', 'Japan, ', 'Mexico, ', 'United Kingdom'] },
-        //     { name: 'teeth', description: 'These dentures are great.', countries: ['United States, ', 'Japan, ', 'Mexico, ', 'United Kingdom'] },
-        //     { name: 'molars', description: 'These dentures are great.', countries: ['United States, ', 'Japan, ', 'Mexico, ', 'United Kingdom'] },
-        //     { name: 'canine', description: 'Lorem ipsum dolor sit amet conctetur, adipisicing elit. Dolorum ratione ducimus totam quas quod veritatis, iure unde itaque quia perferendis iusto id pariatur nesciunt architecto odit placeat ipsa qui natus.', countries: ['United States, ', 'Japan, ', 'Mexico, ', 'United Kingdom'] },
-        // ],
         isShowing: false
     }
 
@@ -53,12 +47,9 @@ class Search extends Component {
                         <button id="searchButton" className="button is-link is-small" type="submit ">Search</button>
                     </form>
                 </div>
-
                 {
                     this.state.isShowing && <ProductList/>
                 }
-
-                {/* <CountryList /> */}
             </div>
         );
     }
