@@ -25,6 +25,14 @@ require('./config/passport')(passport)
 
 const port = process.env.PORT || 5000;
 
+// Allow CORS
+app.use(function (req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    next();
+});
+
+
 app.use('/country', country);
 app.use('/product', Products);
 app.use('/auth', newUsers);
