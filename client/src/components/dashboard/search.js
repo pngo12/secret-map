@@ -13,7 +13,7 @@ class Search extends Component {
             { name: 'dentures', description: 'These dentures are great.', countries: ['United States, ', 'Japan, ', 'Mexico, ', 'United Kingdom'] },
             { name: 'teeth', description: 'These dentures are great.', countries: ['United States, ', 'Japan, ', 'Mexico, ', 'United Kingdom'] },
             { name: 'molars', description: 'These dentures are great.', countries: ['United States, ', 'Japan, ', 'Mexico, ', 'United Kingdom'] },
-            { name: 'canine', description: 'These dentures are asdfasdfdsafasdfsafdasfawfasdffsdafasdfsdafsadfadsfdasfwefaweewafewfwafewafwaefwfawfweafaewfaewfwafewafawefawefwaefaewfeawfawefeawfaw.', countries: ['United States, ', 'Japan, ', 'Mexico, ', 'United Kingdom'] },
+            { name: 'canine', description: 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Dolorum ratione ducimus totam quas quod veritatis, iure unde itaque quia perferendis iusto id pariatur nesciunt architecto odit placeat ipsa qui natus.', countries: ['United States, ', 'Japan, ', 'Mexico, ', 'United Kingdom'] },
         ],
         title: '',
         isShowing: false
@@ -33,27 +33,29 @@ class Search extends Component {
 
     render() {
         return (
-            <div className="searchBar columns">
-                
-                            <h3 id="search">Search By:
+            <div className="searchBar columns" style={{ flexDirection: 'column' }}>
+                <div>
+                    <h3 id="search">Search By:
                     <select id="drop" className="dropdown">
-                                    <option value="country">Country</option>
-                                    <option value="product">Product</option>
-                                </select>
-                            </h3>
-                            <form id="search" onSubmit={this.formSubmit}>
-                                <input id="countryInput" type="text" value={this.state.country} onChange={this.handleOnChange} className="input is-small" name="country" />
-                                <button id="searchButton" className="button is-link is-small" type="submit ">Search</button>
-                            </form>
-                            
-                                {
-                                    this.state.isShowing && (
-                                        <ProductList
-                                            title={this.state.title}
-                                            product={this.state.product}
-                                        />
-                                    )
-                                }
+                            <option value="country">Country</option>
+                            <option value="product">Product</option>
+                        </select>
+                    </h3>
+                    <form id="search" onSubmit={this.formSubmit}>
+                        <input id="countryInput" type="text" value={this.state.country} onChange={this.handleOnChange} className="input is-small" name="country" />
+                        <button id="searchButton" className="button is-link is-small" type="submit ">Search</button>
+                    </form>
+                </div>
+
+                {
+                    this.state.isShowing && (
+                        <ProductList
+                            title={this.state.title}
+                            product={this.state.product}
+                        />
+                    )
+                }
+
                 {/* <CountryList /> */}
             </div>
         );
