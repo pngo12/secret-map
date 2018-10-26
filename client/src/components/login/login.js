@@ -5,10 +5,6 @@ import Glidewell from '../../assets/glidewellLogo.jpeg';
 import { connect } from 'react-redux';
 import { login } from '../../redux/actions';
 
-
-
-
-
 class Login extends Component {
 
   state = {
@@ -19,8 +15,6 @@ class Login extends Component {
 
   onLoginClick = e => {
     e.preventDefault();
-    console.log("Login clicked")
-
     let { username, password } = this.state
     this.props.login({username, password})
     this.setState({ loginClicked: true })
@@ -32,7 +26,6 @@ class Login extends Component {
   render() {
     return (
       <section className="hero is-fullheight has-background-grey">
-
         {
           this.state.submitClicked
             ? <Redirect to='/' />
@@ -72,30 +65,13 @@ class Login extends Component {
                       type="submit"
                       className='button is-link'
                       style={{ marginTop: '2%' }}
-                      onClick={this.onLoginClick}
-                    >
+                      onClick={this.onLoginClick}>
                       Submit
                   </button>
                   </form>
                 </div>
-
               </div>
             </div>
-
-
-          // Should this div be a form?
-          // <div id="login-page">
-          //   <img src={Glidewell} style={{ margin: 25 }} alt="logo" />
-          //   <div className="form">
-          //     <h1 style={{ margin: 10 }}>Username</h1>
-          //     <input class="input" style={{ margin: 10 }} type="text" value={this.state.username} name="username" onChange={this.handleOnChange} placeholder="username" />
-          //     <h1 style={{ margin: 10 }}>Password</h1>
-          //     <input id="test" class="input" style={{ margin: 10 }} type="password" value={this.state.password} name="password" onChange={this.handleOnChange} placeholder="password" />
-          //     <div class="control">
-          //       <a class="button is-danger" style={{ margin: 10 }}>Login</a>
-          //     </div>
-          //   </div>
-          // </div>
         }
       </section>
     );
