@@ -27,6 +27,7 @@ export const getProductByCountry = (id) => async dispatch => {
 //     dispatch({ type: DELETE_PRODUCT_FROM_COUNTRY, country: response.data.deletedProduct})
 // }
 
+
 export const login = (user) => dispatch => {
     axios.post('http://localhost:5000/api/GlidewellUser/login', user)
     .then(res => {
@@ -37,8 +38,6 @@ export const login = (user) => dispatch => {
         console.log("Login error: ", err.data)
     })
 }
-
-
 
 // export const AUTHENTICATED = 'authenticated_user';
 // export const UNAUTHENTICATED = 'unauthenticated_user';
@@ -62,3 +61,13 @@ export const login = (user) => dispatch => {
 //     }
 // }
 // }
+
+export const login = user => async dispatch => {
+    let response = await axios.post('http://localhost:5000/auth/login', user)
+    console.log(response)
+    // if (response.data.success !== true) {
+    //     dispatch({ type: LOG_IN_ERROR, payload: response.data })
+    // } else {
+    //     dispatch({ type: LOG_IN, payload: response.data })
+    // }
+}

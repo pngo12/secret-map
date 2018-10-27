@@ -9,18 +9,11 @@ class Search extends Component {
 
     state = {
         country: '',
-        product: [
-            { name: 'dentures', description: 'These dentures are great.', countries: ['United States, ', 'Japan, ', 'Mexico, ', 'United Kingdom'] },
-            { name: 'teeth', description: 'These dentures are great.', countries: ['United States, ', 'Japan, ', 'Mexico, ', 'United Kingdom'] },
-            { name: 'molars', description: 'These dentures are great.', countries: ['United States, ', 'Japan, ', 'Mexico, ', 'United Kingdom'] },
-            { name: 'canine', description: 'Lorem ipsum dolor sit amet conctetur, adipisicing elit. Dolorum ratione ducimus totam quas quod veritatis, iure unde itaque quia perferendis iusto id pariatur nesciunt architecto odit placeat ipsa qui natus.', countries: ['United States, ', 'Japan, ', 'Mexico, ', 'United Kingdom'] },
-        ],
-        title: this.props.countryName,
         isShowing: false
     }
 
     componentDidUpdate(prevProps) {
-        // Typical usage (don't forget to compare props):
+        // Typical usage and compare props
         if (this.props.countryName !== prevProps.countryName) {
             this.setState({
                 title: this.props.countryName
@@ -56,7 +49,6 @@ class Search extends Component {
                         <button id="searchButton" className="button is-link is-small" type="submit ">Search</button>
                     </form>
                 </div>
-
                 {
                     (this.state.isShowing || this.props.showListing) && (
                         <ProductList
@@ -65,8 +57,6 @@ class Search extends Component {
                         />
                     )
                 }
-
-                {/* <CountryList /> */}
             </div>
         );
     }
