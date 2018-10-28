@@ -10,14 +10,8 @@ import axios from 'axios';
 
 export const getProductByCountry = country => async dispatch => {
     let response = await axios.get(`http://localhost:5000/country/${country}`);
-    console.log(response)
     dispatch({ type: GET_PRODUCT_BY_COUNTRY, payload: response.data })
 }
-
-// export const getProductByCountry = id => async dispatch => {
-//     let response = await axios.get(`URL/${id}`);
-//     dispatch({ type: GET_PRODUCT_BY_COUNTRY, payload: response.data.product })
-// }
 
 // export const addProductToCountry = country => async dispatch => {
 //     let response = await axios.post(`URL`, country);

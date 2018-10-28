@@ -3,16 +3,10 @@ const Country = require('../models/countries')
 
 const getCountryAll = async (req, res, next) => {
     try {
-        Country.find()
-            .populate('products').exec((err, name) => {
-                console.log("Populated name: " + name)
-
-                if (name === null || name === undefined) {
-                    res.status(400).send({ message: "There are no countries here!!" });
-                }
-                res.status(200).send(name)
-            })
-        }
+        // Get all countries in DB, grab the ID of the product, and populate the products array
+        const getCountryAll = await Country.find().populate('products');
+        res.status(200).send(getCountryAll);
+    }
     catch (err) {
         res.status(500).send({
             message: "There is an error",
@@ -24,51 +18,65 @@ const getCountryAll = async (req, res, next) => {
 const findOneCountry = async (req, res, next) => {
     let name = req.params;
     try {
-        Country.findOne(name)
-            .populate('products').exec((err, country) => {
-                res.status(200).send(country)
-            })
+        const findOne = await Country.find(name).populate('products');
+        if (findOne.length <= 0) {
+            res.status(400).send({ message: 'Sorry could not locate country' })
+        } else {
+            res.status(200).send(findOne)
         }
+    }
     catch (err) {
         res.status(500).send({
-            message: 'There was an error in finding a country',
             error: err.message
         })
     }
 }
 
-const addProductToCountry = async (req, res) => {
+const addProductToCountry = async (req, res, next) => {
+
+    const countryName = req.body.countryName;
+    const productName = req.body.productName;
+
     try {
-        const product = await Product({
-            name: req.body.name,
-            image: req.body.image,
-            description: req.body.description,
-            type: req.body.type
-        })
-        let newProductToCountry = await Product.create(product)
-            .then(Country.isNew = false)
-            .then(Country.update({}, { $set: {} }))
-        res.status(200).json({ newProductToCountry, message: "Added to country" });
-    } catch (err) {
-        res.status(500).json({ Error: err.message })
+        const product = await Product.findOne({ name: productName });
+        const country = await Country.findOne({ name: countryName });
+        // Find the country, and push a new product to the product's array
+        const addProduct = await Country.findOneAndUpdate(
+            { _id: country._id },
+            { $push: { products: product._id } },
+            { upsert: true, new: true, runValidators: true }
+        )
+        res.status(200).send(addProduct);
+    }
+    catch (err) {
+        res.status(500).send(err);
     }
 }
 
-const deleteProductFromCountry = async (req, res) => {
+const removeProductFromCountry = async (req, res, next) => {
+
+    const countryName = req.body.countryName;
+    const productName = req.body.productName;
+
     try {
-        let deletedProduct = await Country.findByIdAndRemove(req.params.id).exec();
-        res.status(200).send({ deletedProduct, message: "You have removed this product from the country" });
-        if (index == undefined) {
-            res.status(404).send({ message: "something went wrong" })
-        }
-    } catch (err) {
-        res.status(500).send({ Error: err.message })
+        const product = await Product.findOne({ name: productName })
+        const country = await Country.findOne({ name: countryName })
+        // Find the country, and remove a product from the product's array
+        const removeProduct = await Country.findOneAndUpdate(
+            { _id: country._id },
+            { $pull: { products: product._id } },
+            { upsert: false, new: true, runValidators: true }
+        )
+        res.status(200).res.send(removeProduct)
+    }
+    catch (err) {
+        res.status(500).send(err)
     }
 }
 
 module.exports = {
     getCountryAll,
-    deleteProductFromCountry,
+    removeProductFromCountry,
     addProductToCountry,
     findOneCountry
 }

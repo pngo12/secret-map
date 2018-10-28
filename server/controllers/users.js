@@ -3,44 +3,52 @@ const User = require('../models/users');
 const jwt = require('jsonwebtoken');
 const keys = require('../config/keys');
 
-const createUser = (req, res) => {
+const createUser = async (req, res, next) => {
     const newUser = new User({
         email: req.body.email,
         password: req.body.password
-    });
-    // Salt password
-    bcrypt.genSalt(10, (err, salt) => {
-        bcrypt.hash(newUser.password, salt, (err, hash) => {
-            if (err) throw err;
-            newUser.password = hash;
-            newUser.save()
-                .then(user => res.json(user))
-                .catch(err => res.json(err))
-        })
     })
+    try {
+        // Create a salted password
+        const saltPassword = await bcrypt.genSalt(10);
+
+        // Hash incoming password
+        const hashPassword = await bcrypt.hash(newUser.password, saltPassword);
+
+        newUser.password = hashPassword;
+        const createUser = await newUser.save();
+        res.status(200).send(createUser);
+    }
+    catch (err) {
+        res.status(500).send(err)
+    }
 }
 
-const loginUser = (req, res) => {
+const loginUser = async (req, res, next) => {
     const { email, password } = req.body;
-    // Find a user
-    User.findOne({ email })
-        .then(user => {
-            if (!user) {
-                return res.status(404).json({ email: 'User email not found' });
-            }
-            // Check their password
-            bcrypt.compare(password, user.password)
-                .then(correct => {
-                    if (correct) {
-                        const payload = { id: user.id, email: user.email }
-                        jwt.sign(payload, keys.secretOrKey, { expiresIn: 3600 }, (err, token) => {
-                            res.status(200).json({ success: true, token: 'Bearer ' + token });
-                        })
-                    } else {
-                        return res.status(400).json({ password: 'Password or email is incorrect' })
-                    }
-                })
-        })
+    try {
+
+        // Find the User and check if they're valid
+        const findUser = await User.findOne({ email })
+        if (findUser.length > 1) {
+            res.status(401).send({ message: 'User not found or authorized' })
+        }
+
+        // Compare password to hashed password
+        const checkPassword = await bcrypt.compare(password, findUser.password)
+
+        // Check if its correct, sign token if so
+        if (checkPassword) {
+            const payload = { id: findUser.id, email: findUser.email }
+            const token = await jwt.sign(payload, keys.secretOrKey, { expiresIn: 3600 })
+            res.status(200).json({ success: true, token: 'Bearer ' + token })
+        } else {
+            return res.status(400).json({ password: 'Password or email is incorrect' })
+        }
+    }
+    catch (err) {
+        res.status(500).send(err)
+    }
 }
 
 module.exports = { createUser, loginUser }
