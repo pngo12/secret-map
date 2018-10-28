@@ -16,12 +16,11 @@ class Login extends Component {
   onLoginClick = e => {
     e.preventDefault();
     let { username, password } = this.state
-    this.props.login({username, password})
+    this.props.login({ username, password })
     this.setState({ loginClicked: true })
   }
 
   handleOnChange = e => this.setState({ [e.target.name]: e.target.value })
-
 
   render() {
     return (
