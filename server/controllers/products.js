@@ -1,12 +1,10 @@
 const Product = require('../models/products')
-const Country = require('../models/countries')
-// const { data } = require('../data/countries')
 
-const getProduct = async (req, res) => {
+const getProduct = async (req, res, next) => {
     try {
-        let product = await Product.find().exec();
-        if (product === null || product === undefined) {
-            res.status(400).send({ message: "There are no products here!!" });
+        let product = await Product.find();
+        if (product.length <= 0) {
+            res.status(400).send({ message: 'There was an error finding products' });
         }
         res.status(200).send(product)
     }
@@ -18,33 +16,63 @@ const getProduct = async (req, res) => {
     }
 }
 
-// const createProduct = async (req, res) => {
-//     // try {
-//     const product = new Product({
-//         name: req.body.name,
-//         image: req.body.image,
-//         description: req.body.description,
-//         countries: req.body.countryId
-//     })
-//     Product.create(product)
-//     res.status(200).send(product)
-//     // }
-//     // .catch (err) {
-//     //     res.status(404).send({ error: err.message })
-//     // }
-// }
+const newProduct = async (req, res, next) => {
+    const {
+        name,
+        type,
+        image,
+        description
+    } = req.body
+    try {
+        let newProduct = await Product.create({ name, type, image, description })
+        res.status(200).send(newProduct)
+    }
+    catch (err) {
+        res.status(400).send(err)
+    }
+}
 
-// const findProduct = async (req, res) => {
-//     try {
-//         const product = await Product.find()
-//             .populate('countries', 'name').exec()
-//         console.log(product)
-//         res.status(200).json(product)
-//     }
-//     catch (err) {
-//         res.status(404).send({ message: 'Could not find product' })
-//     }
-// }
+const removeProduct = async (req, res, next) => {
+    const name = req.body.name
+    try {
+        const findProduct = await Product.findOne({ name })
+        // const findAgain = await Product.findOne(findProduct._id)
+        // const removeProduct = await Product.remove({name})
+        res.status(200).send({ message: `removed the following item: ${findProduct._id}` })
+    }
+    catch (err) {
+        res.status(400).send(err)
+    }
+}
+
+const editProduct = async (req, res, next) => {
+    const {
+        name,
+        type,
+        image,
+        description
+    } = req.body;
+
+    try {
+        const editProduct = await Product.findOneAndUpdate(
+            { _id: name._id },
+            {
+                $set: {
+                    _id,
+                    name,
+                    type,
+                    image,
+                    description
+                }
+            },
+            { upsert: true, new: false, runValidators: true }
+        )
+        res.status(200).send(editProduct);
+    }
+    catch (err) {
+        res.status(400).send(err);
+    }
+}
 
 
 // Use the below method to upload data, remove once done
@@ -61,5 +89,7 @@ const getProduct = async (req, res) => {
 
 module.exports = {
     getProduct,
-    // createProduct
+    newProduct,
+    editProduct,
+    removeProduct
 }
