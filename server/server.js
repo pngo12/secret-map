@@ -38,6 +38,6 @@ app.use('/country', country);
 app.use('/product', Products);
 app.use('/auth', newUsers);
 
-app.listen(port, () => console.log(`🏃 Running on port: ${port}`));
+app.listen(port, () => console.log(`🏃🏃 Running on port: ${port}`));
 
 module.exports = app;
