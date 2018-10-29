@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import ProductDetails from './productDetails';
 import { connect } from 'react-redux';
-import {sortByName} from '../../redux/actions';
 
 class ProductList extends Component {
     state = {
@@ -104,8 +103,4 @@ const mapStateToProps = state => ({
     products: state.products
 })
 
-const mapDispatchToProps = dispatch => ({
-    sortByName: () => dispatch(sortByName)
-})
-
-export default connect(mapStateToProps, mapDispatchToProps)(ProductList)
+export default connect(mapStateToProps, null)(ProductList)

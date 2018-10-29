@@ -65,7 +65,7 @@ const rootReducer = (state = initialState, action) => {
         //     return ({...state, country: [...state.country, ...action.newProductToCountry]}) 
         // case DELETE_PRODUCT_FROM_COUNTRY:
         //     return ({ ...state, country: [...action.deletedProduct]})  
-        case SORT_BY_NAME:
+
         // let sortKey = action.payload.sortKey || defaultSortKey;
 
         // if (sortKey === state.sortKey) {
@@ -82,7 +82,6 @@ const rootReducer = (state = initialState, action) => {
             products: dynamicSort(action.payload)
         }
 
-        case SORT_BY_TYPE:
         default: return state
     }
 }
