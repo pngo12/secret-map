@@ -48,7 +48,7 @@ class Search extends Component {
                     </form>
                 </div>
                 {
-                    this.state.isShowing && <ProductList/>
+                    this.state.isShowing && <ProductList />
                 }
             </div>
         );

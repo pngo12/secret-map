@@ -8,63 +8,59 @@ import { login } from '../../redux/actions';
 class Login extends Component {
 
   state = {
-    username: "",
+    email: "",
     password: "",
     loginClicked: false
   }
 
   onLoginClick = e => {
     e.preventDefault();
-    let { username, password } = this.state
-    this.props.login({ username, password })
-    this.setState({ loginClicked: true })
+    let { email, password } = this.state
+    this.props.login({ email, password })
+    this.setState({
+      loginClicked: true,
+      email: '',
+      password: ''
+    })
   }
 
   handleOnChange = e => this.setState({ [e.target.name]: e.target.value })
 
-
   render() {
     return (
-      
       <div>
-      { this.state.submitClicked ? <Redirect to='/' />
-      :
-      <div id="login-page">
-            <img className = "border" src={Glidewell} style={{ margin: 15 }} alt="logo" />
+        {this.state.submitClicked ? <Redirect to='/' />
+          :
+          <div id="login-page">
+            <img className="border" src={Glidewell} style={{ margin: 15 }} alt="logo" />
             <div className="form">
-              <h3 style={{ margin: 7 }}>Username</h3>
-              <input class="input" style={{ margin: 7 }} type="text" value={this.state.username} name="username" onChange={this.handleOnChange} placeholder="username" />
+              <h3 style={{ margin: 7 }}>Email</h3>
+              <input className="input" style={{ margin: 7 }} type="text" value={this.state.email} name="email" onChange={this.handleOnChange} placeholder="username" />
               <h3 style={{ margin: 7 }}>Password</h3>
-              <input id="test" class="input" style={{ margin: 7 }} type="password" value={this.state.password} name="password" onChange={this.handleOnChange} placeholder="password" />
-              <div class="control">
-                <a class="button is-danger" style={{ margin: 7 }} onClick={this.onLoginClick}>Login</a>
+              <input id="test" className="input" style={{ margin: 7 }} type="password" value={this.state.password} name="password" onChange={this.handleOnChange} placeholder="password" />
+              <div className="control">
+                <a className="button is-danger" style={{ margin: 7 }} onClick={this.onLoginClick}>Login</a>
               </div>
             </div>
-          
-      </div>
-      }
-      </div>
 
-      // <section className="hero is-fullheight has-background-grey">
-      //   {
-      //     this.state.submitClicked
-      //       ? <Redirect to='/' />
-      //       :
+          </div>
+        }
+      </div>
       //       <div className="section is-medium">
       //         <div className="container notification loggingOn" style={{ height: 500, paddingRight: 24 }}>
       //           <div id="login-page">
       //             <form className="formGrouping">
       //               <img src={Glidewell} style={{ width: '41%', height: '30%', marginBottom: '2%' }} alt="logo" />
       //               <div className="form-group">
-      //                 <label style={{ fontSize: '1em' }}> Username </label>
+      //                 <label style={{ fontSize: '1em' }}> Email Address </label>
       //                 <br />
       //                 <input
       //                   className="input is-normal"
       //                   style={{ width: '25%' }}
-      //                   value={this.state.username}
+      //                   value={this.state.email}
       //                   type="text"
-      //                   name="username"
-      //                   placeholder="Username"
+      //                   name="email"
+      //                   placeholder="example@glidewell.com"
       //                   onChange={this.handleOnChange}
       //                 />
       //               </div>
@@ -112,5 +108,4 @@ const mapPropsToDispatch = dispatch => ({
 });
 
 export default connect(null, mapPropsToDispatch)(Login);
-
 

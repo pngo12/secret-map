@@ -3,22 +3,20 @@ const router = express.Router();
 const { 
     addProductToCountry, 
     getCountryAll,
-    deleteProductFromCountry,
+    removeProductFromCountry,
     findOneCountry
 } = require ('../controllers/country')
 
 // Query for all countries in DB
 router.get('/', getCountryAll)
 
-// Query for all countries in DB
+// Query for ONE country in DB with it's products
 router.get('/:name', findOneCountry)
 
-// adding the country
+// adding a product to a country
 router.post('/new', addProductToCountry)
 
 // deleting the product from the country
-router.put('/:id', deleteProductFromCountry)
-
-
+router.put('/', removeProductFromCountry)
 
 module.exports = router

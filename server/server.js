@@ -1,5 +1,6 @@
 const express = require('express');
 const app = express();
+const cors = require('cors');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const country = require('./routes/country');
@@ -26,17 +27,17 @@ require('./config/passport')(passport)
 const port = process.env.PORT || 5000;
 
 // Allow CORS
-app.use(function (req, res, next) {
-    res.header("Access-Control-Allow-Origin", "*");
-    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-    next();
-});
+app.use(cors());
 
+// Verify JWT Token
+// app.use((req,res,next) => {
+//     const token = req.body.token
+// })
 
 app.use('/country', country);
 app.use('/product', Products);
 app.use('/auth', newUsers);
 
-app.listen(port, () => console.log(`🏃 Running on port: ${port}`));
+app.listen(port, () => console.log(`🏃🏃 Running on port: ${port}`));
 
 module.exports = app;

@@ -19,7 +19,7 @@ class ProductList extends Component {
                         <tr>
                             <th>Name</th>
                             <th>Type</th>
-                            <th>Countries</th>
+                            <th>Description</th>
                         </tr>
                     </thead>
                     <tbody>

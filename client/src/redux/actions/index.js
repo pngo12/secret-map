@@ -14,11 +14,6 @@ export const getProductByCountry = country => async dispatch => {
     dispatch({ type: GET_PRODUCT_BY_COUNTRY, payload: response.data })
 }
 
-// export const getProductByCountry = id => async dispatch => {
-//     let response = await axios.get(`URL/${id}`);
-//     dispatch({ type: GET_PRODUCT_BY_COUNTRY, payload: response.data.product })
-// }
-
 // export const addProductToCountry = country => async dispatch => {
 //     let response = await axios.post(`URL`, country);
 //     dispatch({ type: ADD_PRODUCT_TO_COUNTRY, country: response.data.newProductToCountry})
@@ -30,6 +25,7 @@ export const getProductByCountry = country => async dispatch => {
 // }
 
 export const login = user => async dispatch => {
+    console.log(user)
     let response = await axios.post('http://localhost:5000/auth/login', user)
     console.log(response)
     // if (response.data.success !== true) {
