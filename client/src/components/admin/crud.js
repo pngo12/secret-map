@@ -43,54 +43,30 @@ class AdminCRUD extends Component {
     productToDelete: ''
   };
 
-  addingProductChange = e => {
-      this.setState({
-          productToAdd: e.target.value
-      })
-  }
-  addingCountryChange = e => {
-      this.setState({
-          addedToCountry: e.target.value
-      })
-  }
-  deletingProductChange = e => {
-      this.setState({
-          productToDelete: e.target.value
-      })
-  }
-  deletingCountryChange = e => {
-      this.setState({
-          deletedFromCountry: e.target.value
-      })
-  }
-
-  // handleOnChange = e => this.setState({ [e.target.name]: e.target.value })
+  handleOnChange = e => this.setState({ [e.target.name]: e.target.value })
 
   submitProductToCountry = () => {
     let { country, product } = this.state;
-    this.props.addProductToCountry({
-      country: country,
-      product: product
-    });
+    this.props.addProductToCountry({ country, product });
   };
   render() {
     return (
       <div className="container" style={wrapperStyles}>
         <div style={productForm}>
-          <h2 style={{fontSize: 35}}> Add Product to Country </h2>
+          <h2 style={{ fontSize: 35 }}> Add Product to Country </h2>
           <input
             className='input is-small'
             type="text"
             style={spacingOfForm}
             placeholder="Choose Product"
-            onChange={this.addingProductChange}
+            onChange={this.handleOnChange}
             value={this.state.productToAdd}
             name="productToAdd"
           />
           <h2> to </h2>
           <input
             className='input is-small'
-            onChange={this.addingCountryChange}
+            onChange={this.handleOnChange}
             type="text"
             style={spacingOfForm}
             placeholder="Choose Country"
@@ -98,18 +74,18 @@ class AdminCRUD extends Component {
             name="addedToCountry"
           />
           <div>
-            <button 
-            className='button is-info'
-            style ={{marginTop: 7, width: 88, marginBottom: 20}}>
+            <button
+              className='button is-info'
+              style={{ marginTop: 7, width: 88, marginBottom: 20 }}>
               ADD
             </button>
           </div>
         </div>
         <div style={productForm}>
-          <h2 style={{fontSize: 35}}> Remove Product from Country </h2>
+          <h2 style={{ fontSize: 35 }}> Remove Product from Country </h2>
           <input
             className='input is-small'
-            onChange={this.deletingProductChange}
+            onChange={this.handleOnChange}
             type="text"
             style={spacingOfForm}
             placeholder="Choose Product"
@@ -119,7 +95,7 @@ class AdminCRUD extends Component {
           <h2> from </h2>
           <input
             className='input is-small'
-            onChange={this.deletingCountryChange}
+            onChange={this.handleOnChange}
             type="text"
             style={spacingOfForm}
             placeholder="Choose Country"
@@ -128,7 +104,7 @@ class AdminCRUD extends Component {
           />
           <div>
             <button
-            style ={{marginTop: 7, width: 88}}
+              style={{ marginTop: 7, width: 88 }}
               onClick={this.submitProductToCountry}
               className='button is-danger'>
               REMOVE

@@ -1,19 +1,14 @@
 import React, { Component } from "react"
 import {
-  ComposableMap,
-  ZoomableGroup,
-  Geographies,
-  Geography,
+    ComposableMap,
+    ZoomableGroup,
+    Geographies,
+    Geography,
 } from "react-simple-maps"
-// import {
-//   Tooltip,
-//   actions,
-// } from "redux-tooltip"
 import { connect } from 'react-redux';
 import { getProductByCountry } from '../../redux/actions';
 import chroma from "chroma-js";
 import ZoomObject from "../static/world-50m.json";
-import Search from './search';
 
 const wrapperStyles = {
     width: "100%",
@@ -37,21 +32,21 @@ class ZoomPan extends Component {
             center: [0, 20],
             zoom: 1,
             countries: [
-            "United States",
-            "Mexico",
-            "China",
-            "Egypt",
-            "Australia",
-            "Brazil",
-            "Japan",
-            "Korea",
-            "India",
-            "United Kingdom",
-            "France",
-            "Spain",
-            "Germany",
-            "Italy",
-            "South Africa"],
+                "United States",
+                "Mexico",
+                "China",
+                "Egypt",
+                "Australia",
+                "Brazil",
+                "Japan",
+                "Korea",
+                "India",
+                "United Kingdom",
+                "France",
+                "Spain",
+                "Germany",
+                "Italy",
+                "South Africa"],
             region: [
                 { name: "Europe", coordinates: [8.5417, 47.3769] },
                 { name: "Asia", coordinates: [103.8198, 1.3521] },
@@ -97,11 +92,10 @@ class ZoomPan extends Component {
         })
     }
 
-    passToParent = (e) => {
+    passToParent = e => {
         this.props.updateCountryName(e.properties.name)
         this.props.getProductByCountry(e.properties.name)
         console.log(e.properties.name)
-
     }
 
     render() {
@@ -159,7 +153,7 @@ class ZoomPan extends Component {
                                                 strokeWidth: 0.75,
                                                 outline: "none",
                                                 show: {
-                                                  content: geography.properties.name
+                                                    content: geography.properties.name
                                                 }
                                             },
                                             pressed: {
@@ -186,4 +180,4 @@ const mapDispatchToProps = dispatch => ({
     getProductByCountry: country => dispatch(getProductByCountry(country))
 })
 
-export default connect (null, mapDispatchToProps)(ZoomPan);
+export default connect(null, mapDispatchToProps)(ZoomPan);
