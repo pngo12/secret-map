@@ -50,7 +50,20 @@ class Login extends Component {
   }
 }
 
+<<<<<<< HEAD
 const mapDispatchToProps = dispatch => ({
+=======
+/**
+ * - On your Submit button, add an onClick function thaht will use this.props.login(user) 
+ * - Attach it to the submit button
+ * - Make sure thhe onClick function works (through console log or something)
+ * - Make sure the action is being hit by adding a console.log in the action (eg. console.log("INSIDE ACTION: Trying to Login:"))
+ * - Make sure what you are getting back frmo the axios call 
+ * - Make sure reducer is updating state properly by using the redux dev tools in your browser
+ */
+
+const mapPropsToDispatch = dispatch => ({
+>>>>>>> 6de408a5bc39ce75dfe5626b98bfd4851338c7f0
   login: user => dispatch(login(user))
 });
 

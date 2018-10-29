@@ -24,8 +24,8 @@ ReactDOM.render(
       <Switch>
 
         <Route exact path='/' component={App} />
-        <Route path='/admin' component={Login} />
-        <Route path='/dashboard' component={AdminPage} />
+        <Route path='/admin/login' component={Login} />
+        <Route path='/admin/dashboard' component={AdminPage} />
         <Route path='/product' component={CountryList} />
 
       </Switch>
