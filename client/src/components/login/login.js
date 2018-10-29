@@ -102,6 +102,7 @@ class Login extends Component {
  * - Make sure what you are getting back frmo the axios call 
  * - Make sure reducer is updating state properly by using the redux dev tools in your browser
  */
+
 const mapPropsToDispatch = dispatch => ({
   login: user => dispatch(login(user))
 });
