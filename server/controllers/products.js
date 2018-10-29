@@ -9,71 +9,60 @@ const getProduct = async (req, res, next) => {
         res.status(200).send(product)
     }
     catch (err) {
-        res.status(500).send({
-            message: "There is an error",
-            error: err.message
-        })
+        res.status(500).send(err.message)
     }
 }
 
 const newProduct = async (req, res, next) => {
-    const {
-        name,
-        type,
-        image,
-        description
-    } = req.body
+    const { name, type, image, description } = req.body
     try {
         let newProduct = await Product.create({ name, type, image, description })
         res.status(200).send(newProduct)
     }
     catch (err) {
-        res.status(400).send(err)
+        res.status(400).send(err.message)
     }
 }
 
 const removeProduct = async (req, res, next) => {
     const name = req.body.name
     try {
-        const findProduct = await Product.findOne({ name })
-        // const findAgain = await Product.findOne(findProduct._id)
-        // const removeProduct = await Product.remove({name})
-        res.status(200).send({ message: `removed the following item: ${findProduct._id}` })
+        const removeProduct = await Product.findOneAndDelete({ name })
+        res.status(200).send({ message: `removed the following item: ${removeProduct}` })
     }
     catch (err) {
-        res.status(400).send(err)
+        res.status(400).send(err.message)
     }
 }
 
 const editProduct = async (req, res, next) => {
-    const {
-        name,
-        type,
-        image,
-        description
-    } = req.body;
+    // Next up for this method
+    // Check for if the value of original name is !== undefined
+    // If it's not, dont update the name,
+    // if the value of 'original' name is !== undefined,
+    // Then update to the value of the new name
+    const { name, type, image, description } = req.body;
 
     try {
         const editProduct = await Product.findOneAndUpdate(
-            { _id: name._id },
+            { name },
             {
                 $set: {
-                    _id,
                     name,
                     type,
                     image,
                     description
                 }
             },
-            { upsert: true, new: false, runValidators: true }
+            { upsert: false, new: true, runValidators: true }
         )
+        console.log(editProduct)
         res.status(200).send(editProduct);
     }
     catch (err) {
         res.status(400).send(err);
     }
 }
-
 
 // Use the below method to upload data, remove once done
 // const upload = (req, res) => {
@@ -85,7 +74,6 @@ const editProduct = async (req, res, next) => {
 //         }
 //     })
 // }
-
 
 module.exports = {
     getProduct,

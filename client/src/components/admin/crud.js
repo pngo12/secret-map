@@ -6,6 +6,7 @@ import {
   addProductToCountry,
   deleteProductFromCountry
 } from '../../redux/actions/index';
+import NavBar from './navbar'
 
 const wrapperStyles = {
   width: "100%",
@@ -51,6 +52,8 @@ class AdminCRUD extends Component {
   };
   render() {
     return (
+      <div>
+      <NavBar/>
       <div className="container" style={wrapperStyles}>
         <div style={productForm}>
           <h2 style={{ fontSize: 35 }}> Add Product to Country </h2>
@@ -111,6 +114,7 @@ class AdminCRUD extends Component {
             </button>
           </div>
         </div>
+      </div>
       </div>
     );
   }
