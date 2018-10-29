@@ -23,7 +23,7 @@ const wrapperStyles = {
 
 const colorScale = chroma
     .scale([
-        '#f2718b'
+        '#f2718b',
     ])
     .mode('rgb')
     .colors(100)
