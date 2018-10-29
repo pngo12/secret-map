@@ -9,7 +9,7 @@ class AdminPage extends Component {
 
     state = {
         countryName: '',
-        showListing: false
+        showListing: false,
     }
 
     updateCountryName = countryName => {

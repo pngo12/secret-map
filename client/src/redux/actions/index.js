@@ -2,7 +2,9 @@ import {
     GET_COUNTRY_BY_PRODUCT,
     GET_PRODUCT_BY_COUNTRY,
     LOG_IN,
-    LOG_IN_ERROR
+    LOG_IN_ERROR,
+    GET_PRODUCTS,
+    GET_COUNTRY,
     // ADD_PRODUCT_TO_COUNTRY,
     // DELETE_PRODUCT_FROM_COUNTRY,
 } from '../constants';
@@ -12,6 +14,16 @@ export const getProductByCountry = country => async dispatch => {
     let response = await axios.get(`http://localhost:5000/country/${country}`);
     console.log(response)
     dispatch({ type: GET_PRODUCT_BY_COUNTRY, payload: response.data })
+}
+export const getProducts = product => async dispatch => {
+    let response = await axios.get(`http://localhost:5000/product/`);
+    console.log(response)
+    dispatch({ type: GET_PRODUCTS, payload: response.data })
+}
+export const getCountry = country => async dispatch => {
+    let response = await axios.get(`http://localhost:5000/country/`);
+    console.log(response)
+    dispatch({ type: GET_COUNTRY, payload: response.data })
 }
 
 // export const addProductToCountry = country => async dispatch => {
