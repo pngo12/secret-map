@@ -7,7 +7,7 @@ import ProductList from './productList';
 class Search extends Component {
     state = {
         country: '',
-        isShowing: false
+        isShowing: false,
     }
 
     componentDidUpdate(prevProps) {
@@ -48,7 +48,8 @@ class Search extends Component {
                     </form>
                 </div>
                 {
-                    this.state.isShowing && <ProductList />
+                    this.state.isShowing && 
+                    <ProductList />
                 }
             </div>
         );

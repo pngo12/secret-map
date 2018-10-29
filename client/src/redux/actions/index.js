@@ -2,7 +2,9 @@ import {
     GET_COUNTRY_BY_PRODUCT,
     GET_PRODUCT_BY_COUNTRY,
     LOG_IN,
-    LOG_IN_ERROR
+    LOG_IN_ERROR,
+    SORT_BY_NAME,
+    SORT_BY_TYPE,
     // ADD_PRODUCT_TO_COUNTRY,
     // DELETE_PRODUCT_FROM_COUNTRY,
 } from '../constants';
@@ -32,4 +34,8 @@ export const login = user => async dispatch => {
     // } else {
     //     dispatch({ type: LOG_IN, payload: response.data })
     // }
+}
+
+export const sortByName = dispatch => {
+    dispatch({ type: SORT_BY_NAME, payload: 'name'})
 }
