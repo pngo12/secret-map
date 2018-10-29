@@ -19,8 +19,14 @@ const wrapperStyles = {
 const colorScale = chroma
     .scale([
         '#f2718b',
+        'FFD740',
+        '#00B8D4',
+        '#FFDD00',
+        '#66ff99',
+        '#0033cc',
+        '#ffff99'
     ])
-    .mode('rgb')
+    .mode('lch')
     .colors(100)
 
 class ZoomPan extends Component {

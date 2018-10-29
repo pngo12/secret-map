@@ -46,3 +46,7 @@ export const login = user => async dispatch => {
     //     dispatch({ type: LOG_IN, payload: response.data })
     // }
 }
+
+export const sortByName = dispatch => {
+    dispatch({ type: SORT_BY_NAME, payload: 'name'})
+}
