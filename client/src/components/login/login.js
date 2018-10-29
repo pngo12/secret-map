@@ -8,15 +8,15 @@ import { login } from '../../redux/actions';
 class Login extends Component {
 
   state = {
-    username: "",
+    email: "",
     password: "",
     loginClicked: false
   }
 
   onLoginClick = e => {
     e.preventDefault();
-    let { username, password } = this.state
-    this.props.login({ username, password })
+    let { email, password } = this.state
+    this.props.login({ email, password })
     this.setState({ loginClicked: true })
   }
 
@@ -35,15 +35,15 @@ class Login extends Component {
                   <form className="formGrouping">
                     <img src={Glidewell} style={{ width: '41%', height: '30%', marginBottom: '2%' }} alt="logo" />
                     <div className="form-group">
-                      <label style={{ fontSize: '1em' }}> Username </label>
+                      <label style={{ fontSize: '1em' }}> Email Address </label>
                       <br />
                       <input
                         className="input is-normal"
                         style={{ width: '25%' }}
-                        value={this.state.username}
+                        value={this.state.email}
                         type="text"
-                        name="username"
-                        placeholder="Username"
+                        name="email"
+                        placeholder="example@glidewell.com"
                         onChange={this.handleOnChange}
                       />
                     </div>

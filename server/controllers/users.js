@@ -27,9 +27,9 @@ const createUser = async (req, res, next) => {
 const loginUser = async (req, res, next) => {
     const { email, password } = req.body;
     try {
-
         // Find the User and check if they're valid
         const findUser = await User.findOne({ email })
+
         if (findUser.length > 1) {
             res.status(401).send({ message: 'User not found or authorized' })
         }

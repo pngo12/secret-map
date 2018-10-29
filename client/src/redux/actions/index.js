@@ -25,6 +25,7 @@ export const getProductByCountry = country => async dispatch => {
 // }
 
 export const login = user => async dispatch => {
+    console.log(user)
     let response = await axios.post('http://localhost:5000/auth/login', user)
     console.log(response)
     // if (response.data.success !== true) {

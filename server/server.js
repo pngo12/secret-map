@@ -29,6 +29,11 @@ const port = process.env.PORT || 5000;
 // Allow CORS
 app.use(cors());
 
+// Verify JWT Token
+// app.use((req,res,next) => {
+//     const token = req.body.token
+// })
+
 app.use('/country', country);
 app.use('/product', Products);
 app.use('/auth', newUsers);
