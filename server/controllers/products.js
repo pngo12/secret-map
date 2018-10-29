@@ -9,7 +9,7 @@ const getProduct = async (req, res, next) => {
         res.status(200).send(product)
     }
     catch (err) {
-        res.status(500).send({ error: err.message })
+        res.status(500).send(err.message)
     }
 }
 
@@ -20,7 +20,7 @@ const newProduct = async (req, res, next) => {
         res.status(200).send(newProduct)
     }
     catch (err) {
-        res.status(400).send(err)
+        res.status(400).send(err.message)
     }
 }
 
@@ -31,7 +31,7 @@ const removeProduct = async (req, res, next) => {
         res.status(200).send({ message: `removed the following item: ${removeProduct}` })
     }
     catch (err) {
-        res.status(400).send(err)
+        res.status(400).send(err.message)
     }
 }
 
