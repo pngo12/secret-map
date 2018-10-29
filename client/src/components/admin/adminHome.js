@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
-import Logo from '../dashboard/logo';
+import NavBar from '../admin/navbar';
 import ZoomPan from '../../components/dashboard/zoomPan';
 import Search from '../dashboard/search';
 import AdminCRUD from './crud';
+import AdminProducts from './products'
 
 class AdminPage extends Component {
 
@@ -21,13 +22,14 @@ class AdminPage extends Component {
     render() { 
         return ( 
             <div>
-                <Logo />
-                <ZoomPan updateCountryName={this.updateCountryName}/>
-                <AdminCRUD />
-                <Search 
+                <NavBar />
+                <AdminProducts/>
+                {/* <ZoomPan updateCountryName={this.updateCountryName}/> */}
+                {/* <AdminCRUD /> */}
+                {/* <Search 
                     countryName={this.state.countryName}
                     showListing={this.state.showListing}
-                    />
+                    /> */}
             </div>
          );
     }
