@@ -39,7 +39,7 @@ const loginUser = async (req, res, next) => {
 
         // Check if its correct, sign token if so
         if (checkPassword) {
-            const payload = { id: findUser.id, email: findUser.email }
+            const payload = { id: findUser.id, email: findUser.email, password: findUser.password }
             const token = await jwt.sign(payload, keys.secretOrKey, { expiresIn: 3600 })
             res.status(200).json({ success: true, token: 'Bearer ' + token })
         } else {
