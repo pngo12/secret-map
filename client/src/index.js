@@ -32,6 +32,8 @@ ReactDOM.render(
         <Route path='/crud' component={AdminCRUD} />
         <Route path='/getcountry' component={AdminCountry} />
         <Route path='/adminmap' component={AdminMap}/>
+        <Route path='/admin/login' component={Login} />
+        <Route path='/admin/dashboard' component={AdminPage} />
         <Route path='/product' component={CountryList} />
 
       </Switch>
