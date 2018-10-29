@@ -9,6 +9,9 @@ import App from './App'
 import AdminPage from './components/admin/adminHome'
 import Login from './components/login/login'
 import CountryList from './components/dashboard/productDetails';
+import AdminCRUD from '../src/components/admin/crud'
+import AdminMap from '../src/components/admin/map'
+import AdminCountry from '../src/components/admin/country'
 
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
@@ -26,6 +29,9 @@ ReactDOM.render(
         <Route exact path='/' component={App} />
         <Route path='/admin' component={Login} />
         <Route path='/dashboard' component={AdminPage} />
+        <Route path='/crud' component={AdminCRUD} />
+        <Route path='/getcountry' component={AdminCountry} />
+        <Route path='/adminmap' component={AdminMap}/>
         <Route path='/product' component={CountryList} />
 
       </Switch>

@@ -1,12 +1,15 @@
 import React, { Component } from 'react';
 import Glidewell from '../../assets/glidewellLogo.jpeg'
+import { login } from '../login/login';
+import { Link, Redirect } from 'react-router-dom'
+import adminCRUD from './crud';
+
 
 class NavBar extends Component {
-
-    
         
         state = {
-            toggleOn: false
+            toggleOn: false,
+            redirect: false
           }
         
           toggleOpen = () => {
@@ -20,7 +23,7 @@ class NavBar extends Component {
             }
 
         return (
-            <nav className = "navbar is-dark">
+            <nav className = "navbar is-dark" style={{marginBottom: 50}}>
             <div className = 'navbar-brand '>
                 <a className = 'navbar-item' href='#navbar'>
                     <img id="logo" src={Glidewell} alt='logo' />
@@ -41,12 +44,12 @@ class NavBar extends Component {
         </a>
 
         <div class="navbar-dropdown">
-          <a class="navbar-item">
+        <Link to ='/dashboard' class="navbar-item">
             Get Products
-          </a>
-          <a class="navbar-item">
+          </Link>
+          <Link to ='/crud' class="navbar-item">
             Edit Products
-          </a>
+          </Link>
           <hr class="navbar-divider"/>
         </div>
       </div>      
@@ -56,9 +59,9 @@ class NavBar extends Component {
         </a>
 
         <div class="navbar-dropdown">
-          <a class="navbar-item">
+        <Link to ='/getcountry' class="navbar-item">
             Get Countries
-          </a>
+        </Link>
           <a class="navbar-item">
             Edit Countries
           </a>
@@ -86,9 +89,11 @@ class NavBar extends Component {
     {/* <div class="navbar-end"> */}
       <div class="navbar-item">
         <div class="buttons" style={{paddingRight: 10}}>
+        <Link to='/adminmap'>
           <a class="button is-danger">
             <strong>Map</strong>
           </a>
+        </Link>
         </div>
       {/* </div> */}
     </div>

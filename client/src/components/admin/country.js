@@ -4,16 +4,17 @@ import { connect } from 'react-redux';
 import './admin.css';
 import { getProducts } from '../../redux/actions';
 import axios from 'axios'
+import NavBar from './navbar'
 
 
-class AdminProducts extends Component {
+class AdminCountry extends Component {
 
     state = {
         data: {}
     }
 
     componentDidMount() {
-        axios.get(`http://localhost:5000/product/`)
+        axios.get(`http://localhost:5000/country/`)
         .then(res =>
         this.setState({
             data: res.data
@@ -22,14 +23,14 @@ class AdminProducts extends Component {
 
     render() {
         return (
+            <div>
+            <NavBar/>
             <div className = 'container is-fluid'>
             <div className="AdminProducts">
                 <table id="productDescription" border="1" className="table is-hoverable is-bordered">
                     <thead>
                         <tr>
                             <th>Name</th>
-                            <th>Type</th>
-                            <th>Description</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -38,8 +39,6 @@ class AdminProducts extends Component {
                                 return (
                                     <tr key={index}>
                                         <td>{item.name}</td>
-                                        <td>{item.type}</td>
-                                        <td>{item.description}</td>
                                         {/* <td>{this.props.products.countries}</td> */}
                                     </tr>
                                 )
@@ -50,13 +49,14 @@ class AdminProducts extends Component {
 
             </div>
             </div>
+            </div>
         );
     }
 }
 
 const mapStateToProps = state => ({
     // country: state.country,
-    products: state.products
+    country: state.country
 })
 
-export default connect(mapStateToProps, null)(AdminProducts)
+export default connect(mapStateToProps, null)(AdminCountry)
