@@ -8,10 +8,7 @@ const getCountryAll = async (req, res, next) => {
         res.status(200).send(getCountryAll);
     }
     catch (err) {
-        res.status(500).send({
-            message: "There is an error",
-            error: err.message
-        })
+        res.status(500).send({error: err.message})
     }
 }
 
@@ -19,7 +16,6 @@ const findOneCountry = async (req, res, next) => {
     let name = req.params;
     try {
         const findOne = await Country.find(name).populate('products');
-        console.log(...findOne)
         if (findOne.length <= 0) {
             res.status(400).send({ message: 'Sorry could not locate country' })
         } else {
@@ -27,9 +23,7 @@ const findOneCountry = async (req, res, next) => {
         }
     }
     catch (err) {
-        res.status(500).send({
-            error: err.message
-        })
+        res.status(500).send(err.message)
     }
 }
 
