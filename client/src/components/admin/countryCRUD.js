@@ -36,7 +36,7 @@ const spacingOfForm = {
   borderStyle: 'solid',
 }
 
-class AdminCRUD extends Component {
+class CountryCRUD extends Component {
   state = {
     addedToCountry: "",
     productToAdd: "",
@@ -120,4 +120,4 @@ class AdminCRUD extends Component {
   }
 }
 
-export default AdminCRUD;
+export default CountryCRUD;

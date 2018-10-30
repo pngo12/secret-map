@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import Glidewell from '../../assets/glidewellLogo.jpeg'
-import { login } from '../login/login';
-import { Link, Redirect } from 'react-router-dom'
-import adminCRUD from './crud';
+import { Link} from 'react-router-dom'
 
 
 class NavBar extends Component {
@@ -25,9 +23,9 @@ class NavBar extends Component {
         return (
             <nav className = "navbar is-dark" style={{marginBottom: 50}}>
             <div className = 'navbar-brand '>
-                <a className = 'navbar-item' href='#navbar'>
+                <Link to='/dashboard' className = 'navbar-item'>
                     <img id="logo" src={Glidewell} alt='logo' />
-                </a>
+                </Link>
 
                 <a role="button" class="navbar-burger burger" onClick={this.toggleOpen} data-target="navbarBasicExample">
                     <span aria-hidden="true"></span>
@@ -47,7 +45,7 @@ class NavBar extends Component {
         <Link to ='/dashboard' class="navbar-item">
             Get Products
           </Link>
-          <Link to ='/crud' class="navbar-item">
+          <Link to ='/productCrud' class="navbar-item">
             Edit Products
           </Link>
           <hr class="navbar-divider"/>
@@ -62,25 +60,9 @@ class NavBar extends Component {
         <Link to ='/getcountry' class="navbar-item">
             Get Countries
         </Link>
-          <a class="navbar-item">
+        <Link to ='/countryCRUD' class="navbar-item">
             Edit Countries
-          </a>
-          <hr class="navbar-divider"/>
-        </div>
-      </div>
-
-      <div class="navbar-item has-dropdown is-hoverable">
-        <a class="navbar-link">
-          User
-        </a>
-
-        <div class="navbar-dropdown">
-          <a class="navbar-item">
-            Create User Privelege
-          </a>
-          <a class="navbar-item">
-            Revoke User Privelege
-          </a>
+          </Link>
           <hr class="navbar-divider"/>
         </div>
       </div>

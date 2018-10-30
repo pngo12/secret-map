@@ -4,6 +4,9 @@ import {
     LOG_IN,
     GET_PRODUCTS,
     GET_COUNTRY,
+    ADD_PRODUCT,
+    EDIT_PRODUCT,
+    DELETE_PRODUCT
     // ADD_PRODUCT_TO_COUNTRY,
     // DELETE_PRODUCT_FROM_COUNTRY,
 } from '../constants'
@@ -33,6 +36,18 @@ const rootReducer = (state = initialState, action) => {
                 ...state,
                 products: [...action.payload.products]
             }
+        case ADD_PRODUCT:
+            return ({
+                ...state, products: [...state.products,...action.newProduct]
+            })
+        case EDIT_PRODUCT:
+            return ({
+                ...state, products: [...action.product]
+            })
+        case DELETE_PRODUCT:
+            return ({
+                ...state, products: [...action.deletedProduct]
+            })  
         case GET_COUNTRY:
             return {
                 ...state,
