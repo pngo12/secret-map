@@ -1,11 +1,15 @@
 import React, { Component } from 'react';
-import ProductDetails from './productDetails';
 import { connect } from 'react-redux';
+import './admin.css';
+import axios from 'axios';
+import ProductModal from '../../components/admin/productModal';
+import NavBar from './navbar'
 
-class ProductList extends Component {
+
+class GetProducts extends Component {
     state = {
         modalOn: false,
-        products: [],
+        data: {},
         direction: 'asc'
     }
 
@@ -15,11 +19,11 @@ class ProductList extends Component {
     sortByName = (sortKey) => {
 
         this.setState({
-            products: this.props.products
+            data: this.state.data
         }, () => {
-            const { products } = this.state;
+            const { data } = this.state;
             const direction = this.state.direction === 'asc' ? 'desc' : 'asc';
-            const sortedData = products.sort((a, b) => {
+            const sortedData = data.sort((a, b) => {
 
                 if (sortKey == 'name') {
                     let nameA = a.name.toLowerCase();
@@ -41,7 +45,7 @@ class ProductList extends Component {
     
             if (direction === 'desc') sortedData.reverse();
             this.setState({
-                products,
+                data,
                 direction
             });
 
@@ -49,42 +53,54 @@ class ProductList extends Component {
     }
 
     componentDidMount() {
+        axios.get(`http://localhost:5000/product/`)
+        .then(res =>
+        this.setState({
+            data: res.data
+        }))
     }
 
     render() {
         return (
-            this.props.products.length > 0 && ( // conditional render to only show chart when there is more than 1 product. 
-            <div className="productList">
-                <h2>Products in: {this.props.country}</h2>
+            <div>
+                <NavBar/>
+            <div className = 'container is-fluid'>
+            <div className="GetProducts">
                 <table id="productDescription" border="1" className="table is-hoverable is-bordered">
                     <thead>
                         <tr>
-                            <th>Name
+                            <th style={{width: '15%'}}>Name
                                 <button className="sortButton" onClick={() => this.sortByName('name')}>
                             <span className="icon">
                                     <i className="fas fa-sort"></i>
                                 </span>
                                 </button>
                             </th>
-                            <th>Type
+                            <th style={{width: '10%'}}>Type
                                 <button className="sortButton" onClick={() => this.sortByName('type')} >
                             <span className="icon">
                                     <i className="fas fa-sort"></i>
                                 </span>
                                 </button>
                             </th>
-                            <th>Description</th>
+                            <th style={{width: '66%'}}>Description</th>
+                            <th style={{width: '9%'}}> Update </th>
                         </tr>
                     </thead>
                     <tbody>
                         {
-                            this.props.products.map((item, index) => {
+                            Object.values(this.state.data).map((item, index) => {
                                 return (
                                     <tr key={index}>
-                                        <td onClick={this.displayModal}>{item.name}</td>
+                                        <td>{item.name}</td>
                                         <td>{item.type}</td>
                                         <td>{item.description}</td>
                                         {/* <td>{this.props.products.countries}</td> */}
+                                        <td>
+                                        <button onClick={this.displayModal} className="button is-info" style={{paddingLeft: 10, paddingRight: 5,marginRight: 13}}> 🔄 </button>
+                                        <button className ="button is-danger is-centered" style={{paddingLeft: 10, paddingRight: 5}}>🗑️</button>
+                                        </td>
+                                        
                                     </tr>
                                 )
                             })
@@ -92,20 +108,19 @@ class ProductList extends Component {
                     </tbody>
                 </table>
                 {
-                    this.state.modalOn && <ProductDetails closeModal={this.closeModal} />
+                    this.state.modalOn && <ProductModal closeModal={this.closeModal}/>
                 }
-                
-            </div> 
-            )
+
+            </div>
+            </div>
+            </div>
         );
     }
 }
 
 const mapStateToProps = state => ({
-    country: state.country,
+    // country: state.country,
     products: state.products
 })
 
-
-
-export default connect(mapStateToProps, null)(ProductList)
+export default connect(mapStateToProps, null)(GetProducts)
