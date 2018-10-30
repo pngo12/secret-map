@@ -5,6 +5,9 @@ import {
     LOG_IN_ERROR,
     GET_PRODUCTS,
     GET_COUNTRY,
+    ADD_PRODUCT,
+    EDIT_PRODUCT,
+    DELETE_PRODUCT,
     // ADD_PRODUCT_TO_COUNTRY,
     // DELETE_PRODUCT_FROM_COUNTRY,
 } from '../constants';
@@ -26,6 +29,21 @@ export const getCountry = country => async dispatch => {
     dispatch({ type: GET_COUNTRY, payload: response.data })
 }
 
+export const addProduct = product => async dispatch => {
+    console.log("PRODUCTS INPUT: ")
+    console.log(product);
+    let response = await axios.post('http://localhost:5000/product/', product);
+    dispatch({ type: ADD_PRODUCT, product: response.data.newTeacher });
+  }
+  export const editProduct = (id, product) => async dispatch => {
+    let response = await axios.put(`http://localhost:5000/product/${id}`, product);
+    dispatch({ type: EDIT_PRODUCT, products: response.data.product });
+  }
+
+  export const deleteProduct = id => async dispatch => {
+    let response = await axios.delete(`http://localhost:5000/product/${id}`);
+    dispatch({ type: DELETE_PRODUCT, products: response.data.deletedProduct });
+  }
 // export const addProductToCountry = country => async dispatch => {
 //     let response = await axios.post(`URL`, country);
 //     dispatch({ type: ADD_PRODUCT_TO_COUNTRY, country: response.data.newProductToCountry})
