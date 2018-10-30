@@ -4,7 +4,7 @@ import ZoomPan from './zoomPan';
 import Search from './search';
 import ProductList from './productList';
 import styles from '../../App.css'
-
+import Footer from './footer'
 class HomePage extends Component {
 
     state = {
@@ -28,6 +28,7 @@ class HomePage extends Component {
                     countryName={this.state.countryName}
                     showListing={this.state.showListing}
                 />
+                <Footer/>
             </div>
         )
     }

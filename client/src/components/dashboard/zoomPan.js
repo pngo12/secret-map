@@ -99,6 +99,7 @@ class ZoomPan extends Component {
     }
 
     passToParent = e => {
+        console.log(e);
         this.props.updateCountryName(e.properties.name)
         this.props.getProductByCountry(e.properties.name)
         console.log(e.properties.name)
@@ -142,6 +143,7 @@ class ZoomPan extends Component {
                                 {(geographies, projection) => geographies.map((geography, i) => geography.id !== "ATA" && (
                                     <Geography
                                         key={i}
+                                        onClick={this.passToParent}
                                         geography={geography}
                                         projection={projection}
                                         // onMouseMove={this.handleMove}
@@ -169,7 +171,6 @@ class ZoomPan extends Component {
                                                 outline: "none",
                                             },
                                         }}
-                                        onClick={this.passToParent}
                                     />
                                 ))}
                             </Geographies>
