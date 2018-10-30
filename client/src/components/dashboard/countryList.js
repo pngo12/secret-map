@@ -72,7 +72,7 @@ class ProductList extends Component {
                                 </span>
                                 </button>
                             </th>
-                            <th>Description</th>
+                            <th>Countries</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -82,7 +82,7 @@ class ProductList extends Component {
                                     <tr key={index}>
                                         <td onClick={this.displayModal}>{item.name}</td>
                                         <td>{item.type}</td>
-                                        <td>{item.description}</td>
+                                        <td>{item.countries.name}</td>
                                         {/* <td>{this.props.products.countries}</td> */}
                                     </tr>
                                 )
@@ -90,9 +90,9 @@ class ProductList extends Component {
                         }
                     </tbody>
                 </table>
-                {/* {
+                {
                     this.state.modalOn && <ProductDetails closeModal={this.closeModal} />
-                } */}
+                }
             </div>
         );
     }
@@ -102,7 +102,5 @@ const mapStateToProps = state => ({
     country: state.country,
     products: state.products
 })
-
-
 
 export default connect(mapStateToProps, null)(ProductList)

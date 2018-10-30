@@ -3,10 +3,12 @@ import { connect } from 'react-redux';
 import { getProductByCountry } from '../../redux/actions'
 import './dashboard.css'
 import ProductList from './productList';
+import CountryList from './countryList';
 
 class Search extends Component {
     state = {
         country: '',
+        product: '',
         isShowing: false,
     }
 
@@ -36,11 +38,11 @@ class Search extends Component {
         return (
             <div className="searchBar columns" style={{ flexDirection: 'column' }}>
                 <div>
-                    <h3 id="search">Search By:
-                    <select id="drop" className="dropdown">
+                    <h3 id="search">Search By Product/Country:
+                    {/* <select id="drop" className="dropdown">
                             <option value="country">Country</option>
                             <option value="product">Product</option>
-                        </select>
+                        </select> */}
                     </h3>
                     <form id="search" onSubmit={this.formSubmit}>
                         <input id="countryInput" type="text" value={this.state.country} onChange={this.handleOnChange} className="input is-small" name="country" />
@@ -49,7 +51,11 @@ class Search extends Component {
                 </div>
                 {
                     this.state.isShowing && 
-                    <ProductList />
+                    // If value == country, show
+                    // <ProductList />
+
+                    // If value == product, show
+                    <CountryList />
                 }
             </div>
         );
