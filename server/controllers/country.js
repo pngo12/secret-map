@@ -8,7 +8,7 @@ const getCountryAll = async (req, res, next) => {
         res.status(200).send(getCountryAll);
     }
     catch (err) {
-        res.status(500).send({error: err.message})
+        res.status(500).send(err.message)
     }
 }
 
@@ -44,7 +44,7 @@ const addProductToCountry = async (req, res, next) => {
         res.status(200).send(addProduct);
     }
     catch (err) {
-        res.status(500).send(err);
+        res.status(500).send(err.message);
     }
 }
 
@@ -65,7 +65,7 @@ const removeProductFromCountry = async (req, res, next) => {
         res.status(200).res.send(removeProduct)
     }
     catch (err) {
-        res.status(500).send(err)
+        res.status(500).send(err.message)
     }
 }
 
