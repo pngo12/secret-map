@@ -9,7 +9,6 @@ const {
     editProduct,
     addCountryToProduct,
     removeCountryFromProduct,
-    // test
 } = require ('../controllers/products')
 
 // Get all products in the database
@@ -20,7 +19,7 @@ router.get('/:name', findOneProduct);
 // Add a Product to the database
 router.post('/new', newProduct);
 
-// Delete a product in the database
+// Delete a product from the database
 router.delete('/remove', removeProduct);
 
 // Edit a product in the database
@@ -31,5 +30,7 @@ router.post('/addcountry', addCountryToProduct);
 
 // Remove a proudct to a country
 router.post('/removecountry', removeCountryFromProduct);
+
+
 
 module.exports = router;

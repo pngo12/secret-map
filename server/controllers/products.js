@@ -88,7 +88,7 @@ const removeCountryFromProduct = async (req, res, next) => {
             { $pull: { countries: country._id } },
             { upsert: false, new: true, runValidators: true }
         );
-        res.status(200).send({ success: true, message: `Removed ${removeProduct.name} from ${removeCountry.name}` })
+        res.status(200).send({ success: true, message: `Removed ${removeProduct.name} from ${removeCountry.name}` });
     }
     catch (err) {
         res.status(500).send(err.message);
@@ -98,11 +98,11 @@ const removeCountryFromProduct = async (req, res, next) => {
 const removeProduct = async (req, res, next) => {
     const name = req.body.name
     try {
-        const removeProduct = await Product.findOneAndDelete({ name })
-        res.status(200).send({ success: true, message: `Removed the following item: ${removeProduct}` })
+        const removeProduct = await Product.findOneAndDelete({ name });
+        res.status(200).send({ success: true, message: `Removed the following item: ${removeProduct}` });
     }
     catch (err) {
-        res.status(400).send({ success: false, message: err.message })
+        res.status(400).send({ success: false, message: err.message });
     }
 }
 
@@ -120,16 +120,16 @@ const editProduct = async (req, res, next) => {
             { $set: { name, type, image, description } },
             { upsert: false, new: true, runValidators: true }
         );
-        res.status(200).send({success: true, editProduct});
+        res.status(200).send({ success: true, editProduct });
     }
     catch (err) {
-        res.status(400).send({success: false, message: message.err});
+        res.status(400).send({ success: false, message: message.err });
     }
 }
 
 // Use the below method to upload data, remove once done
 // const upload = (req, res) => {
-//     Country.insertMany(data, function (error, docs) {
+//     Data.insertMany(data, function (error, docs) {
 //         if (error) {
 //             console.log(error)
 //         } else {
