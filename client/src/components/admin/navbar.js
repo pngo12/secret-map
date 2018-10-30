@@ -46,7 +46,7 @@ class NavBar extends Component {
             Get Products
           </Link>
           <Link to ='/productCrud' class="navbar-item">
-            Edit Products
+            Add Product
           </Link>
           <hr class="navbar-divider"/>
         </div>

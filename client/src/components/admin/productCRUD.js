@@ -52,66 +52,52 @@ class ProductCRUD extends Component {
       <div>
       <NavBar/>
       <div className="container" style={wrapperStyles}>
-        <div style={productForm}>
-          <h2 style={{ fontSize: 35 }}> Add Product </h2>
+        <div style={productForm}>     
+          <h2 style={{ fontSize: 35 }}> Name</h2>
           <input
             className='input is-small'
             type="text"
             style={spacingOfForm}
-            placeholder="Choose Product"
+            placeholder="name"
             onChange={this.handleOnChange}
-            value={this.state.productToAdd}
-            name="productToAdd"
+            value={this.state.name}
+            name="name"
           />
-          <div>
-            <button
-              className='button is-success'
-              style={{ marginTop: 7, width: 88, marginBottom: 20 }}>
-              ADD
-            </button>
-          </div>
         </div>
         <div style={productForm}>
-          <h2 style={{ fontSize: 35 }}> Remove Product </h2>
+          <h2 style={{ fontSize: 35 }}> Type </h2>
           <input
             className='input is-small'
             onChange={this.handleOnChange}
             type="text"
             style={spacingOfForm}
-            placeholder="Choose Product"
-            value={this.state.productToDelete}
-            name="productToDelete"
+            placeholder="Type"
+            value={this.state.type}
+            name="type"
           />
-          <div>
-            <button
-              style={{ marginTop: 7, width: 88 }}
-              onClick={this.submitProductToCountry}
-              className='button is-danger'>
-              REMOVE
-            </button>
-          </div>
         </div>
         <div style={productForm}>
-          <h2 style={{ fontSize: 35 }}> Update Product </h2>
-          <input
-            className='input is-small'
+          <h2 style={{ fontSize: 35 }}> Description </h2>
+          <textarea
+            className='textarea'
             onChange={this.handleOnChange}
             type="text"
             style={spacingOfForm}
-            placeholder="Choose Product"
-            value={this.state.productToDelete}
-            name="productToDelete"
+            placeholder="Description"
+            value={this.state.description}
+            name="description"
           />
           <div>
             <button
-              style={{ marginTop: 7, width: 88 }}
+              style={{ marginTop: 7, width: 120 }}
               onClick={this.submitProductToCountry}
               className='button is-info'>
-              UPDATE
+              Add Product!
             </button>
           </div>
+          
         </div>
-      </div>
+    </div>
       </div>
     );
   }
