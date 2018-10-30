@@ -4,7 +4,7 @@ const Country = require('../models/countries')
 const getCountryAll = async (req, res, next) => {
     try {
         // Get all countries in DB, grab the ID of the product, and populate the products array
-        const getCountryAll = await Country.find().populate('products', 'name');
+        const getCountryAll = await Country.find().populate('products', 'name type description');
         res.status(200).send(getCountryAll);
     }
     catch (err) {
@@ -15,7 +15,7 @@ const getCountryAll = async (req, res, next) => {
 const findOneCountry = async (req, res, next) => {
     let name = req.params;
     try {
-        const findOne = await Country.find(name).populate('products');
+        const findOne = await Country.find(name).populate('products', 'name type description');
         if (findOne.length <= 0) {
             res.status(400).send({ message: 'Sorry could not locate country' })
         } else {
@@ -23,7 +23,7 @@ const findOneCountry = async (req, res, next) => {
         }
     }
     catch (err) {
-        res.status(500).send(err.message)
+        res.status(500).send({success: false, message:err.message})
     }
 }
 

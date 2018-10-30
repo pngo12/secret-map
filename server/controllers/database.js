@@ -1,15 +1,13 @@
 const CountryDatabase = require('../models/countrydatabase')
 
 const getCountryFromDatabase = async (req, res, next) => {
-    const continent = req.params
-    console.log(continent)
+
     try {
-        const country = await CountryDatabase.find();
+        const country = await CountryDatabase.findOne(req.params);
         console.log(country)
-        // if (country.length > 0) {
-        //     res.status(200).send({ success: true, country });
-        // }
-        res.status(200).send({ success: true, country });
+        if (country) {
+            res.status(200).send(country);
+        }
     }
     catch (err) {
         res.status(500).send({ success: false, message: err.message });
@@ -17,5 +15,5 @@ const getCountryFromDatabase = async (req, res, next) => {
 }
 
 module.exports = {
-    getCountryFromDatabase
+    getCountryFromDatabase,
 }
