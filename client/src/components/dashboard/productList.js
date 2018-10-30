@@ -53,6 +53,7 @@ class ProductList extends Component {
 
     render() {
         return (
+            this.props.products.length > 0 && ( // conditional render to only show chart when there is more than 1 product. 
             <div className="productList">
                 <h2>Products in: {this.props.country}</h2>
                 <table id="productDescription" border="1" className="table is-hoverable is-bordered">
@@ -93,7 +94,9 @@ class ProductList extends Component {
                 {
                     this.state.modalOn && <ProductDetails closeModal={this.closeModal} />
                 }
-            </div>
+                
+            </div> 
+            )
         );
     }
 }

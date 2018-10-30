@@ -6,6 +6,7 @@ const ProductSchema = new Schema({
     type: String,
     image: String,
     description: String,
+    countries: [{ type: Schema.Types.ObjectId, ref: 'countries' }]
 });
 
 module.exports = Product = mongoose.model('products', ProductSchema)
