@@ -12,6 +12,8 @@ class ProductList extends Component {
     displayModal = () => this.setState({ modalOn: true })
     closeModal = () => this.setState({ modalOn: false })
 
+    f
+
     sortByName = (sortKey) => {
 
         this.setState({
