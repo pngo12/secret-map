@@ -32,13 +32,12 @@ export const addProduct = product => async dispatch => {
     console.log(product);
     let response = await axios.post('http://localhost:5000/products/', product);
     dispatch({ type: ADD_PRODUCT, product: response.data.newTeacher });
-  }
+}
 
 export const editProduct = (id, product) => async dispatch => {
     let response = await axios.put(`http://localhost:5000/products/${id}`, product);
     dispatch({ type: EDIT_PRODUCT, products: response.data.product });
 }
-
 
 export const deleteProduct = id => async dispatch => {
     let response = await axios.delete(`http://localhost:5000/products/${id}`);

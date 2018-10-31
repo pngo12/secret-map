@@ -58,7 +58,7 @@ class AdminHome extends Component {
     // this.props.getProducts();
     axios.get(`http://localhost:5000/products/`).then(res =>
       this.setState({
-        data: res.data.product
+        data: res.data
       })
     );
   }

@@ -10,55 +10,6 @@ class NavBar extends Component {
     redirect: false
   }
 
-                <a role="button" className="navbar-burger burger" onClick={this.toggleOpen} data-target="navbarBasicExample">
-                    <span aria-hidden="true"></span>
-                    <span aria-hidden="true"></span>
-                    <span aria-hidden="true"></span>
-                </a>
-  </div>
-            <div id="navbarBasicExample" className={burgerClass.join(' ')}>
-    <div className="navbar-end" style ={{marginRight: 20}}>
-
-    <div className="navbar-item has-dropdown is-hoverable">
-        <a className="navbar-link">
-          Products
-        </a>
-
-        <div className="navbar-dropdown">
-        <Link to ='/dashboard' className="navbar-item">
-            Get Products
-          </Link>
-          <Link to ='/productCrud' className="navbar-item">
-            Add Product
-          </Link>
-          <hr className="navbar-divider"/>
-        </div>
-      </div>      
-      <div className="navbar-item has-dropdown is-hoverable">
-        <a className="navbar-link">
-          Countries
-        </a>
-
-        <div className="navbar-dropdown">
-        <Link to ='/getcountry' className="navbar-item">
-            Get Countries
-        </Link>
-        <Link to ='/countryCRUD' className="navbar-item">
-            Edit Countries
-          </Link>
-          <hr className="navbar-divider"/>
-        </div>
-      </div>
-    </div>
-
-    {/* <div className="navbar-end"> */}
-      <div className="navbar-item">
-        <div className="buttons" style={{paddingRight: 10}}>
-        <Link to='/adminmap'>
-          <a className="button is-danger">
-            <strong>Map</strong>
-          </a>
-        </Link>
   toggleOpen = () => {
     this.setState({ toggleOn: !this.state.toggleOn })
   }
