@@ -18,13 +18,7 @@ const wrapperStyles = {
 
 const colorScale = chroma
     .scale([
-        '#f2718b',
-        'FFD740',
-        '#00B8D4',
-        '#FFDD00',
-        '#66ff99',
-        '#0033cc',
-        '#ffff99'
+        '#a8c9ff'
     ])
     .mode('lch')
     .colors(100)
