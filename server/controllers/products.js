@@ -18,11 +18,11 @@ const getProduct = async (req, res) => {
 const findOneProduct = async (req, res) => {
     let name = req.params;
     try {
-        const findOne = await Product.find(name).populate('countries', 'name');
-        if (findOne.length > 0) {
+        const findOne = await Product.findOne(name).populate('countries', 'name');
+        if (findOne) {
             res.status(200).send(findOne);
         } else {
-            res.status(404).send({ success: false, message: 'Sorry could not locate country' });
+            res.status(404).send({ success: false, message: 'Sorry could not locate product' });
         }
     }
     catch (err) {
