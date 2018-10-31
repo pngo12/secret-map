@@ -31,7 +31,7 @@ const loginUser = async (req, res, next) => {
         const findUser = await User.findOne({ email })
 
         if (findUser.length > 1) {
-            res.status(401).send({ message: 'User not found or authorized' })
+            res.status(404).send({ message: 'User not found or authorized' })
         }
 
         // Compare password to hashed password
@@ -43,11 +43,11 @@ const loginUser = async (req, res, next) => {
             const token = await jwt.sign(payload, keys.secretOrKey, { expiresIn: 3600 })
             res.status(200).json({ success: true, token: 'Bearer ' + token })
         } else {
-            return res.status(400).json({ password: 'Password or email is incorrect' })
+            return res.status(404).json({ password: 'Password or email is incorrect' })
         }
     }
     catch (err) {
-        res.status(500).send(err)
+        res.status(404).send(err)
     }
 }
 

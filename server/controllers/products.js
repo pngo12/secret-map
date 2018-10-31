@@ -1,46 +1,51 @@
 const Product = require('../models/products');
 const Country = require('../models/countries');
 
-const getProduct = async (req, res, next) => {
+const getProduct = async (req, res) => {
     try {
         let product = await Product.find().populate('countries', 'name');
-        if (product.length <= 0) {
+        if (product.length > 0) {
+            res.status(200).send(product);
+        } else {
             res.status(400).send({ success: false, message: 'There was an error finding products' });
         }
-        res.status(200).send({ success: true, product });
     }
     catch (err) {
-        res.status(500).send({ success: false, message: err.message });
+        res.status(404).send({ success: false, message: err.message });
     }
 }
 
-const newProduct = async (req, res, next) => {
-    const { name, type, image, description } = req.body;
-    try {
-        let newProduct = await Product.create({ name, type, image, description });
-        res.status(200).send({ success: true, newProduct });
-    }
-    catch (err) {
-        res.status(400).send({ success: true, message: err.message });
-    }
-}
-
-const findOneProduct = async (req, res, next) => {
+const findOneProduct = async (req, res) => {
     let name = req.params;
     try {
         const findOne = await Product.find(name).populate('countries', 'name');
-        if (findOne.length <= 0) {
-            res.status(400).send({ success: false, message: 'Sorry could not locate country' });
+        if (findOne.length > 0) {
+            res.status(200).send(findOne);
         } else {
-            res.status(200).send({ success: true, ...findOne });
+            res.status(404).send({ success: false, message: 'Sorry could not locate country' });
         }
     }
     catch (err) {
-        res.status(500).send({ success: false, message: err.message });
+        res.status(404).send({ success: false, message: err.message });
     }
 }
 
-const addCountryToProduct = async (req, res, next) => {
+const newProduct = async (req, res) => {
+    const { name, type, image, description } = req.body;
+    try {
+        let newProduct = await Product.create({ name, type, image, description });
+        if (newProduct) {
+            res.status(200).send(newProduct);
+        } else {
+            res.status(400).send({ success: false, message: 'Could not create product' })
+        }
+    }
+    catch (err) {
+        res.status(404).send({ success: false, message: err.message });
+    }
+}
+
+const addCountryToProduct = async (req, res) => {
 
     const countryName = req.body.countryName;
     const productName = req.body.productName
@@ -63,11 +68,11 @@ const addCountryToProduct = async (req, res, next) => {
         res.status(200).send({ success: true, message: `Added ${addProduct.name} to ${addCountry.name}` })
     }
     catch (err) {
-        res.status(500).send(err.message);
+        res.status(404).send(err.message);
     }
 }
 
-const removeCountryFromProduct = async (req, res, next) => {
+const removeCountryFromProduct = async (req, res) => {
 
     const countryName = req.body.countryName;
     const productName = req.body.productName;
@@ -91,52 +96,58 @@ const removeCountryFromProduct = async (req, res, next) => {
         res.status(200).send({ success: true, message: `Removed ${removeProduct.name} from ${removeCountry.name}` });
     }
     catch (err) {
-        res.status(500).send(err.message);
+        res.status(404).send(err.message);
     }
 }
 
-const removeProduct = async (req, res, next) => {
+const removeProduct = async (req, res) => {
     const name = req.body.name
     try {
         const removeProduct = await Product.findOneAndDelete({ name });
-        res.status(200).send({ success: true, message: `Removed the following item: ${removeProduct}` });
+        if (removeProduct) {
+            res.status(200).send({ success: true, message: `Removed the following item: ${removeProduct}` });
+        } else {
+            res.status(400).send({ success: false, message: 'Could not remove product' })
+        }
     }
     catch (err) {
-        res.status(400).send({ success: false, message: err.message });
+        res.status(404).send({ success: false, message: err.message });
     }
 }
 
-const editProduct = async (req, res, next) => {
-    // Next up for this method
-    // Check for if the value of original name is !== undefined
-    // If it's not, dont update the name,
-    // if the value of 'original' name is !== undefined,
-    // Then update to the value of the new name
-    const { name, type, image, description } = req.body;
+const editProduct = async (req, res) => {
+
+    const { name, newName, type, image, description } = req.body;
 
     try {
-        const editProduct = await Product.findOneAndUpdate(
-            { name },
-            { $set: { name, type, image, description } },
-            { upsert: false, new: true, runValidators: true }
-        );
-        res.status(200).send({ success: true, editProduct });
+        if (newName == '') {
+            const editProduct = await Product.findOneAndUpdate(
+                { name },
+                { $set: { name, type, image, description } },
+                { upsert: false, new: true, runValidators: true }
+            );
+            if (editProduct) {
+                res.status(200).send(editProduct);
+            } else {
+                res.status(400).send({ success: false, message: 'Could not find product' })
+            }
+        } else {
+            const editProductWithNewName = await Product.findOneAndUpdate(
+                { name },
+                { $set: { name: newName, type, image, description } },
+                { upsert: false, new: true, runValidators: true }
+            );
+            if (editProductWithNewName) {
+                res.status(200).send(editProductWithNewName);
+            } else {
+                res.status(400).send({ success: false, message: 'Could not find product' })
+            }
+        }
     }
     catch (err) {
-        res.status(400).send({ success: false, message: message.err });
+        res.status(404).send({ success: false, message: message.err });
     }
 }
-
-// Use the below method to upload data, remove once done
-// const upload = (req, res) => {
-//     Data.insertMany(data, function (error, docs) {
-//         if (error) {
-//             console.log(error)
-//         } else {
-//             res.send(docs);
-//         }
-//     })
-// }
 
 module.exports = {
     getProduct,
