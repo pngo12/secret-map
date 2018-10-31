@@ -31,9 +31,15 @@ const findOneProduct = async (req, res) => {
 }
 
 const newProduct = async (req, res) => {
-    const { name, type, image, description } = req.body;
+    const { name, type, description } = req.body;
     try {
-        const newProduct = await Product.create({ name, type, image, description });
+        const findOne = await Product.findOne({ name });
+        if (findOne) {
+            res.status(418).send({ message: 'Product already exists in database' })
+        } else {
+            const newProduct = await Product.create({ name, type, description });
+            res.status(200).send(newProduct)
+        }
         if (newProduct) {
             res.status(200).send(newProduct);
         } else {
@@ -65,7 +71,7 @@ const addCountryToProduct = async (req, res) => {
             { $push: { products: product._id } },
             { upsert: false, new: true, runValidators: true }
         );
-        res.status(200).send({ success: true, message: `Added ${addProduct.name} to ${addCountry.name}` })
+        res.status(200).send({ message: `Added ${addProduct.name} to ${addCountry.name}` })
     }
     catch (err) {
         res.status(404).send(err.message);
@@ -103,12 +109,9 @@ const removeCountryFromProduct = async (req, res) => {
 const removeProduct = async (req, res) => {
     const name = req.body.name
     try {
+        const findProduct = await Product.findOne({ name })
         const removeProduct = await Product.findOneAndDelete({ name });
-        if (removeProduct) {
-            res.status(200).send({ success: true, message: `Removed the following item: ${removeProduct}` });
-        } else {
-            res.status(400).send({ success: false, message: 'Could not remove product' })
-        }
+ 
     }
     catch (err) {
         res.status(404).send({ success: false, message: err.message });
