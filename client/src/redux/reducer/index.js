@@ -33,7 +33,7 @@ const rootReducer = (state = initialState, action) => {
         case GET_PRODUCTS:
             return {
                 ...state,
-                products: [...action.payload.products]
+                products: [...action.payload.countries]
             }
         case ADD_PRODUCT:
             return ({

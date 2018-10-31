@@ -37,7 +37,7 @@ const _getProductByCountry = country => async dispatch => {
 
 const _getProductByName = product => async dispatch => {
     let response = await axios.get(`http://localhost:5000/products/${product}`);
-    console.log(response)
+    console.log('THE RESPONSE IS', response)
     dispatch({ type: GET_PRODUCTS, payload: response.data })
 }
 // export const getCountry = country => async dispatch => {
