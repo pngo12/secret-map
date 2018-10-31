@@ -82,7 +82,7 @@ class ProductList extends Component {
                                     <tr key={index}>
                                         <td onClick={this.displayModal}>{item.name}</td>
                                         <td>{item.type}</td>
-                                        <td>{item.countries.name}</td>
+                                        <td>{item.countries}</td>
                                         {/* <td>{this.props.products.countries}</td> */}
                                     </tr>
                                 )
