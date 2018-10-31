@@ -32,48 +32,6 @@ const findOneCountry = async (req, res) => {
     }
 }
 
-// const addProductToCountry = async (req, res) => {
-
-//     const countryName = req.body.countryName;
-//     const productName = req.body.productName;
-
-//     try {
-//         const product = await Product.findOne({ name: productName });
-//         const country = await Country.findOne({ name: countryName });
-//         // Find the country, and push a new product to the product's array
-//         const addProduct = await Country.findOneAndUpdate(
-//             { _id: country._id },
-//             { $push: { products: product._id } },
-//             { upsert: true, new: true, runValidators: true }
-//         )
-//         res.status(200).send(addProduct);
-//     }
-//     catch (err) {
-//         res.status(500).send(err.message);
-//     }
-// }
-
-// const removeProductFromCountry = async (req, res) => {
-
-//     const countryName = req.body.countryName;
-//     const productName = req.body.productName;
-
-//     try {
-//         const product = await Product.findOne({ name: productName })
-//         const country = await Country.findOne({ name: countryName })
-//         // Find the country, and remove a product from the product's array
-//         const removeProduct = await Country.findOneAndUpdate(
-//             { _id: country._id },
-//             { $pull: { products: product._id } },
-//             { upsert: false, new: true, runValidators: true }
-//         )
-//         res.status(200).res.send(removeProduct)
-//     }
-//     catch (err) {
-//         res.status(500).send(err.message)
-//     }
-// }
-
 module.exports = {
     getCountryAll,
     findOneCountry,

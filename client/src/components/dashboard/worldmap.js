@@ -29,7 +29,7 @@ const colorScale = chroma
     .mode('lch')
     .colors(100)
 
-class ZoomPan extends Component {
+class WorldMap extends Component {
     constructor() {
         super()
         // this.handleMove = this.handleMove.bind(this)
@@ -128,9 +128,7 @@ class ZoomPan extends Component {
                 </div>
                 <div style={wrapperStyles} id="mapBox">
                     <ComposableMap
-                        projectionConfig={{
-                            scale: 245,
-                        }}
+                        projectionConfig={{ scale: 245, }}
                         width={980}
                         height={551}
                         style={{
@@ -187,4 +185,4 @@ const mapDispatchToProps = dispatch => ({
     getProductByCountry: country => dispatch(getProductByCountry(country))
 })
 
-export default connect(null, mapDispatchToProps)(ZoomPan);
+export default connect(null, mapDispatchToProps)(WorldMap);

@@ -3,7 +3,7 @@ const Country = require('../models/countries');
 
 const getProduct = async (req, res) => {
     try {
-        let product = await Product.find().populate('countries', 'name');
+        const product = await Product.find().populate('countries', 'name');
         if (product.length > 0) {
             res.status(200).send(product);
         } else {
@@ -33,7 +33,7 @@ const findOneProduct = async (req, res) => {
 const newProduct = async (req, res) => {
     const { name, type, image, description } = req.body;
     try {
-        let newProduct = await Product.create({ name, type, image, description });
+        const newProduct = await Product.create({ name, type, image, description });
         if (newProduct) {
             res.status(200).send(newProduct);
         } else {

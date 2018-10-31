@@ -1,7 +1,6 @@
 import {
     GET_COUNTRY_BY_PRODUCT, 
     GET_PRODUCT_BY_COUNTRY,
-    LOG_IN,
     GET_PRODUCTS,
     GET_COUNTRY,
     ADD_PRODUCT,
@@ -53,12 +52,6 @@ const rootReducer = (state = initialState, action) => {
                 ...state,
                 countries: [...action.payload.countries]
             }
-        case LOG_IN:
-            return ({...state, userToken: action.payload, authorized: true})
-        // case ADD_PRODUCT_TO_COUNTRY:
-        //     return ({...state, country: [...state.country, ...action.newProductToCountry]}) 
-        // case DELETE_PRODUCT_FROM_COUNTRY:
-        //     return ({ ...state, country: [...action.deletedProduct]})  
         default: return state
     }
 }

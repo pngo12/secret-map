@@ -6,7 +6,7 @@ const bodyParser = require('body-parser');
 const country = require('./routes/country');
 const products = require('./routes/products');
 const countryDatabase = require('./routes/countrydatabase')
-// const passport = require('passport');
+const test = require('./routes/searchterm')
 
 // Body parser
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -29,6 +29,7 @@ app.use(cors());
 app.use('/country', country);
 app.use('/products', products);
 app.use('/countrydatabase', countryDatabase);
+app.use('/test', test)
 
 app.listen(port, () => console.log(`🏃🏃 Running on port: ${port}`));
 
