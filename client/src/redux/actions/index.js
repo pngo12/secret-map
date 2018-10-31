@@ -19,7 +19,7 @@ export const getProductByCountry = country => async dispatch => {
     dispatch({ type: GET_PRODUCT_BY_COUNTRY, payload: response.data })
 }
 export const getProducts = product => async dispatch => {
-    let response = await axios.get(`http://localhost:5000/product/`);
+    let response = await axios.get(`http://localhost:5000/products/`);
     console.log(response)
     dispatch({ type: GET_PRODUCTS, payload: response.data })
 }
@@ -32,16 +32,16 @@ export const getCountry = country => async dispatch => {
 export const addProduct = product => async dispatch => {
     console.log("PRODUCTS INPUT: ")
     console.log(product);
-    let response = await axios.post('http://localhost:5000/product/', product);
+    let response = await axios.post('http://localhost:5000/products/', product);
     dispatch({ type: ADD_PRODUCT, product: response.data.newTeacher });
   }
   export const editProduct = (id, product) => async dispatch => {
-    let response = await axios.put(`http://localhost:5000/product/${id}`, product);
+    let response = await axios.put(`http://localhost:5000/products/${id}`, product);
     dispatch({ type: EDIT_PRODUCT, products: response.data.product });
   }
 
   export const deleteProduct = id => async dispatch => {
-    let response = await axios.delete(`http://localhost:5000/product/${id}`);
+    let response = await axios.delete(`http://localhost:5000/products/${id}`);
     dispatch({ type: DELETE_PRODUCT, products: response.data.deletedProduct });
   }
 // export const addProductToCountry = country => async dispatch => {

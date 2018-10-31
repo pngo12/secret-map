@@ -15,7 +15,8 @@ import './admin.css'
         width: '55%',
         marginLeft: 'auto',
         marginRight: 'auto',
-        textAlign: 'center'
+        textAlign: 'center',
+        fontSize: 35
       }
       
       
@@ -56,7 +57,7 @@ class ProductModal extends Component {
 
                 <div className="container" style={wrapperStyles}>
         <div style={productForm}>     
-          <h2 style={{ fontSize: 35 }}> Name</h2>
+          <h2> Name</h2>
           <input
             className='input is-small'
             type="text"
@@ -68,7 +69,7 @@ class ProductModal extends Component {
           />
         </div>
         <div style={productForm}>
-          <h2 style={{ fontSize: 35 }}> Type </h2>
+          <h2> Type </h2>
           <input
             className='input is-small'
             onChange={this.handleOnChange}
@@ -80,7 +81,7 @@ class ProductModal extends Component {
           />
         </div>
         <div style={productForm}>
-          <h2 style={{ fontSize: 35 }}> Description </h2>
+          <h2> Description </h2>
           <textarea
             className='textarea'
             onChange={this.handleOnChange}

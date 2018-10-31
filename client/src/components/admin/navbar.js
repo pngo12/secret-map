@@ -27,52 +27,52 @@ class NavBar extends Component {
                     <img id="logo" src={Glidewell} alt='logo' />
                 </Link>
 
-                <a role="button" class="navbar-burger burger" onClick={this.toggleOpen} data-target="navbarBasicExample">
+                <a role="button" className="navbar-burger burger" onClick={this.toggleOpen} data-target="navbarBasicExample">
                     <span aria-hidden="true"></span>
                     <span aria-hidden="true"></span>
                     <span aria-hidden="true"></span>
                 </a>
   </div>
             <div id="navbarBasicExample" className={burgerClass.join(' ')}>
-    <div class="navbar-end" style ={{marginRight: 20}}>
+    <div className="navbar-end" style ={{marginRight: 20}}>
 
-    <div class="navbar-item has-dropdown is-hoverable">
-        <a class="navbar-link">
+    <div className="navbar-item has-dropdown is-hoverable">
+        <a className="navbar-link">
           Products
         </a>
 
-        <div class="navbar-dropdown">
-        <Link to ='/dashboard' class="navbar-item">
+        <div className="navbar-dropdown">
+        <Link to ='/dashboard' className="navbar-item">
             Get Products
           </Link>
-          <Link to ='/productCrud' class="navbar-item">
+          <Link to ='/productCrud' className="navbar-item">
             Add Product
           </Link>
-          <hr class="navbar-divider"/>
+          <hr className="navbar-divider"/>
         </div>
       </div>      
-      <div class="navbar-item has-dropdown is-hoverable">
-        <a class="navbar-link">
+      <div className="navbar-item has-dropdown is-hoverable">
+        <a className="navbar-link">
           Countries
         </a>
 
-        <div class="navbar-dropdown">
-        <Link to ='/getcountry' class="navbar-item">
+        <div className="navbar-dropdown">
+        <Link to ='/getcountry' className="navbar-item">
             Get Countries
         </Link>
-        <Link to ='/countryCRUD' class="navbar-item">
+        <Link to ='/countryCRUD' className="navbar-item">
             Edit Countries
           </Link>
-          <hr class="navbar-divider"/>
+          <hr className="navbar-divider"/>
         </div>
       </div>
     </div>
 
-    {/* <div class="navbar-end"> */}
-      <div class="navbar-item">
-        <div class="buttons" style={{paddingRight: 10}}>
+    {/* <div className="navbar-end"> */}
+      <div className="navbar-item">
+        <div className="buttons" style={{paddingRight: 10}}>
         <Link to='/adminmap'>
-          <a class="button is-danger">
+          <a className="button is-danger">
             <strong>Map</strong>
           </a>
         </Link>
