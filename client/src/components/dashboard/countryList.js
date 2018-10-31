@@ -35,6 +35,13 @@ class ProductList extends Component {
                     if (nameA < nameB) return -1;
                     if (nameA > nameB) return 1;
                     return 0; 
+                } else if (sortKey == 'country') {
+                    let nameA = a.type.toLowerCase();
+                    let nameB = b.type.toLowerCase();
+    
+                    if (nameA < nameB) return -1;
+                    if (nameA > nameB) return 1;
+                    return 0; 
                 }
                     
             });
@@ -54,7 +61,7 @@ class ProductList extends Component {
     render() {
         return (
             <div className="productList">
-                <h2>Products in: {this.props.country}</h2>
+                <h2>(product name) sold in these countries: {this.props.name}</h2>
                 <table id="productDescription" border="1" className="table is-hoverable is-bordered">
                     <thead>
                         <tr>
@@ -72,7 +79,13 @@ class ProductList extends Component {
                                 </span>
                                 </button>
                             </th>
-                            <th>Countries</th>
+                            <th>Countries
+                            <button className="sortButton" onClick={() => this.sortByName('type')} >
+                            <span className="icon">
+                                    <i className="fas fa-sort"></i>
+                                </span>
+                                </button>
+                            </th>
                         </tr>
                     </thead>
                     <tbody>
@@ -90,9 +103,9 @@ class ProductList extends Component {
                         }
                     </tbody>
                 </table>
-                {
+                {/* {
                     this.state.modalOn && <ProductDetails closeModal={this.closeModal} />
-                }
+                } */}
             </div>
         );
     }
