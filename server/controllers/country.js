@@ -3,7 +3,7 @@ const Country = require('../models/countries');
 
 const getCountryAll = async (req, res) => {
     try {
-        // Get all countries in DB, grab the ID of the product, and populate the products array
+        // Get all countries in DB, and populate the products array
         const getCountryAll = await Country.find().populate('products', 'name type description');
         if (getCountryAll.length > 0) {
             res.status(200).send(getCountryAll);

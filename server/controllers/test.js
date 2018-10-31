@@ -5,7 +5,8 @@ const testRoute = async (req, res) => {
     const searchterm = req.params;
     // console.log(searchterm)
     try {
-        const product = await Product.find({ name: teeth })
+        const product = await Product.find()
+        console.log(product)
         // const productSearch = await Product.findOne({ name: teeth })
         // const countrySearch = await Country.findOne({ name: test })
         // console.log(productSearch)
