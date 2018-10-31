@@ -5,13 +5,12 @@ import { Provider } from 'react-redux';
 import { createStore, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
 import rootReducer from './redux/reducer'
-import App from './App'
-import AdminPage from './components/admin/adminHome'
-import Login from './components/login/login'
-import CountryList from './components/dashboard/productDetails';
-import AdminCRUD from '../src/components/admin/crud'
-import AdminMap from '../src/components/admin/map'
-import AdminCountry from '../src/components/admin/country'
+import App from './App';
+import ProductCRUD from './components/admin/productCRUD';
+import GetProducts from './components/admin/getProducts'
+import CountryCRUD from '../src/components/admin/countryCRUD';
+import AdminMap from '../src/components/admin/map';
+import GetCountry from '../src/components/admin/getCountry';
 
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
@@ -27,14 +26,11 @@ ReactDOM.render(
       <Switch>
 
         <Route exact path='/' component={App} />
-        <Route path='/admin' component={Login} />
-        <Route path='/dashboard' component={AdminPage} />
-        <Route path='/crud' component={AdminCRUD} />
-        <Route path='/getcountry' component={AdminCountry} />
-        <Route path='/adminmap' component={AdminMap}/>
-        <Route path='/admin/login' component={Login} />
-        <Route path='/admin/dashboard' component={AdminPage} />
-        <Route path='/product' component={CountryList} />
+        <Route path='/dashboard' component={GetProducts} />
+        <Route path='/productcrud' component={ProductCRUD} />
+        <Route path='/getcountry' component={GetCountry} />
+        <Route path='/countrycrud' component={CountryCRUD} />
+        <Route path='/adminMap' component={AdminMap} />
 
       </Switch>
     </BrowserRouter>

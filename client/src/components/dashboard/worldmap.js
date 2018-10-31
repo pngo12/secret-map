@@ -23,7 +23,7 @@ const colorScale = chroma
     .mode('lch')
     .colors(100)
 
-class ZoomPan extends Component {
+class WorldMap extends Component {
     constructor() {
         super()
         // this.handleMove = this.handleMove.bind(this)
@@ -93,6 +93,7 @@ class ZoomPan extends Component {
     }
 
     passToParent = e => {
+        console.log(e);
         this.props.updateCountryName(e.properties.name)
         this.props.getProductByCountry(e.properties.name)
         console.log(e.properties.name)
@@ -121,9 +122,7 @@ class ZoomPan extends Component {
                 </div>
                 <div style={wrapperStyles} id="mapBox">
                     <ComposableMap
-                        projectionConfig={{
-                            scale: 245,
-                        }}
+                        projectionConfig={{ scale: 245, }}
                         width={980}
                         height={551}
                         style={{
@@ -136,6 +135,7 @@ class ZoomPan extends Component {
                                 {(geographies, projection) => geographies.map((geography, i) => geography.id !== "ATA" && (
                                     <Geography
                                         key={i}
+                                        onClick={this.passToParent}
                                         geography={geography}
                                         projection={projection}
                                         // onMouseMove={this.handleMove}
@@ -163,7 +163,6 @@ class ZoomPan extends Component {
                                                 outline: "none",
                                             },
                                         }}
-                                        onClick={this.passToParent}
                                     />
                                 ))}
                             </Geographies>
@@ -180,4 +179,4 @@ const mapDispatchToProps = dispatch => ({
     getProductByCountry: country => dispatch(getProductByCountry(country))
 })
 
-export default connect(null, mapDispatchToProps)(ZoomPan);
+export default connect(null, mapDispatchToProps)(WorldMap);

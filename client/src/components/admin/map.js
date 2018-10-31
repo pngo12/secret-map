@@ -1,17 +1,17 @@
-import React, {Component} from 'react';
-import ZoomPan from '../dashboard/zoomPan';
+import React, { Component } from 'react';
+import WorldMap from '../dashboard/worldmap';
 import NavBar from './navbar';
 
 class AdminMap extends Component {
 
-    render() { 
-        return ( 
+    render() {
+        return (
             <div>
-                <NavBar/>
-                <ZoomPan/>
+                <NavBar />
+                <WorldMap />
             </div>
-         );
+        );
     }
 }
- 
+
 export default AdminMap;

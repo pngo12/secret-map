@@ -24,21 +24,21 @@ class ProductList extends Component {
                 if (sortKey == 'name') {
                     let nameA = a.name.toLowerCase();
                     let nameB = b.name.toLowerCase();
-    
+
                     if (nameA < nameB) return -1;
                     if (nameA > nameB) return 1;
-                    return 0; 
+                    return 0;
                 } else if (sortKey == 'type') {
                     let nameA = a.type.toLowerCase();
                     let nameB = b.type.toLowerCase();
-    
+
                     if (nameA < nameB) return -1;
                     if (nameA > nameB) return 1;
-                    return 0; 
+                    return 0;
                 }
-                    
+
             });
-    
+
             if (direction === 'desc') sortedData.reverse();
             this.setState({
                 products,
@@ -48,52 +48,52 @@ class ProductList extends Component {
         });
     }
 
-    componentDidMount() {
-    }
-
     render() {
         return (
-            <div className="productList">
-                <h2>Products in: {this.props.country}</h2>
-                <table id="productDescription" border="1" className="table is-hoverable is-bordered">
-                    <thead>
-                        <tr>
-                            <th>Name
+            this.props.products.length > 0 && ( // conditional render to only show chart when there is more than 1 product. 
+                <div className="productList">
+                    <h2>Products in: {this.props.country}</h2>
+                    <table id="productDescription" border="1" className="table is-hoverable is-bordered">
+                        <thead>
+                            <tr>
+                                <th>Name
                                 <button className="sortButton" onClick={() => this.sortByName('name')}>
-                            <span className="icon">
-                                    <i className="fas fa-sort"></i>
-                                </span>
-                                </button>
-                            </th>
-                            <th>Type
+                                        <span className="icon">
+                                            <i className="fas fa-sort"></i>
+                                        </span>
+                                    </button>
+                                </th>
+                                <th>Type
                                 <button className="sortButton" onClick={() => this.sortByName('type')} >
-                            <span className="icon">
-                                    <i className="fas fa-sort"></i>
-                                </span>
-                                </button>
-                            </th>
-                            <th>Description</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {
-                            this.props.products.map((item, index) => {
-                                return (
-                                    <tr key={index}>
-                                        <td onClick={this.displayModal}>{item.name}</td>
-                                        <td>{item.type}</td>
-                                        <td>{item.description}</td>
-                                        {/* <td>{this.props.products.countries}</td> */}
-                                    </tr>
-                                )
-                            })
-                        }
-                    </tbody>
-                </table>
-                {/* {
-                    this.state.modalOn && <ProductDetails closeModal={this.closeModal} />
-                } */}
-            </div>
+                                        <span className="icon">
+                                            <i className="fas fa-sort"></i>
+                                        </span>
+                                    </button>
+                                </th>
+                                <th>Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {
+                                this.props.products.map((item, index) => {
+                                    return (
+                                        <tr key={index}>
+                                            <td onClick={this.displayModal}>{item.name}</td>
+                                            <td>{item.type}</td>
+                                            <td>{item.description}</td>
+                                            {/* <td>{this.props.products.countries}</td> */}
+                                        </tr>
+                                    )
+                                })
+                            }
+                        </tbody>
+                    </table>
+                    {
+                        this.state.modalOn && <ProductDetails closeModal={this.closeModal} />
+                    }
+
+                </div>
+            )
         );
     }
 }
