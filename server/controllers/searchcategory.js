@@ -5,6 +5,7 @@ const searchCategory = async (req, res) => {
     const searchTerm = req.params;
 
     try {
+        
         const product = await Product.findOne(searchTerm);
         const country = await Country.findOne(searchTerm);
 
