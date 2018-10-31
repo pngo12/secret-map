@@ -13,10 +13,9 @@ const {
 
 // Get all products in the database
 router.get('/', getProduct);
-
 router.get('/:name', findOneProduct);
 
-// Add a Product to the database
+// Create a product and add to database
 router.post('/new', newProduct);
 
 // Delete a product from the database

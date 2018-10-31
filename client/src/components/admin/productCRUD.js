@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import {
-    addProduct
+  addProduct
 } from '../../redux/actions/index';
-import NavBar from './navbar'
+import NavBar from './navbar';
 
 const wrapperStyles = {
   width: "100%",
@@ -50,43 +50,44 @@ class ProductCRUD extends Component {
   render() {
     return (
       <div>
-      <NavBar/>
-      <div className="container" style={wrapperStyles}>
-        <div style={productForm}>     
-          <h2 style={{ fontSize: 35 }}> Name</h2>
-          <input
-            className='input is-small'
-            type="text"
-            style={spacingOfForm}
-            placeholder="name"
-            onChange={this.handleOnChange}
-            value={this.state.name}
-            name="name"
-          />
-        </div>
-        <div style={productForm}>
-          <h2 style={{ fontSize: 35 }}> Type </h2>
-          <input
-            className='input is-small'
-            onChange={this.handleOnChange}
-            type="text"
-            style={spacingOfForm}
-            placeholder="Type"
-            value={this.state.type}
-            name="type"
-          />
-        </div>
-        <div style={productForm}>
-          <h2 style={{ fontSize: 35 }}> Description </h2>
-          <textarea
-            className='textarea'
-            onChange={this.handleOnChange}
-            type="text"
-            style={spacingOfForm}
-            placeholder="Description"
-            value={this.state.description}
-            name="description"
-          />
+        <NavBar />
+        <div className="container" style={wrapperStyles}>
+          <div style={productForm}>
+            <h2 style={{ fontSize: 35 }}> Name</h2>
+            <input
+              className='input is-small'
+              type="text"
+              style={spacingOfForm}
+              placeholder="name"
+              onChange={this.handleOnChange}
+              value={this.state.name}
+              name="name"
+            />
+          </div>
+          <div style={productForm}>
+            <h2 style={{ fontSize: 35 }}> Type </h2>
+            <input
+              className='input is-small'
+              onChange={this.handleOnChange}
+              type="text"
+              style={spacingOfForm}
+              placeholder="Type"
+              value={this.state.type}
+              name="type"
+            />
+          </div>
+          <div style={productForm}>
+            <h2 style={{ fontSize: 35 }}> Description </h2>
+            <textarea
+              className='textarea'
+              onChange={this.handleOnChange}
+              type="text"
+              style={spacingOfForm}
+              placeholder="Description"
+              value={this.state.description}
+              name="description"
+            />
+          </div>
           <div>
             <button
               style={{ marginTop: 7, width: 120 }}
@@ -95,9 +96,7 @@ class ProductCRUD extends Component {
               Add Product!
             </button>
           </div>
-          
         </div>
-    </div>
       </div>
     );
   }
