@@ -29,7 +29,7 @@ app.use(cors());
 app.use('/country', country);
 app.use('/products', products);
 app.use('/countrydatabase', countryDatabase);
-app.use('/test', test)
+app.use('/searchcategory', test)
 
 app.listen(port, () => console.log(`🏃🏃 Running on port: ${port}`));
 
