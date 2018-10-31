@@ -1,7 +1,9 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { addProduct } from "../../redux/actions/index";
-import NavBar from "./navbar";
+import {
+  addProduct
+} from '../../redux/actions/index';
+import NavBar from './navbar';
 
 const wrapperStyles = {
   width: "100%",
@@ -79,7 +81,7 @@ class ProductCRUD extends Component {
           <div style={productForm}>
             <h2 style={{ fontSize: 35 }}> Name</h2>
             <input
-              className="input is-small"
+              className='input is-small'
               type="text"
               style={spacingOfForm}
               placeholder="name"
@@ -91,7 +93,7 @@ class ProductCRUD extends Component {
           <div style={productForm}>
             <h2 style={{ fontSize: 35 }}> Type </h2>
             <input
-              className="input is-small"
+              className='input is-small'
               onChange={this.handleOnChange}
               type="text"
               style={spacingOfForm}
@@ -103,7 +105,7 @@ class ProductCRUD extends Component {
           <div style={productForm}>
             <h2 style={{ fontSize: 35 }}> Description </h2>
             <textarea
-              className="textarea"
+              className='textarea'
               onChange={this.handleOnChange}
               type="text"
               style={spacingOfForm}
@@ -168,6 +170,8 @@ class ProductCRUD extends Component {
                   </div>
             </div>
 
+          </div>
+          <div>
             <button
               style={{ marginTop: 80, width: 120 }}
               onClick={this.submitProductToCountry}

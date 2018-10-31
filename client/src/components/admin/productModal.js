@@ -42,77 +42,68 @@ class ProductModal extends Component {
       };
       render() {
     return (
-        <div className="modal is-active">
-            <div className="modal-background"></div>
-            <div className="modal-card">
-                <header className="modal-card-head">
-                    <p className="modal-card-title">UPDATE</p>
-                    <button className="delete" aria-label="close" onClick={this.props.closeModal}></button>
-                </header>
-                <div>
-
-
-
-
-
-                <div className="container" style={wrapperStyles}>
-        <div style={productForm}>     
-          <h2> Name</h2>
-          <input
-            className='input is-small'
-            type="text"
-            style={spacingOfForm}
-            placeholder="name"
-            onChange={this.handleOnChange}
-            value={this.state.name}
-            name="name"
-          />
-        </div>
-        <div style={productForm}>
-          <h2> Type </h2>
-          <input
-            className='input is-small'
-            onChange={this.handleOnChange}
-            type="text"
-            style={spacingOfForm}
-            placeholder="Type"
-            value={this.state.type}
-            name="type"
-          />
-        </div>
-        <div style={productForm}>
-          <h2> Description </h2>
-          <textarea
-            className='textarea'
-            onChange={this.handleOnChange}
-            type="text"
-            style={spacingOfForm}
-            placeholder="Description"
-            value={this.state.description}
-            name="description"
-          />
+      <div className="modal is-active">
+        <div className="modal-background"></div>
+        <div className="modal-card">
+          <header className="modal-card-head">
+            <p className="modal-card-title">UPDATE</p>
+            <button className="delete" aria-label="close" onClick={this.props.closeModal}></button>
+          </header>
           <div>
-            <button
-              style={{ marginTop: 7, width: 88 }}
-              onClick={this.submitProductToCountry}
-              className='button is-info'>
-              UPDATE
+            <div className="container" style={wrapperStyles}>
+              <div style={productForm}>
+                <h2 style={{ fontSize: 35 }}> Name</h2>
+                <input
+                  className='input is-small'
+                  type="text"
+                  style={spacingOfForm}
+                  placeholder="name"
+                  onChange={this.handleOnChange}
+                  value={this.state.name}
+                  name="name"
+                />
+              </div>
+              <div style={productForm}>
+                <h2 style={{ fontSize: 35 }}> Type </h2>
+                <input
+                  className='input is-small'
+                  onChange={this.handleOnChange}
+                  type="text"
+                  style={spacingOfForm}
+                  placeholder="Type"
+                  value={this.state.type}
+                  name="type"
+                />
+              </div>
+              <div style={productForm}>
+                <h2 style={{ fontSize: 35 }}> Description </h2>
+                <textarea
+                  className='textarea'
+                  onChange={this.handleOnChange}
+                  type="text"
+                  style={spacingOfForm}
+                  placeholder="Description"
+                  value={this.state.description}
+                  name="description"
+                />
+                <div>
+                  <button
+                    style={{ marginTop: 7, width: 88 }}
+                    onClick={this.submitProductToCountry}
+                    className='button is-info'>
+                    UPDATE
             </button>
-          </div>
-          
-        </div>
-    </div>
-      </div>
-    
-        
-                <footer className="modal-card-foot">
-                    <button className="button" onClick={this.props.closeModal}>Exit</button>
-                </footer>
+                </div>
+              </div>
             </div>
+          </div>
+          <footer className="modal-card-foot">
+            <button className="button" onClick={this.props.closeModal}>Exit</button>
+          </footer>
         </div>
-      
+      </div>
     );
-}
+  }
 }
 
 

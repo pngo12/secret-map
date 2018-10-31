@@ -1,7 +1,5 @@
 export const GET_COUNTRY_BY_PRODUCT = 'GET_COUNTRY_BY_PRODUCT';
 export const GET_PRODUCT_BY_COUNTRY = 'GET_PRODUCT_BY_COUNTRY';
-export const LOG_IN = 'LOG_IN';
-export const LOG_IN_ERROR = 'LOG_IN_ERROR';
 export const GET_PRODUCTS = 'GET_PRODUCTS';
 export const GET_COUNTRY = 'GET_COUNTRY';
 export const ADD_PRODUCT = 'ADD_PRODUCT';

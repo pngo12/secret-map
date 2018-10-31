@@ -8,7 +8,6 @@ import rootReducer from './redux/reducer'
 import App from './App';
 import ProductCRUD from './components/admin/productCRUD';
 import GetProducts from './components/admin/getProducts'
-// import CountryList from './components/dashboard/productDetails';
 import CountryCRUD from '../src/components/admin/countryCRUD';
 import AdminMap from '../src/components/admin/map';
 import GetCountry from '../src/components/admin/getCountry';
@@ -28,10 +27,10 @@ ReactDOM.render(
 
         <Route exact path='/' component={App} />
         <Route path='/dashboard' component={GetProducts} />
-        <Route path='/productCRUD' component={ProductCRUD} />
-        <Route path='/getCountry' component ={GetCountry}/>
-        <Route path='/countryCRUD' component ={CountryCRUD}/>
-        <Route path='/adminMap' component ={AdminMap}/>
+        <Route path='/productcrud' component={ProductCRUD} />
+        <Route path='/getcountry' component={GetCountry} />
+        <Route path='/countrycrud' component={CountryCRUD} />
+        <Route path='/adminMap' component={AdminMap} />
 
       </Switch>
     </BrowserRouter>

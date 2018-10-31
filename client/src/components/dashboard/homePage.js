@@ -1,12 +1,10 @@
 import React, { Component } from 'react';
 import Logo from './logo';
-import ZoomPan from './zoomPan';
+import WorldMap from './worldmap';
 import Search from './search';
-import ProductList from './productList';
-import styles from '../../App.css'
+import Footer from '../footer/footer'
 
 class HomePage extends Component {
-
     state = {
         countryName: '',
         showListing: false
@@ -23,11 +21,12 @@ class HomePage extends Component {
         return (
             <div>
                 <Logo />
-                <ZoomPan updateCountryName={this.updateCountryName} />
+                <WorldMap updateCountryName={this.updateCountryName} />
                 <Search
                     countryName={this.state.countryName}
                     showListing={this.state.showListing}
                 />
+                <Footer/>
             </div>
         )
     }

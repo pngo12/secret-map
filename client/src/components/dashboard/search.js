@@ -7,7 +7,7 @@ import ProductList from './productList';
 class Search extends Component {
     state = {
         country: '',
-        isShowing: false,
+        isShowing: true,
     }
 
     componentDidUpdate(prevProps) {
