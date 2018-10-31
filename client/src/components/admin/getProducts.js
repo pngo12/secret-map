@@ -45,7 +45,6 @@ class AdminHome extends Component {
             return 0;
           }
         });
-
         if (direction === "desc") sortedData.reverse();
         this.setState({
           data,
