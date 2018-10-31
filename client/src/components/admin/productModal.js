@@ -1,46 +1,46 @@
 import React, { Component } from 'react';
 import './admin.css'
 
-const wrapperStyles = {
-  width: "100%",
-  maxWidth: 980,
-  margin: "0 auto",
-  borderWidth: 1,
-  borderColor: 'black',
-  borderStyle: 'solid',
-  padding: 30,
-  backgroundColor: 'hsl(0, 0%, 86%)'
-}
-const productForm = {
-  width: '55%',
-  marginLeft: 'auto',
-  marginRight: 'auto',
-  textAlign: 'center'
-}
-
-const spacingOfForm = {
-  marginTop: 8,
-  marginBottom: 8,
-  borderWidth: 1,
-  borderColor: 'black',
-  borderStyle: 'solid',
-}
-
+    const wrapperStyles = {
+        width: "100%",
+        maxWidth: 980,
+        margin: "0 auto",
+        borderWidth: 1,
+        borderColor: 'black',
+        borderStyle: 'solid',
+        padding: 30,
+        backgroundColor: 'hsl(0, 0%, 86%)'
+      }
+      const productForm = {
+        width: '55%',
+        marginLeft: 'auto',
+        marginRight: 'auto',
+        textAlign: 'center',
+        fontSize: 35
+      }
+      
+      
+      const spacingOfForm = {
+        marginTop: 8,
+        marginBottom: 8,
+        borderWidth: 1,
+        borderColor: 'black',
+        borderStyle: 'solid',
+      };
 class ProductModal extends Component {
-  state = {
-    name: '',
-    type: '',
-    description: ''
-  }
-
-  handleOnChange = e => this.setState({ [e.target.name]: e.target.value })
-
-  submitProductToCountry = () => {
-    let { country, product } = this.state;
-    this.props.addProductToCountry({ country, product });
-  }
-
-  render() {
+    state = {
+        name: '',
+        type: '',
+        description: ''
+      };
+    
+      handleOnChange = e => this.setState({ [e.target.name]: e.target.value })
+    
+      submitProductToCountry = () => {
+        let { country, product } = this.state;
+        this.props.addProductToCountry({ country, product });
+      };
+      render() {
     return (
       <div className="modal is-active">
         <div className="modal-background"></div>

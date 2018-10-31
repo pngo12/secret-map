@@ -6,7 +6,7 @@ import {
     Geography,
 } from "react-simple-maps"
 import { connect } from 'react-redux';
-import { getProductByCountry } from '../../redux/actions';
+import { searchForCountryOrProduct } from '../../redux/actions';
 import chroma from "chroma-js";
 import ZoomObject from "../static/world-50m.json";
 
@@ -18,13 +18,7 @@ const wrapperStyles = {
 
 const colorScale = chroma
     .scale([
-        '#f2718b',
-        'FFD740',
-        '#00B8D4',
-        '#FFDD00',
-        '#66ff99',
-        '#0033cc',
-        '#ffff99'
+        '#a8c9ff'
     ])
     .mode('lch')
     .colors(100)
@@ -32,8 +26,6 @@ const colorScale = chroma
 class WorldMap extends Component {
     constructor() {
         super()
-        // this.handleMove = this.handleMove.bind(this)
-        // this.handleLeave = this.handleLeave.bind(this)
         this.state = {
             center: [0, 20],
             zoom: 1,
@@ -65,21 +57,6 @@ class WorldMap extends Component {
         this.handleregionSelection = this.handleregionSelection.bind(this)
         this.handleReset = this.handleReset.bind(this)
     }
-
-    // handleMove(geography, evt) {
-    //     const x = evt.clientX
-    //     const y = evt.clientY + window.pageYOffset
-    //     this.props.dispatch(
-    //         show({
-    //             origin: { x, y },
-    //             content: geography.properties.name
-    //         })
-    //     )
-    // }
-
-    // handleLeave() {
-    //     this.props.dispatch(hide())
-    // }
 
     handleregionSelection(evt) {
         const regionId = evt.target.getAttribute("data-region")
@@ -144,8 +121,6 @@ class WorldMap extends Component {
                                         onClick={this.passToParent}
                                         geography={geography}
                                         projection={projection}
-                                        // onMouseMove={this.handleMove}
-                                        // onMouseLeave={this.handleLeave}
                                         style={{
                                             default: {
                                                 fill: colorScale[this.state.countries.indexOf(geography.properties.name)] ? colorScale[this.state.countries.indexOf(geography.properties.name)] : "#ECEFF1",
@@ -174,7 +149,6 @@ class WorldMap extends Component {
                             </Geographies>
                         </ZoomableGroup>
                     </ComposableMap>
-                    {/* <Tooltip /> */}
                 </div>
             </div>
         )
@@ -182,7 +156,7 @@ class WorldMap extends Component {
 }
 
 const mapDispatchToProps = dispatch => ({
-    getProductByCountry: country => dispatch(getProductByCountry(country))
+    searchForCountryOrProduct: searchTerm => dispatch(searchForCountryOrProduct(searchTerm))
 })
 
 export default connect(null, mapDispatchToProps)(WorldMap);
