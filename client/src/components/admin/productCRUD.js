@@ -12,42 +12,68 @@ const wrapperStyles = {
   marginBottom: 100,
   marginTop: 50,
   borderWidth: 1,
-  borderColor: 'black',
-  borderStyle: 'solid',
+  borderColor: "black",
+  borderStyle: "solid",
   padding: 30,
-  backgroundColor: 'hsl(0, 0%, 86%)'
-}
+  backgroundColor: "hsl(0, 0%, 86%)",
+  height: "800px"
+};
 const productForm = {
-  width: '55%',
-  marginLeft: 'auto',
-  marginRight: 'auto',
-  textAlign: 'center'
-}
-
+  width: "55%",
+  marginLeft: "auto",
+  marginRight: "auto",
+  textAlign: "center"
+};
 
 const spacingOfForm = {
   marginTop: 8,
   marginBottom: 8,
   borderWidth: 1,
-  borderColor: 'black',
-  borderStyle: 'solid',
-}
+  borderColor: "black",
+  borderStyle: "solid"
+};
 
 class ProductCRUD extends Component {
   state = {
     addedToCountry: "",
     productToAdd: "",
-    deletedFromCountry: '',
-    productToDelete: ''
+    deletedFromCountry: "",
+    productToDelete: "",
+    toggleOnContinent: false,
+    toggleOnCountry: false,
+    continent: ''
+
   };
 
-  handleOnChange = e => this.setState({ [e.target.name]: e.target.value })
+  toggleOpenContinent = () => {
+    this.setState({ toggleOnContinent: !this.state.toggleOnContinent });
+  };
+  toggleOpenCountry = () => {
+    this.setState({ toggleOnCountry: !this.state.toggleOnCountry });
+  };
+
+  continentChosen = () => {
+    this.setState({
+      continent: this.state.continent
+    })
+  }
+
+  handleOnChange = e => this.setState({ [e.target.name]: e.target.value });
 
   submitProductToCountry = () => {
     let { country, product } = this.state;
     this.props.addProductToCountry({ country, product });
   };
   render() {
+    let dropDownContinent = ["dropdown"];
+    if (this.state.toggleOnContinent) {
+      dropDownContinent.push("is-active");
+    }
+    let dropDownCountry = ["dropdown"];
+    if (this.state.toggleOnCountry) {
+      dropDownCountry.push("is-active");
+    }
+
     return (
       <div>
         <NavBar />
@@ -87,12 +113,68 @@ class ProductCRUD extends Component {
               value={this.state.description}
               name="description"
             />
+            <div>
+              <div style={productForm}>
+                <h2 style={{ fontSize: 35 }}> Add to Country </h2>
+                <div className='control' style={{textAlign: "center"}}>
+                <div className = "select">
+                    <select value = {this.state.continent} onChange = {this.handleOnChange} name="continent">
+                        <option value = "">Select Continent</option>
+                        <option value = "Africa">Africa</option>
+                        <option value = "Antarctica"> Antarctica </option>
+                        <option value = "Asia"> Asia </option>
+                        <option value = "Australia"> Australia </option>
+                        <option value = "Europe"> Europe </option>
+                        <option value = "North America"> North America </option>
+                        <option value = "South America"> South America </option>
+                    </select>
+                </div>
+            </div>
+              </div>
+            </div>
+            <br/>
+            <br/>
+            <div>
+              <h4> Please choose country </h4>
+            </div>
+
+
+
+            <div style={{marginTop: 50}}>
+                <div
+                  id="dropdown"
+                  className={dropDownCountry.join(" ")}
+                  onClick={this.toggleOpenCountry}
+                >
+                  <div class="dropdown-trigger">
+                    <button
+                      class="button "
+                      aria-haspopup="true"
+                      aria-controls="dropdown-menu"
+                    >
+                      <span>Choose Country</span>
+                      <span class="icon is-small">
+                        <i class="fas fa-angle-down" aria-hidden="true" />
+                      </span>
+                    </button>
+                  </div>
+                  <div class="dropdown-menu" id="dropdown-menu" role="menu">
+                    <div class="dropdown-content">
+                      <a href="#" class="dropdown-item">
+                        Africa
+                      </a>
+                      <hr class="dropdown-divider" />
+                    </div>
+                  </div>
+                  </div>
+            </div>
           </div>
           <div>
             <button
-              style={{ marginTop: 7, width: 120 }}
+              style={{ marginTop: 80, width: 120 }}
               onClick={this.submitProductToCountry}
-              className='button is-info'>
+              className="button is-info"
+            >
               Add Product!
             </button>
           </div>

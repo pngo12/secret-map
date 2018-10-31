@@ -3,6 +3,22 @@
     width: 100%;
 }
 
+.table_format_name {
+    width: 15%
+}
+
+.table_format_type {
+    width: 10%
+}
+
+.table_format_description {
+    width: 66%
+}
+
+.table_format_update {
+    width: 9%
+}
+
 
 
 #countryInput {
