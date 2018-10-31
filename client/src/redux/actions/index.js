@@ -11,21 +11,40 @@ import {
 } from '../constants';
 import axios from 'axios';
 
-export const getProductByCountry = country => async dispatch => {
+export const searchForCountryOrProduct = searchTerm => async dispatch => {
+    let { data } = await axios.get(`http://localhost:5000/searchcategory/${searchTerm}`);
+    
+    // data = { category: 'product' or 'country' or 'involid' }
+    dispatch({ type: "SEARCH_CATEGORY", category: data.category })
+    switch (data.category) {
+        case 'product':
+            dispatch(_getProductByName(searchTerm));
+            break;
+        case 'country':
+            dispatch(_getProductByCountry(searchTerm));
+            break;
+        case 'invalid':
+            break;
+    }
+}
+
+const _getProductByCountry = country => async dispatch => {
     let response = await axios.get(`http://localhost:5000/country/${country}`);
     console.log(response)
     dispatch({ type: GET_PRODUCT_BY_COUNTRY, payload: response.data })
 }
-export const getProducts = product => async dispatch => {
-    let response = await axios.get(`http://localhost:5000/products/`);
+
+
+const _getProductByName = product => async dispatch => {
+    let response = await axios.get(`http://localhost:5000/products/${product}`);
     console.log(response)
     dispatch({ type: GET_PRODUCTS, payload: response.data })
 }
-export const getCountry = country => async dispatch => {
-    let response = await axios.get(`http://localhost:5000/country/`);
-    console.log(response)
-    dispatch({ type: GET_COUNTRY, payload: response.data })
-}
+// export const getCountry = country => async dispatch => {
+//     let response = await axios.get(`http://localhost:5000/country/`);
+//     console.log(response)
+//     dispatch({ type: GET_COUNTRY, payload: response.data })
+// }
 
 export const addProduct = product => async dispatch => {
     console.log("PRODUCTS INPUT: ")
