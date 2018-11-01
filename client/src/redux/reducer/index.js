@@ -5,7 +5,8 @@ import {
     GET_COUNTRY,
     ADD_PRODUCT,
     EDIT_PRODUCT,
-    DELETE_PRODUCT
+    DELETE_PRODUCT,
+    INVALID
     // ADD_PRODUCT_TO_COUNTRY,
     // DELETE_PRODUCT_FROM_COUNTRY,
 } from '../constants'
@@ -13,6 +14,7 @@ import {
 const initialState = {
     country: '',
     products: [],
+    countries: [],
     userToken: '',
     category: '',
     countries: [],
@@ -52,10 +54,6 @@ const rootReducer = (state = initialState, action) => {
                 category: 'country',
                 cache: state.cache + 1
             }
-        case ADD_PRODUCT:
-            return ({
-                ...state, products: [...state.products, ...action.newProduct]
-            })
         case EDIT_PRODUCT:
             return ({
                 ...state, products: [...action.product]
@@ -69,6 +67,12 @@ const rootReducer = (state = initialState, action) => {
                 ...state,
                 countries: [...action.payload]
             }
+        case INVALID:
+        return {
+            ...state, 
+            products: [],
+            countries: []
+        }
         default: return state
     }
 }
