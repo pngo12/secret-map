@@ -40,17 +40,18 @@ const _getProductByCountry = country => async dispatch => {
     dispatch({ type: GET_PRODUCT_BY_COUNTRY, payload: response.data })
 }
 
-
 const _getProductByName = product => async dispatch => {
     let response = await axios.get(`http://localhost:5000/products/${product}`);
     console.log('THE RESPONSE IS', response)
     dispatch({ type: GET_PRODUCTS, payload: response.data })
 }
-// export const getCountry = country => async dispatch => {
-//     let response = await axios.get(`http://localhost:5000/country/`);
-//     console.log(response)
-//     dispatch({ type: GET_COUNTRY, payload: response.data })
-// }
+
+// name is optional, without anything it will return all countries
+export const getCountry = () => async dispatch => {
+    let response = await axios.get(`http://localhost:5000/country/`);
+    console.log(response.data)
+    dispatch({ type: GET_COUNTRY, payload: response.data })
+}
 
 export const addProduct = product => async dispatch => {
     let response = await axios.post('http://localhost:5000/products/new', product);

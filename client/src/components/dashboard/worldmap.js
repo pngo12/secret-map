@@ -6,9 +6,10 @@ import {
     Geography,
 } from "react-simple-maps"
 import { connect } from 'react-redux';
-import { searchForCountryOrProduct } from '../../redux/actions';
+import { searchForCountryOrProduct, getCountry } from '../../redux/actions';
 import chroma from "chroma-js";
 import ZoomObject from "../static/world-50m.json";
+import './dashboard.css';
 
 const wrapperStyles = {
     width: "100%",
@@ -16,42 +17,22 @@ const wrapperStyles = {
     margin: "0 auto",
 }
 
-const colorScale = chroma
-    .scale([
-        '#a8c9ff'
-    ])
-    .mode('lch')
-    .colors(100)
 
 class WorldMap extends Component {
     constructor() {
         super()
         this.state = {
+            countries: [],
+            colorCountries: {},
             center: [0, 20],
             zoom: 1,
-            countries: [
-                "United States",
-                "Mexico",
-                "China",
-                "Egypt",
-                "Australia",
-                "Brazil",
-                "Japan",
-                "Korea",
-                "India",
-                "United Kingdom",
-                "France",
-                "Spain",
-                "Germany",
-                "Italy",
-                "South Africa"],
             region: [
                 { name: "Europe", coordinates: [8.5417, 47.3769] },
-                { name: "Asia", coordinates: [103.8198, 1.3521] },
-                { name: "North America", coordinates: [-122.4194, 37.7749] },
-                { name: "Oceana", coordinates: [151.2093, -33.8688] },
-                { name: "Africa", coordinates: [2.3185, 19.5687] },
-                { name: "South America", coordinates: [-58.3816, -34.6037] }
+                { name: "Asia", coordinates: [103.8198, 25.3521] },
+                { name: "North America", coordinates: [-100.4194, 40.7749] },
+                { name: "Oceana", coordinates: [140.2093, -20.8688] },
+                { name: "Africa", coordinates: [25.3185, 1.5687] },
+                { name: "South America", coordinates: [-58.3816, -20.6037] }
             ]
         }
         this.handleregionSelection = this.handleregionSelection.bind(this)
@@ -82,10 +63,62 @@ class WorldMap extends Component {
         console.log(e.properties.name)
     }
 
+    componentDidMount() {
+        this.props.getCountry()
+    }
+
+    componentDidUpdate(prevProps) {
+       
+        if (this.props.cache !== prevProps.cache) {
+            let colorCountries = {...this.state.colorCountries};
+            // reset the colors
+            for (let name in colorCountries) {
+                colorCountries[name] = '#a8c9ff'
+            }
+            // remap the new highligh colors
+            for (let countryName in this.props.highlightCountries) {
+                colorCountries[countryName] = this.props.highlightCountries[countryName];
+            }
+            this.setState({
+                colorCountries
+            })
+        } else if (prevProps.countries.length !== this.props.countries.length) {
+            let colorCountries = {}
+            let countries = this.props.countries.map(country => country.name)
+            countries.forEach(country => {
+                colorCountries[country] = '#a8c9ff'
+            })
+            this.setState({
+                countries,
+                colorCountries
+            })
+        }
+
+    }
+
+    getColor = (highlightCountries, geographyName) => {
+        let colorCountries = { ...this.state.colorCountries };
+        for (let countryName in highlightCountries) {
+            colorCountries[countryName] = highlightCountries[countryName];
+        }
+        if (colorCountries[geographyName]) {
+            console.log("HIGHLIGHT:", highlightCountries);
+            console.log("COLORCOUNTRIES:", colorCountries);
+            return colorCountries[geographyName]
+        } else {
+            return "#ECEFF1"
+        }
+    }
+
+
     render() {
+        let { countries, colorCountries } = this.state;
+        let { highlightCountries } = this.props;
+        console.log("(1) countries color:", colorCountries)
+        console.log("(2) highlight color:", highlightCountries);
         return (
             <div>
-                <div className="container" style={wrapperStyles}>
+                <div className="buttonRow container" style={wrapperStyles}>
                     {
                         this.state.region.map((region, i) => (
                             <button
@@ -103,60 +136,75 @@ class WorldMap extends Component {
                         {"Reset"}
                     </button>
                 </div>
-                <div style={wrapperStyles} id="mapBox">
-                    <ComposableMap
-                        projectionConfig={{ scale: 245, }}
-                        width={980}
-                        height={551}
-                        style={{
-                            width: "100%",
-                            height: "auto",
-                        }}
-                    >
-                        <ZoomableGroup center={this.state.center} zoom={this.state.zoom}>
-                            <Geographies geography={ZoomObject}>
-                                {(geographies, projection) => geographies.map((geography, i) => geography.id !== "ATA" && (
-                                    <Geography
-                                        key={i}
-                                        onClick={this.passToParent}
-                                        geography={geography}
-                                        projection={projection}
-                                        style={{
-                                            default: {
-                                                fill: colorScale[this.state.countries.indexOf(geography.properties.name)] ? colorScale[this.state.countries.indexOf(geography.properties.name)] : "#ECEFF1",
-                                                stroke: "#607D8B",
-                                                strokeWidth: 0.75,
-                                                outline: "none",
-                                            },
-                                            hover: {
-                                                fill: "#607D8B",
-                                                stroke: "#607D8B",
-                                                strokeWidth: 0.75,
-                                                outline: "none",
-                                                show: {
-                                                    content: geography.properties.name
-                                                }
-                                            },
-                                            pressed: {
-                                                fill: "#FF5722",
-                                                stroke: "#607D8B",
-                                                strokeWidth: 0.75,
-                                                outline: "none",
-                                            },
-                                        }}
-                                    />
-                                ))}
-                            </Geographies>
-                        </ZoomableGroup>
-                    </ComposableMap>
-                </div>
+                {countries.length != 0 &&
+                    <div style={wrapperStyles} id="mapBox">
+                        <ComposableMap
+                            projectionConfig={{ scale: 245 }}
+                            width={980}
+                            height={551}
+                            style={{
+                                width: "100%",
+                                height: "auto",
+                            }}
+                        >
+                            <ZoomableGroup center={this.state.center} zoom={this.state.zoom}>
+                                <Geographies geography={ZoomObject} disableOptimization>
+                                    {(geographies, projection) => geographies.map((geography, i) => {
+                                        // if (geography.properties.name === "United States") {
+                                        //     console.log("(3) COLOR:", this.getColor(highlightCountries, geography.properties.name))
+                                        // }
+                                        return geography.id !== "ATA" && (
+                                            <Geography
+                                                key={i}
+                                                cacheId={`geography-${i}`}
+                                                onClick={this.passToParent}
+                                                geography={geography}
+                                                projection={projection}
+                                                style={{
+                                                    default: {
+                                                        fill: colorCountries[geography.properties.name] ? colorCountries[geography.properties.name] : "#ECEFF1",
+                                                        stroke: "#607D8B",
+                                                        strokeWidth: 0.75,
+                                                        outline: "none",
+                                                    },
+                                                    hover: {
+                                                        fill: "#607D8B",
+                                                        stroke: "#607D8B",
+                                                        strokeWidth: 0.75,
+                                                        outline: "none",
+                                                        show: {
+                                                            content: geography.properties.name
+                                                        }
+                                                    },
+                                                    pressed: {
+                                                        fill: "#FF5722",
+                                                        stroke: "#607D8B",
+                                                        strokeWidth: 0.75,
+                                                        outline: "none",
+                                                    },
+                                                }}
+                                            />
+                                        )
+                                    })}
+                                </Geographies>
+                            </ZoomableGroup>
+                        </ComposableMap>
+                    </div>
+                }
             </div>
         )
     }
 }
 
-const mapDispatchToProps = dispatch => ({
-    searchForCountryOrProduct: searchTerm => dispatch(searchForCountryOrProduct(searchTerm))
+const mapStateToProps = (state) => ({
+    countries: state.countries,
+    highlightCountries: state.highlightCountries,
+    cache: state.cache
 })
 
-export default connect(null, mapDispatchToProps)(WorldMap);
+const mapDispatchToProps = dispatch => ({
+    searchForCountryOrProduct: searchTerm => dispatch(searchForCountryOrProduct(searchTerm)),
+    getCountry: () => dispatch(getCountry())
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(WorldMap);
