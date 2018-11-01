@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import './admin.css'
-import axios from 'axios'
 
     const wrapperStyles = {
         width: "100%",
@@ -147,9 +146,9 @@ class ProductModal extends Component {
                   onChange={this.handleOnChange}
                   type="text"
                   style={spacingOfForm}
-                  placeholder="Type"
+                  placeholder="Country"
                   value={this.state.country}
-                  name="type"
+                  name="country"
                 />
               </div>
 

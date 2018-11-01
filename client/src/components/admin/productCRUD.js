@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { addProduct } from "../../redux/actions/index";
+import { addProduct, searchForCountryOrProduct } from "../../redux/actions/index";
 import NavBar from "./navbar";
 import "./admin.css";
-import axios from 'axios';
+import {Redirect,} from 'react-router-dom'
 import CountryDatabase from './countriesDatabase'
 
 const productForm = {
@@ -30,7 +30,11 @@ class ProductCRUD extends Component {
     toggleOnContinent: false,
     toggleOnCountry: false,
     continent: "",
-    isHidden: false
+    isHidden: false,
+    name: '',
+    type: '',
+    description: '',
+    redirect: false
   };
 
 
@@ -42,10 +46,20 @@ class ProductCRUD extends Component {
     console.log(e.target.value);
   };
 
-  submitProductToCountry = () => {
-    if(this.state.continent != '') {
-      return window.prompt('Please choose a continent')
+  submitNewProduct = e => {
+    e.preventDefault();
+
+    const product ={
+      name: this.state.name,
+      type: this.state.type,
+      description: this.state.description
     }
+    this.props.addProduct(product)
+    .then( 
+        this.setState({
+          redirect: !this.state.redirect
+        })
+    )
   };
 
   resetButton = () => {
@@ -55,9 +69,15 @@ class ProductCRUD extends Component {
   }
 
   render() {
+    const {redirect} = this.state;
     let dropDownContinent = ["dropdown"];
     if (this.state.toggleOnContinent) {
       dropDownContinent.push("is-active");
+    }
+    if(redirect) {
+      this.forceUpdate();
+      this.props.searchForCountryOrProduct();
+      return <Redirect to='/dashboard'/>
     }
 
     return (
@@ -162,7 +182,7 @@ class ProductCRUD extends Component {
           <div style={{ textAlign: "center" }}>
             <button
               style={{ marginTop: 90, width: 120, marginRight: 5, justifyContent: "center" }}
-              onClick={this.submitProductToCountry}
+              onClick={this.submitNewProduct}
               className="button is-info"
             >
               Add Product!
@@ -181,4 +201,13 @@ class ProductCRUD extends Component {
   }
 }
 
-export default ProductCRUD;
+// const mapStateToProps = state => ({
+//   products: state.products
+// })
+
+const mapDispatchToProps = dispatch => ({
+  addProduct: newProduct => dispatch(addProduct(newProduct)),
+  searchForCountryOrProduct: searchTerm => dispatch(searchForCountryOrProduct(searchTerm))
+})
+
+export default connect(null, mapDispatchToProps)(ProductCRUD);

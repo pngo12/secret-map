@@ -1,11 +1,10 @@
 import React, { Component } from "react";
-import { connect } from "react-redux";
-import {
-  getCountryByProduct,
-  getProductByCountry,
-  addProductToCountry,
-  deleteProductFromCountry
-} from '../../redux/actions/index';
+// import {
+//   getCountryByProduct,
+//   getProductByCountry,
+//   addProductToCountry,
+//   deleteProductFromCountry
+// } from '../../redux/actions/index';
 import NavBar from './navbar'
 
 const wrapperStyles = {
