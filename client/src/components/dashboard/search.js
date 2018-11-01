@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { getProductByCountry } from '../../redux/actions'
+import { searchForCountryOrProduct} from '../../redux/actions'
 import './dashboard.css'
 import ProductList from './productList';
 import CountryList from './countryList';
@@ -12,7 +12,6 @@ class Search extends Component {
     }
 
     componentDidUpdate(prevProps) {
-        // Typical usage and compare props
         if (this.props.countryName !== prevProps.countryName) {
             this.setState({
                 title: this.props.countryName
@@ -26,7 +25,7 @@ class Search extends Component {
         e.preventDefault();
         let country = this.state.country
         country = (country.charAt(0).toUpperCase() + country.slice(1))
-        this.props.getProductByCountry(country)
+        this.props.searchForCountryOrProduct(country)
         this.setState({
             country: '',
             isShowing: true,
@@ -51,10 +50,10 @@ class Search extends Component {
                 {
                     this.state.isShowing && 
                     // If value == country, show
-                    // <ProductList />
+                    <ProductList />
 
                     // If value == product, show
-                    <CountryList />
+                    // <CountryList />
                 }
             </div>
         );
@@ -62,7 +61,8 @@ class Search extends Component {
 }
 
 const mapDispatchToProps = dispatch => ({
-    getProductByCountry: country => dispatch(getProductByCountry(country))
+    
+    searchForCountryOrProduct: searchTerm => dispatch(searchForCountryOrProduct(searchTerm))
 });
 
 export default connect(null, mapDispatchToProps)(Search);

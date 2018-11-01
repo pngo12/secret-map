@@ -88,9 +88,9 @@ class ProductList extends Component {
                             }
                         </tbody>
                     </table>
-                    {
+                    {/* {
                         this.state.modalOn && <ProductDetails closeModal={this.closeModal} />
-                    }
+                    } */}
 
                 </div>
             )
@@ -102,7 +102,5 @@ const mapStateToProps = state => ({
     country: state.country,
     products: state.products
 })
-
-
 
 export default connect(mapStateToProps, null)(ProductList)
