@@ -51,7 +51,7 @@ class NavBar extends Component {
                 <hr className="navbar-divider" />
               </div>
             </div>
-            <div className="navbar-item has-dropdown is-hoverable">
+            {/* <div className="navbar-item has-dropdown is-hoverable">
               <a className="navbar-link">
                 Countries
         </a>
@@ -65,16 +65,14 @@ class NavBar extends Component {
           </Link>
                 <hr className="navbar-divider" />
               </div>
-            </div>
+            </div> */}
           </div>
 
           {/* <div className="navbar-end"> */}
           <div className="navbar-item">
             <div className="buttons" style={{ paddingRight: 10 }}>
-              <Link to='/adminmap'>
-                <a className="button is-danger">
+              <Link to='/adminmap' className="button is-danger">
                   <strong>Map</strong>
-                </a>
               </Link>
             </div>
             {/* </div> */}

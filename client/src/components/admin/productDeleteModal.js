@@ -56,7 +56,7 @@ class ProductDeleteModal extends Component {
 
                 <div className="container" style={wrapperStyles}>
         <div style={productForm}>     
-          <h2 style={{ fontSize: 20 }}> Are you sure you would like to delete product? </h2>
+          <h2 style={{ fontSize: 20 }}> Are you sure you would like to delete {this.props.data.name} ?</h2>
           <br/>
           <h3> Please type "Confirm" to delete product </h3>
           <br/>

@@ -47,10 +47,9 @@ const _getProductByName = product => async dispatch => {
 // }
 
 export const addProduct = product => async dispatch => {
-    console.log("PRODUCTS INPUT: ")
-    console.log(product);
-    let response = await axios.post('http://localhost:5000/products/', product);
-    dispatch({ type: ADD_PRODUCT, product: response.data.newTeacher });
+    let response = await axios.post('http://localhost:5000/products/new', product);
+    console.log(response)
+    // dispatch({ type: ADD_PRODUCT, payload: response.data });
 }
 
 export const editProduct = (id, product) => async dispatch => {

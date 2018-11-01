@@ -4,21 +4,31 @@ import "./admin.css";
 import axios from "axios";
 import ProductModal from "../../components/admin/productModal";
 import NavBar from "./navbar";
-import { getProducts } from "../../redux/actions";
+import { searchForCountryOrProduct } from "../../redux/actions/index";
 import ProductDeleteModal from "./productDeleteModal";
+import Footer from './../footer/footer'
 
 class AdminHome extends Component {
   state = {
       modalOn: false,
       modalOn1: false,
       data: {},
+      tempData: '',
+      name: '',
     direction: "asc"
   };
 
-  displayModal = () => this.setState({ modalOn: true });
+  displayModal = (n) => this.setState({ 
+    // name: this.state.name,
+    tempData: n,
+    modalOn: true 
+  });
   closeModal = () => this.setState({ modalOn: false });
 
-  displayModal1 = () => this.setState({ modalOn1: true });
+  displayModal1 = (n) => this.setState({ 
+    modalOn1: true,
+    tempData: n
+  });
   closeModal1 = () => this.setState({ modalOn1: false });
 
   sortByName = sortKey => {
@@ -54,14 +64,17 @@ class AdminHome extends Component {
     // );
   };
 
-  componentDidMount() {
-    // this.props.getProducts();
-    axios.get(`http://localhost:5000/products/`).then(res =>
-      this.setState({
-        data: res.data
-      })
+  async componentDidMount() {
+    const fetch = await axios.get(
+      `http://localhost:5000/products/`
     );
+    // for(var i = 0; i < fetch.data.length; i++) {
+    //   console.log(fetch.data[i])
+    // }
+    // console.log(fetch.data.Countries)
+    this.setState({ data: fetch.data});
   }
+
 
   render() {
     return (
@@ -105,14 +118,15 @@ class AdminHome extends Component {
               <tbody>
                 {Object.values(this.state.data).map((item, index) => {
                   return (
-                    <tr key={index}>
-                      <td>{item.name}</td>
+                    <tr key={index} value={this.state.name}>
+                      <td value ={this.state.name}>{item.name}</td>
                       <td>{item.type}</td>
                       <td>{item.description}</td>
                       {/* <td>{this.props.products.countries}</td> */}
                       <td>
                         <button
-                          onClick={this.displayModal}
+                          value ={this.state.name}
+                          onClick={() => this.displayModal(item)}
                           className="button is-info"
                           style={{
                             paddingLeft: 10,
@@ -124,7 +138,7 @@ class AdminHome extends Component {
                           🔄{" "}
                         </button>
                         <button
-                        onClick={this.displayModal1}
+                        onClick={() => this.displayModal1(item)}
                           className="button is-danger is-centered"
                           style={{ paddingLeft: 10, paddingRight: 5 }}
                         >
@@ -137,13 +151,14 @@ class AdminHome extends Component {
               </tbody>
             </table>
             {this.state.modalOn && (
-              <ProductModal closeModal={this.closeModal} />
+              <ProductModal closeModal={this.closeModal} data={this.state.tempData}/>
             )}
             {this.state.modalOn1 && (
-              <ProductDeleteModal closeModal1={this.closeModal1} />
+              <ProductDeleteModal closeModal1={this.closeModal1} data={this.state.tempData}/>
             )}
           </div>
         </div>
+        <Footer/>
       </div>
     );
   }
@@ -155,7 +170,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-getProducts: product => dispatch(getProducts())
+  searchForCountryOrProduct: searchTerm => dispatch(searchForCountryOrProduct(searchTerm))
 });
 
 export default connect(
