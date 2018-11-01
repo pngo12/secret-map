@@ -19,7 +19,7 @@ router.get('/:name', findOneProduct);
 router.post('/new', newProduct);
 
 // Delete a product from the database
-router.delete('/remove', removeProduct);
+router.delete('/remove/:userID', removeProduct);
 
 // Edit a product in the database
 router.put('/edit', editProduct);

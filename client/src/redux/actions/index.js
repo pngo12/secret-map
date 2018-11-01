@@ -58,8 +58,9 @@ export const editProduct = (id, product) => async dispatch => {
 }
 
 export const deleteProduct = id => async dispatch => {
-    let response = await axios.delete(`http://localhost:5000/products/${id}`);
-    dispatch({ type: DELETE_PRODUCT, products: response.data.deletedProduct });
+    let response = await axios.delete(`http://localhost:5000/products/remove/${id}`);
+    console.log(response)
+    // dispatch({ type: DELETE_PRODUCT, products: response.data.deletedProduct });
 }
 
 // export const addProductToCountry = country => async dispatch => {
