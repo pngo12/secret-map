@@ -15,6 +15,10 @@ class CountryDatabase extends Component {
     this.setState({ data: fetch.data.Countries });
   }
 
+  passToParent = countryName => {
+    this.props.updateCountryName(countryName)
+  }
+
   render() {
     let dropDownCountry = ['dropdown'];
     if (this.state.toggleOnCountry) {
@@ -26,18 +30,18 @@ class CountryDatabase extends Component {
           <div className='AdminProducts'>
             <div id='chooseCountry'>
               <div>
-                <h3> Please choose country </h3>
+                <h3> Please choose a country </h3>
               </div>
               <div onClick={this.toggleOpenCountry}>
                 <div className='control' id='buttonBoxes'>
                   <div className='select'>
-                    <select>
-                      {this.state.data.map((item, index) => {
+                    <select >
+                      {this.state.data && this.state.data.map((item, index) => {
                         return (
-                          <option
+                          <option             
                             key={index}
                             value={item}
-                            onClick={this.onClick}
+                            onClick={(e) => this.props.updateCountryName(e.target.value)}
                           >
                             {item}
                           </option>
