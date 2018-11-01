@@ -13,7 +13,7 @@ import axios from 'axios';
 
 export const searchForCountryOrProduct = searchTerm => async dispatch => {
     let { data } = await axios.get(`http://localhost:5000/searchcategory/${searchTerm}`);
-    
+
     // data = { category: 'product' or 'country' or 'involid' }
     dispatch({ type: "SEARCH_CATEGORY", category: data.category })
     switch (data.category) {
@@ -37,7 +37,7 @@ const _getProductByCountry = country => async dispatch => {
 
 const _getProductByName = product => async dispatch => {
     let response = await axios.get(`http://localhost:5000/products/${product}`);
-    console.log(response)
+    console.log('THE RESPONSE IS', response)
     dispatch({ type: GET_PRODUCTS, payload: response.data })
 }
 // export const getCountry = country => async dispatch => {

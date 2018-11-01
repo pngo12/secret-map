@@ -4,7 +4,7 @@ import "./admin.css";
 import axios from "axios";
 import ProductModal from "../../components/admin/productModal";
 import NavBar from "./navbar";
-import { getProducts } from "../../redux/actions";
+import { searchForCountryOrProduct } from "../../redux/actions";
 import ProductDeleteModal from "./productDeleteModal";
 
 class AdminHome extends Component {
@@ -155,7 +155,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  getProducts: product => dispatch(getProducts())
+  searchForCountryOrProduct: searchTerm => dispatch(searchForCountryOrProduct(searchTerm))
 });
 
 export default connect(

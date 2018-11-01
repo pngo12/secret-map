@@ -9,10 +9,11 @@ class ProductList extends Component {
         direction: 'asc'
     }
 
+    
     displayModal = () => this.setState({ modalOn: true })
     closeModal = () => this.setState({ modalOn: false })
 
-    f
+    
 
     sortByName = (sortKey) => {
 
@@ -52,6 +53,7 @@ class ProductList extends Component {
 
     render() {
         return (
+            this.props.products.length == 0  ? <div> No products availible </div> :
             this.props.products.length > 0 && ( // conditional render to only show chart when there is more than 1 product. 
                 <div className="productList">
                     <h2>Products in: {this.props.country}</h2>
@@ -106,3 +108,4 @@ const mapStateToProps = state => ({
 })
 
 export default connect(mapStateToProps, null)(ProductList)
+

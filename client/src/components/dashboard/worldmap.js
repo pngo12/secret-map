@@ -78,7 +78,7 @@ class WorldMap extends Component {
     passToParent = e => {
         console.log(e);
         this.props.updateCountryName(e.properties.name)
-        this.props.getProductByCountry(e.properties.name)
+        this.props.searchForCountryOrProduct(e.properties.name)
         console.log(e.properties.name)
     }
 

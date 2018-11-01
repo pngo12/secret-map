@@ -53,10 +53,10 @@ class Search extends Component {
                 {
                     this.state.isShowing && 
                     // If value == country, show
-                    // <ProductList />
+                    <ProductList />
 
                     // If value == product, show
-                    <CountryList />
+                    // <CountryList />
                 }
             </div>
         );
