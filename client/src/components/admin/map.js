@@ -1,12 +1,12 @@
-import React, { Component } from "react";
-import WorldMap from "../dashboard/worldmap";
-import NavBar from "./navbar";
-import Footer from "./../footer/footer";
-import Search from "./../dashboard/search";
+import React, { Component } from 'react';
+import WorldMap from '../dashboard/worldmap';
+import NavBar from './navbar';
+import Footer from './../footer/footer';
+import Search from './../dashboard/search';
 
 class AdminMap extends Component {
   state = {
-    countryName: "",
+    countryName: '',
     showListing: false
   };
 

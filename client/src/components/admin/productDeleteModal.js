@@ -1,12 +1,12 @@
-import React, { Component } from "react";
-import "./admin.css";
-import { deleteProduct } from "../../redux/actions/index";
-import { connect } from "react-redux";
-import { Redirect } from "react-router-dom";
+import React, { Component } from 'react';
+import './admin.css';
+import { deleteProduct } from '../../redux/actions/index';
+import { connect } from 'react-redux';
+import { Redirect } from 'react-router-dom';
 
 class ProductDeleteModal extends Component {
   state = {
-    name: "",
+    name: '',
     redirect: false
   };
 
@@ -16,8 +16,8 @@ class ProductDeleteModal extends Component {
     const name = {
       name: this.state.name
     };
-    if (this.state.name != "Confirm") {
-      window.alert("Please confirm again");
+    if (this.state.name != 'Confirm') {
+      window.alert('Please confirm again');
     } else {
       this.props.deleteProduct(this.props.data._id).then(
         this.setState({
@@ -32,52 +32,52 @@ class ProductDeleteModal extends Component {
   render() {
     const { redirect } = this.state;
     if (redirect) {
-      return <Redirect to="/dashboard" />;
+      return <Redirect to='/dashboard' />;
     }
     return (
-      <div className="modal is-active">
-        <div className="modal-background" />
-        <div className="modal-card">
-          <header className="modal-card-head">
-            <p className="modal-card-title">Please Confirm</p>
+      <div className='modal is-active'>
+        <div className='modal-background' />
+        <div className='modal-card'>
+          <header className='modal-card-head'>
+            <p className='modal-card-title'>Please Confirm</p>
             <button
-              className="delete"
-              aria-label="close"
-              onClick={this.props.closeModal1}
+              className='delete'
+              aria-label='close'
+              onClick={this.props.closeTrashModal}
             />
           </header>
           <div>
-            <div className="container" id="wrapperStylesDelete">
-              <div id="productForm">
-                <h2 id="confirmationText">
-                  {" "}
-                  Are you sure you would like to delete {this.props.data.name} ?
+            <div className='container' id='wrapperStylesDelete'>
+              <div id='productForm'>
+                <h2 id='confirmationText'>
+                  {' '}
+                  Are you sure you would like to delete {this.props.data.name}?
                 </h2>
                 <br />
-                <h3> Please type "Confirm" to delete product </h3>
+                <h3> Please type 'Confirm' to delete product </h3>
                 <br />
                 <input
-                  className="input is-small"
-                  type="text"
-                  id="spacingOfForm"
-                  placeholder="name"
+                  className='input is-small'
+                  type='text'
+                  id='spacingOfForm'
+                  placeholder='name'
                   onChange={this.handleOnChange}
                   value={this.state.name}
-                  name="name"
+                  name='name'
                 />
               </div>
-              <div id="buttonBoxes">
+              <div id='buttonBoxes'>
                 <button
-                  id="confirmButton"
+                  id='confirmButton'
                   onClick={this.deleteButton}
-                  className="button is-danger"
+                  className='button is-danger'
                 >
                   CONFIRM
                 </button>
                 <button
-                  id="exitButton"
-                  onClick={this.props.closeModal1}
-                  className="button is-dark"
+                  id='exitButton'
+                  onClick={this.props.closeTrashModal}
+                  className='button is-dark'
                 >
                   EXIT
                 </button>

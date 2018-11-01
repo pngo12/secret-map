@@ -1,7 +1,7 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
-import "./admin.css";
-import axios from "axios";
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import './admin.css';
+import axios from 'axios';
 
 class CountryDatabase extends Component {
   state = {
@@ -16,21 +16,21 @@ class CountryDatabase extends Component {
   }
 
   render() {
-    let dropDownCountry = ["dropdown"];
+    let dropDownCountry = ['dropdown'];
     if (this.state.toggleOnCountry) {
-      dropDownCountry.push("is-active");
+      dropDownCountry.push('is-active');
     }
     return (
       <div>
-        <div className="container is-fluid">
-          <div className="AdminProducts">
-            <div id="chooseCountry">
+        <div className='container is-fluid'>
+          <div className='AdminProducts'>
+            <div id='chooseCountry'>
               <div>
                 <h3> Please choose country </h3>
               </div>
               <div onClick={this.toggleOpenCountry}>
-                <div className="control" id="buttonBoxes">
-                  <div className="select">
+                <div className='control' id='buttonBoxes'>
+                  <div className='select'>
                     <select>
                       {this.state.data.map((item, index) => {
                         return (

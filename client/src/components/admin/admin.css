@@ -4,10 +4,10 @@
     max-width: 950px;
     margin: 0 auto;
     margin-bottom: 100px;
-    margin-top: -20px;
-    padding: 35px;
+    margin-top: -22px;
+    padding: 15px 35px;
     background-color: hsl(0, 0%, 86%);
-    height: 710px;
+    height: 670px;
     text-align: center;
   }
   #productForm {
@@ -30,13 +30,13 @@
     text-align: center;
 }
 #addProductButton {
-    margin-top: 75px; 
+    margin-top: 65px; 
     width: 120px; 
     margin-right: 5px; 
     justify-content: center
 }
   #resetCountryButton {
-    margin-top: 75px; 
+    margin-top: 65px; 
     width: 120px; 
     margin-left: 5px; 
     justify-content: center
@@ -62,6 +62,9 @@
 
 
 /* getProduct */
+#table_margin {
+    margin-top: -25px
+}
 #productDescription {
     margin: 0;
     width: 100%;
@@ -151,7 +154,7 @@
 /* productModal */
 #wrapperStylesUpdate {
     width: 100%;
-    max-width: 980px;
+    max-width: 990px;
     margin: 0 auto;
     padding: 10px;
     background-color: hsl(0, 0%, 86%)
@@ -179,14 +182,17 @@
     margin-left: auto;
     margin-right: auto;
     text-align: center;
-    font-size: 35px
+    font-size: 22px;
+    margin-bottom: 10px;
+    margin-top: 9px;
 }
 #listingStyle {
     font-size: 15px;
 }
 #updateToCountryButton {
-    margin-top: 5px;
+    margin-top: 10px;
     width: 88px;
+    margin-bottom: 20px;
 }
 #unorderedListings{
     display: inline-block; 
@@ -195,7 +201,7 @@
     padding-right: 5px; 
     margin-right: 3px;
     margin-left: 3px;
-    color: red; 
+    color: blue; 
     border-width: 1px; 
     border-style: solid; 
     border-color: black;

@@ -1,21 +1,21 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
-import { addProduct } from "../../redux/actions/index";
-import NavBar from "./navbar";
-import styles from "./admin.css";
-import { Redirect } from "react-router-dom";
-import CountryDatabase from "./countriesDatabase";
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { addProduct } from '../../redux/actions/index';
+import NavBar from './navbar';
+import './admin.css';
+import { Redirect } from 'react-router-dom';
+import CountryDatabase from './countriesDatabase';
 
 class ProductCRUD extends Component {
   state = {
-    addedToCountry: "",
+    addedToCountry: '',
     toggleOnContinent: false,
     toggleOnCountry: false,
-    continent: "",
+    continent: '',
     isHidden: false,
-    name: "",
-    type: "",
-    description: "",
+    name: '',
+    type: '',
+    description: '',
     redirect: false
   };
 
@@ -44,78 +44,78 @@ class ProductCRUD extends Component {
 
   resetButton = () => {
     this.setState({
-      continent: ""
+      continent: ''
     });
   };
 
   render() {
     const { redirect } = this.state;
-    let dropDownContinent = ["dropdown"];
+    let dropDownContinent = ['dropdown'];
     if (this.state.toggleOnContinent) {
-      dropDownContinent.push("is-active");
+      dropDownContinent.push('is-active');
     }
     if (redirect) {
-      return <Redirect to="/dashboard" />;
+      return <Redirect to='/dashboard' />;
     }
 
     return (
       <div>
         <NavBar />
-        <div className="container" id="wrapperStyles">
-          <div id="productForm">
-            <h2 id="addProductFont"> Name</h2>
+        <div className='container' id='wrapperStyles'>
+          <div id='productForm'>
+            <h2 id='addProductFont'> Name</h2>
             <input
-              className="input is-small"
-              type="text"
-              id="spacingOfForm"
-              placeholder="name"
+              className='input is-small'
+              type='text'
+              id='spacingOfForm'
+              placeholder='name'
               onChange={this.handleOnChange}
               value={this.state.name}
-              name="name"
+              name='name'
             />
           </div>
-          <div id="productForm">
-            <h2 id="addProductFont"> Type </h2>
+          <div id='productForm'>
+            <h2 id='addProductFont'> Type </h2>
             <input
-              className="input is-small"
+              className='input is-small'
               onChange={this.handleOnChange}
-              type="text"
-              id="spacingOfForm"
-              placeholder="Type"
+              type='text'
+              id='spacingOfForm'
+              placeholder='Type'
               value={this.state.type}
-              name="type"
+              name='type'
             />
           </div>
-          <div id="productForm">
-            <h2 id="addProductFont"> Description </h2>
+          <div id='productForm'>
+            <h2 id='addProductFont'> Description </h2>
             <textarea
-              className="textarea"
+              className='textarea'
               onChange={this.handleOnChange}
-              type="text"
-              id="spacingOfForm"
-              placeholder="Description"
+              type='text'
+              id='spacingOfForm'
+              placeholder='Description'
               value={this.state.description}
-              name="description"
+              name='description'
             />
             <div>
-              <div id="productForm">
-                <h2 id="addProductFont"> Add to Country </h2>
-                <div className="control" id="buttonBoxes">
-                  <div className="select">
+              <div id='productForm'>
+                <h2 id='addProductFont'> Add to Country </h2>
+                <div className='control' id='buttonBoxes'>
+                  <div className='select'>
                     <select
-                      id="addToCountrySelect"
+                      id='addToCountrySelect'
                       value={this.state.continent}
                       onChange={this.handleOnChange}
-                      name="continent"
+                      name='continent'
                     >
-                      <option value="">Select Continent</option>
-                      <option value="Africa">Africa</option>
-                      <option value="Antarctica"> Antarctica </option>
-                      <option value="Asia"> Asia </option>
-                      <option value="Oceania"> Australia </option>
-                      <option value="Europe"> Europe </option>
-                      <option value="North America"> North America </option>
-                      <option value="South America"> South America </option>
+                      <option value=''>Select Continent</option>
+                      <option value='Africa'>Africa</option>
+                      <option value='Antarctica'> Antarctica </option>
+                      <option value='Asia'> Asia </option>
+                      <option value='Oceania'> Australia </option>
+                      <option value='Europe'> Europe </option>
+                      <option value='North America'> North America </option>
+                      <option value='South America'> South America </option>
                     </select>
                     {this.state.continent && (
                       <CountryDatabase continent={this.state.continent} />
@@ -127,18 +127,18 @@ class ProductCRUD extends Component {
             <br />
             <br />
           </div>
-          <div id="buttonBoxes">
+          <div id='buttonBoxes'>
             <button
-              id="addProductButton"
+              id='addProductButton'
               onClick={this.submitNewProduct}
-              className="button is-success"
+              className='button is-success'
             >
               Add Product!
             </button>
             <button
-              id="resetCountryButton"
+              id='resetCountryButton'
               onClick={this.resetButton}
-              className="button is-danger"
+              className='button is-danger'
             >
               RESET Country
             </button>

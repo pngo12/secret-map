@@ -1,49 +1,49 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
-import "./admin.css";
-import axios from "axios";
-import ProductModal from "../../components/admin/productModal";
-import NavBar from "./navbar";
-import { searchForCountryOrProduct } from "../../redux/actions/index";
-import ProductDeleteModal from "./productDeleteModal";
-import Footer from "./../footer/footer";
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import './admin.css';
+import axios from 'axios';
+import ProductModal from '../../components/admin/productModal';
+import NavBar from './navbar';
+import { searchForCountryOrProduct } from '../../redux/actions/index';
+import ProductDeleteModal from './productDeleteModal';
+import Footer from './../footer/footer';
 
 class AdminHome extends Component {
   state = {
-    modalOn: false,
-    modalOn1: false,
+    refreshModal: false,
+    trashModal: false,
     data: {},
-    tempData: "",
-    name: "",
-    direction: "asc"
+    tempData: '',
+    name: '',
+    direction: 'asc'
   };
 
-  displayModal = n =>
+  displayRefreshModal = n =>
     this.setState({
       tempData: n,
-      modalOn: true
+      refreshModal: true
     });
-  closeModal = () => this.setState({ modalOn: false });
+  closeRefreshModal = () => this.setState({ refreshModal: false });
 
-  displayModal1 = n =>
+  displayTrashModal = n =>
     this.setState({
-      modalOn1: true,
+      trashModal: true,
       tempData: n
     });
-  closeModal1 = () => this.setState({ modalOn1: false });
+  closeTrashModal = () => this.setState({ trashModal: false });
 
   sortByName = sortKey => {
     const { data } = this.state;
-    const direction = this.state.direction === "asc" ? "desc" : "asc";
+    const direction = this.state.direction === 'asc' ? 'desc' : 'asc';
     const sortedData = data.sort((a, b) => {
-      if (sortKey === "name") {
+      if (sortKey === 'name') {
         let nameA = a.name.toLowerCase();
         let nameB = b.name.toLowerCase();
 
         if (nameA < nameB) return -1;
         if (nameA > nameB) return 1;
         return 0;
-      } else if (sortKey === "type") {
+      } else if (sortKey === 'type') {
         let nameA = a.type.toLowerCase();
         let nameB = b.type.toLowerCase();
 
@@ -52,7 +52,7 @@ class AdminHome extends Component {
         return 0;
       }
     });
-    if (direction === "desc") sortedData.reverse();
+    if (direction === 'desc') sortedData.reverse();
     this.setState({
       data,
       direction
@@ -68,39 +68,39 @@ class AdminHome extends Component {
     return (
       <div>
         <NavBar />
-        <div className="container is-fluid">
-          <div className="GetProducts">
+        <div className='container is-fluid' id='table_margin'>
+          <div className='GetProducts'>
             <table
-              id="productDescription"
-              border="1"
-              className="table is-hoverable is-bordered"
+              id='productDescription'
+              border='1'
+              className='table is-hoverable is-bordered'
             >
               <thead>
                 <tr>
-                  <th className="table_format_name">
+                  <th className='table_format_name'>
                     Name
                     <button
-                      className="sortButton"
-                      onClick={() => this.sortByName("name")}
+                      className='sortButton'
+                      onClick={() => this.sortByName('name')}
                     >
-                      <span className="icon">
-                        <i className="fas fa-sort" />
+                      <span className='icon'>
+                        <i className='fas fa-sort' />
                       </span>
                     </button>
                   </th>
-                  <th className="table_format_type">
+                  <th className='table_format_type'>
                     Type
                     <button
-                      className="sortButton"
-                      onClick={() => this.sortByName("type")}
+                      className='sortButton'
+                      onClick={() => this.sortByName('type')}
                     >
-                      <span className="icon">
-                        <i className="fas fa-sort" />
+                      <span className='icon'>
+                        <i className='fas fa-sort' />
                       </span>
                     </button>
                   </th>
-                  <th className="table_format_description">Description</th>
-                  <th className="table_format_update"> Update </th>
+                  <th className='table_format_description'>Description</th>
+                  <th className='table_format_update'> Update </th>
                 </tr>
               </thead>
               <tbody>
@@ -113,17 +113,17 @@ class AdminHome extends Component {
                       <td>
                         <button
                           value={this.state.name}
-                          onClick={() => this.displayModal(item)}
-                          className="button is-info"
-                          id="refresh"
+                          onClick={() => this.displayRefreshModal(item)}
+                          className='button is-info'
+                          id='refresh'
                         >
-                          {" "}
-                          🔄{" "}
+                          {' '}
+                          🔄{' '}
                         </button>
                         <button
-                          onClick={() => this.displayModal1(item)}
-                          className="button is-danger is-centered"
-                          id="trash"
+                          onClick={() => this.displayTrashModal(item)}
+                          className='button is-danger is-centered'
+                          id='trash'
                         >
                           🗑️
                         </button>
@@ -133,15 +133,15 @@ class AdminHome extends Component {
                 })}
               </tbody>
             </table>
-            {this.state.modalOn && (
+            {this.state.refreshModal && (
               <ProductModal
-                closeModal={this.closeModal}
+                closeRefreshModal={this.closeRefreshModal}
                 data={this.state.tempData}
               />
             )}
-            {this.state.modalOn1 && (
+            {this.state.trashModal && (
               <ProductDeleteModal
-                closeModal1={this.closeModal1}
+                closeTrashModal={this.closeTrashModal}
                 data={this.state.tempData}
               />
             )}
