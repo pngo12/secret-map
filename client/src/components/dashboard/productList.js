@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import ProductDetails from './productDetails';
 import { connect } from 'react-redux';
+import './dashboard.css';
 
 class ProductList extends Component {
     state = {
@@ -36,7 +36,6 @@ class ProductList extends Component {
                     if (nameA > nameB) return 1;
                     return 0;
                 }
-
             });
 
             if (direction === 'desc') sortedData.reverse();
@@ -44,33 +43,28 @@ class ProductList extends Component {
                 products,
                 direction
             });
-
         });
     }
 
     render() {
         return (
-            this.props.products.length > 0 && ( // conditional render to only show chart when there is more than 1 product. 
+            this.props.products.length > 0 && (
                 <div className="productList">
-                    <h2>Products in: {this.props.country}</h2>
+                    <h2>Products in: {this.props.title}</h2>
                     <table id="productDescription" border="1" className="table is-hoverable is-bordered">
                         <thead>
                             <tr>
                                 <th>Name
-                                <button className="sortButton" onClick={() => this.sortByName('name')}>
                                         <span className="icon">
-                                            <i className="fas fa-sort"></i>
-                                        </span>
-                                    </button>
+                                            <i className="fas fa-sort" onClick={() => this.sortByName('name')}></i>
+                                        </span>   
                                 </th>
-                                <th>Type
-                                <button className="sortButton" onClick={() => this.sortByName('type')} >
+                                <th><span>Type</span>
                                         <span className="icon">
-                                            <i className="fas fa-sort"></i>
+                                            <i className="fas fa-sort" onClick={() => this.sortByName('type')}></i>
                                         </span>
-                                    </button>
                                 </th>
-                                <th>Description</th>
+                                <th><span>Description</span></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -81,17 +75,12 @@ class ProductList extends Component {
                                             <td onClick={this.displayModal}>{item.name}</td>
                                             <td>{item.type}</td>
                                             <td>{item.description}</td>
-                                            {/* <td>{this.props.products.countries}</td> */}
                                         </tr>
                                     )
                                 })
                             }
                         </tbody>
                     </table>
-                    {/* {
-                        this.state.modalOn && <ProductDetails closeModal={this.closeModal} />
-                    } */}
-
                 </div>
             )
         );

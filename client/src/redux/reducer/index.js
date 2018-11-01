@@ -1,5 +1,5 @@
 import {
-    GET_COUNTRY_BY_PRODUCT, 
+    GET_COUNTRY_BY_PRODUCT,
     GET_PRODUCT_BY_COUNTRY,
     GET_PRODUCTS,
     GET_COUNTRY,
@@ -14,10 +14,15 @@ const initialState = {
     country: '',
     products: [],
     userToken: '',
+    category: '',
+    countries: [],
+    highlightCountries: {},
+    cache: 0
 }
 
 const rootReducer = (state = initialState, action) => {
-    switch(action.type) {
+    let highlightCountries = {}
+    switch (action.type) {
         // case GET_COUNTRY_BY_PRODUCT:
         //     return {
         //         ...state, 
@@ -25,19 +30,31 @@ const rootReducer = (state = initialState, action) => {
         //         products: [action.payload.products]
         //     }
         case GET_PRODUCT_BY_COUNTRY:
+            highlightCountries[action.payload.name] = "#ff7675"
             return {
                 ...state,
                 country: action.payload.name,
-                products: [...action.payload.products]
+                highlightCountries,
+                products: [...action.payload.products],
+                category: 'product',
+                cache: state.cache + 1
             }
         case GET_PRODUCTS:
+
+            
+            action.payload.countries.map(c => c.name).forEach(name => {
+                highlightCountries[name] = "#ff7675"
+            })
             return {
                 ...state,
-                products: [...action.payload.countries]
+                products: action.payload.countries,
+                highlightCountries,
+                category: 'country',
+                cache: state.cache + 1
             }
         case ADD_PRODUCT:
             return ({
-                ...state, products: [...state.products,...action.newProduct]
+                ...state, products: [...state.products, ...action.newProduct]
             })
         case EDIT_PRODUCT:
             return ({
@@ -46,11 +63,11 @@ const rootReducer = (state = initialState, action) => {
         case DELETE_PRODUCT:
             return ({
                 ...state, products: [...action.deletedProduct]
-            })  
+            })
         case GET_COUNTRY:
             return {
                 ...state,
-                countries: [...action.payload.countries]
+                countries: [...action.payload]
             }
         default: return state
     }
