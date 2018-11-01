@@ -5,7 +5,8 @@ import {
     GET_COUNTRY,
     ADD_PRODUCT,
     EDIT_PRODUCT,
-    DELETE_PRODUCT
+    DELETE_PRODUCT,
+    INVALID
     // ADD_PRODUCT_TO_COUNTRY,
     // DELETE_PRODUCT_FROM_COUNTRY,
 } from '../constants'
@@ -13,6 +14,7 @@ import {
 const initialState = {
     country: '',
     products: [],
+    countries: [],
     userToken: '',
 }
 
@@ -49,6 +51,12 @@ const rootReducer = (state = initialState, action) => {
                 ...state,
                 countries: [...action.payload.countries]
             }
+        case INVALID:
+        return {
+            ...state, 
+            products: [],
+            countries: []
+        }
         default: return state
     }
 }

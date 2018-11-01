@@ -6,26 +6,32 @@ import {
     ADD_PRODUCT,
     EDIT_PRODUCT,
     DELETE_PRODUCT,
+    INVALID
     // ADD_PRODUCT_TO_COUNTRY,
     // DELETE_PRODUCT_FROM_COUNTRY,
 } from '../constants';
 import axios from 'axios';
 
 export const searchForCountryOrProduct = searchTerm => async dispatch => {
-    let { data } = await axios.get(`http://localhost:5000/searchcategory/${searchTerm}`);
-    
-    // data = { category: 'product' or 'country' or 'involid' }
-    dispatch({ type: "SEARCH_CATEGORY", category: data.category })
-    switch (data.category) {
-        case 'product':
-            dispatch(_getProductByName(searchTerm));
-            break;
-        case 'country':
-            dispatch(_getProductByCountry(searchTerm));
-            break;
-        case 'invalid':
-            break;
+    try {
+        let { data } = await axios.get(`http://localhost:5000/searchcategory/${searchTerm}`);
+        dispatch({ type: "SEARCH_CATEGORY", category: data.category })
+        switch (data.category) {
+            case 'product':
+                dispatch(_getProductByName(searchTerm));
+                break;
+            case 'country':
+                dispatch(_getProductByCountry(searchTerm));
+                break;
+            case 'invalid':
+                break;
+            default: return;
+        }
+    } catch (e) {
+        dispatch({ type: INVALID })
+        console.log("Error: ", e.response.data);
     }
+
 }
 
 const _getProductByCountry = country => async dispatch => {

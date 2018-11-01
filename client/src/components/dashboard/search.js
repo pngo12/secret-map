@@ -61,7 +61,6 @@ class Search extends Component {
 }
 
 const mapDispatchToProps = dispatch => ({
-    
     searchForCountryOrProduct: searchTerm => dispatch(searchForCountryOrProduct(searchTerm))
 });
 
