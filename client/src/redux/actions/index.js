@@ -53,10 +53,9 @@ const _getProductByName = product => async dispatch => {
 // }
 
 export const addProduct = product => async dispatch => {
-    console.log("PRODUCTS INPUT: ")
-    console.log(product);
-    let response = await axios.post('http://localhost:5000/products/', product);
-    dispatch({ type: ADD_PRODUCT, product: response.data.newTeacher });
+    let response = await axios.post('http://localhost:5000/products/new', product);
+    console.log(response)
+    // dispatch({ type: ADD_PRODUCT, payload: response.data });
 }
 
 export const editProduct = (id, product) => async dispatch => {
@@ -65,8 +64,9 @@ export const editProduct = (id, product) => async dispatch => {
 }
 
 export const deleteProduct = id => async dispatch => {
-    let response = await axios.delete(`http://localhost:5000/products/${id}`);
-    dispatch({ type: DELETE_PRODUCT, products: response.data.deletedProduct });
+    let response = await axios.delete(`http://localhost:5000/products/remove/${id}`);
+    console.log(response)
+    // dispatch({ type: DELETE_PRODUCT, products: response.data.deletedProduct });
 }
 
 // export const addProductToCountry = country => async dispatch => {
