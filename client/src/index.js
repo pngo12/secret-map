@@ -6,11 +6,9 @@ import { createStore, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
 import rootReducer from './redux/reducer'
 import App from './App';
-import ProductCRUD from './components/admin/productCRUD';
+import ProductCRUD from './components/admin/addProduct';
 import GetProducts from './components/admin/getProducts'
-import CountryCRUD from '../src/components/admin/countryCRUD';
 import AdminMap from '../src/components/admin/map';
-import GetCountry from '../src/components/admin/getCountry';
 
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
@@ -28,8 +26,6 @@ ReactDOM.render(
         <Route exact path='/' component={App} />
         <Route path='/dashboard' component={GetProducts} />
         <Route path='/productcrud' component={ProductCRUD} />
-        <Route path='/getcountry' component={GetCountry} />
-        <Route path='/countrycrud' component={CountryCRUD} />
         <Route path='/adminMap' component={AdminMap} />
 
       </Switch>

@@ -1,180 +1,114 @@
 import React, { Component } from 'react';
-import './admin.css'
+import './admin.css';
 
-    const wrapperStyles = {
-        width: "100%",
-        maxWidth: 980,
-        margin: "0 auto",
-        borderWidth: 1,
-        borderColor: 'black',
-        borderStyle: 'solid',
-        padding: 20,
-        backgroundColor: 'hsl(0, 0%, 86%)'
-      }
-      const productForm = {
-        width: '55%',
-        marginLeft: 'auto',
-        marginRight: 'auto',
-        textAlign: 'center',
-        fontSize: 35
-      }
-      const productForm1 = {
-        width: '100%',
-        marginLeft: 'auto',
-        marginRight: 'auto',
-        textAlign: 'center',
-        fontSize: 35
-      }
-
-      const unordereredListings ={
-        display: 'inline-block', 
-        float: 'none', 
-        paddingLeft: 5, 
-        paddingRight: 5, 
-        marginRight: 3,
-        marginLeft: 3,
-        color: 'red', 
-        borderWidth: 1, 
-        borderStyle: 'solid', 
-        borderColor: 'black',
-        backgroundColor: 'lightgrey',
-      }
-      
-      
-      const spacingOfForm = {
-        marginTop: 1,
-        marginBottom: 5,
-        borderWidth: 1,
-        borderColor: 'black',
-        borderStyle: 'solid',
-      };
 class ProductModal extends Component {
-    state = {
-        name: '',
-        type: '',
-        description: '',
-        country: ''
-      };
-      async componentDidMount() {
-        // const fetch = await axios.get(
-        //   `http://localhost:5000/products/${this.props.tempData}`
-        // );
-        // console.log(this.props.data)
-        // console.log(fetch.data.Countries)
-        // this.setState({ data: fetch.data.countries });
-      }
-    
-      handleOnChange = e => this.setState({ [e.target.name]: e.target.value })
-    
-      submitProductToCountry = () => {
-        let { country, product } = this.state;
-        this.props.addProductToCountry({ country, product });
-      };
-      render() {
+  state = {
+    name: '',
+    type: '',
+    description: '',
+    country: ''
+  };
+  handleOnChange = e => this.setState({ [e.target.name]: e.target.value });
+
+  submitProductToCountry = () => {
+    let { country, product } = this.state;
+    this.props.addProductToCountry({ country, product });
+  };
+  render() {
     return (
-      <div className="modal is-active">
-        <div className="modal-background"></div>
-        <div className="modal-card">
-          <header className="modal-card-head">
-            <p className="modal-card-title">UPDATE</p>
-            <button className="delete" aria-label="close" onClick={this.props.closeModal}></button>
+      <div className='modal is-active'>
+        <div className='modal-background' />
+        <div className='modal-card'>
+          <header className='modal-card-head'>
+            <p className='modal-card-title'>Update Product</p>
+            <button
+              className='delete'
+              aria-label='close'
+              onClick={this.props.closeRefreshModal}
+            />
           </header>
           <div>
-            <div className="container" style={wrapperStyles}>
-              <div style={productForm}>
-                <h2 style={{ fontSize: 20 }}> Name</h2>
+            <div className='container' id='wrapperStylesUpdate'>
+              <div id='productFormUpdate'>
+                <h2 id='confirmationText'> Name</h2>
                 <input
                   className='input is-small'
-                  type="text"
-                  style={spacingOfForm}
-                  placeholder="name"
+                  type='text'
+                  id='spacingOfFormUpdate'
+                  placeholder='name'
                   onChange={this.handleOnChange}
                   value={this.state.name}
-                  name="name"
+                  name='name'
                 />
               </div>
-              <div style={productForm}>
-                <h2 style={{ fontSize: 20 }}> Type </h2>
+              <div id='productFormUpdate'>
+                <h2 id='confirmationText'> Type </h2>
                 <input
                   className='input is-small'
                   onChange={this.handleOnChange}
-                  type="text"
-                  style={spacingOfForm}
-                  placeholder="Type"
+                  type='text'
+                  id='spacingOfFormUpdate'
+                  placeholder='Type'
                   value={this.state.type}
-                  name="type"
+                  name='type'
                 />
               </div>
-              <div style={productForm}>
-                <h2 style={{ fontSize: 20 }}> Description </h2>
+              <div id='productFormUpdate'>
+                <h2 id='confirmationText'> Description </h2>
                 <textarea
                   className='textarea is-small'
                   onChange={this.handleOnChange}
-                  type="text"
-                  style={spacingOfForm}
-                  placeholder="Description"
+                  type='text'
+                  id='spacingOfFormUpdate'
+                  placeholder='Description'
                   value={this.state.description}
-                  name="description"
+                  name='description'
                 />
-
-
-
-
-                <div style={productForm1}>
-                <h2 style={{ fontSize: 20 }}> Currently Sold in: </h2>
-                { 
-                  Object.values(this.props.data.countries).map((item, index)=> {
-                    console.log(item.name)
-                  return (
-                    <ul key={index} style={unordereredListings}>
-                    <li style={{fontSize: 15}}>
-                    {item.name} 
-                    </li>
-                    </ul>
-                  )
-                })
-                }
-
-
-
-
-              </div>
-              <div style={productForm}>
-                <h2 style={{ fontSize: 20 }}> Add To Country </h2>
-                <input
-                  className='input is-small'
-                  onChange={this.handleOnChange}
-                  type="text"
-                  style={spacingOfForm}
-                  placeholder="Country"
-                  value={this.state.country}
-                  name="country"
-                />
-              </div>
-
-
-
-
-
+                <div id='productFormUpdate1'>
+                  <h2 id='confirmationText'> Currently Sold in: </h2>
+                  {Object.values(this.props.data.countries).map(
+                    (item, index) => {
+                      return (
+                        <ul key={index} id='unorderedListings'>
+                          <li id='listingStyle'>{item.name}</li>
+                        </ul>
+                      );
+                    }
+                  )}
+                </div>
+                <div id='productFormUpdate'>
+                  <h2 id='confirmationText'> Add To Country </h2>
+                  <input
+                    className='input is-small'
+                    onChange={this.handleOnChange}
+                    type='text'
+                    id='spacingOfFormUpdate'
+                    placeholder='Country'
+                    value={this.state.country}
+                    name='country'
+                  />
+                </div>
                 <div>
                   <button
-                    style={{ marginTop: 7, width: 88 }}
+                    id='updateToCountryButton'
                     onClick={this.submitProductToCountry}
-                    className='button is-info'>
+                    className='button is-info'
+                  >
                     UPDATE
-            </button>
+                  </button>
                 </div>
               </div>
             </div>
           </div>
-          <footer className="modal-card-foot">
-            <button className="button" onClick={this.props.closeModal}>Exit</button>
+          <footer className='modal-card-foot'>
+            <button className='button' onClick={this.props.closeRefreshModal}>
+              Exit
+            </button>
           </footer>
         </div>
       </div>
     );
   }
 }
-
 
 export default ProductModal;

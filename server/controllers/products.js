@@ -106,17 +106,29 @@ const removeCountryFromProduct = async (req, res) => {
     }
 }
 
+// const removeProduct = async (req, res) => {
+//     const name = req.body.name
+//     try {
+//         const findProduct = await Product.findOne({ name })
+//         const removeProduct = await Product.findOneAndDelete({ name });
+//     res.status(200).send({ success: true, message: `Removed ${removeProduct.name}`})
+//     }
+//     catch (err) {
+//         res.status(404).send({ success: false, message: err.message });
+//     }
+// }
+
 const removeProduct = async (req, res) => {
-    const name = req.body.name
-    try {
-        const findProduct = await Product.findOne({ name })
-        const removeProduct = await Product.findOneAndDelete({ name });
- 
+    try{
+      let deletedProduct = await Product.findByIdAndDelete(req.params.userID).exec();
+      res.status(200).json({ deletedProduct, message: "You have deleted your product" });
+    if (index == undefined) {
+      res.status(404).send({ message: "something went wrong" });
+    } 
+    } catch (err) {
+        res.status(500).json({ Error : err.message })
     }
-    catch (err) {
-        res.status(404).send({ success: false, message: err.message });
-    }
-}
+  }
 
 const editProduct = async (req, res) => {
 

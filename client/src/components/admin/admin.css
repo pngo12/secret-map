@@ -1,8 +1,74 @@
+/* addProduct */
+#wrapperStyles {
+    width: 100%;
+    max-width: 950px;
+    margin: 0 auto;
+    margin-bottom: 100px;
+    margin-top: -22px;
+    padding: 15px 35px;
+    background-color: hsl(0, 0%, 86%);
+    height: 670px;
+    text-align: center;
+  }
+  #productForm {
+    width: 55%;
+    margin-right: auto;
+    margin-left: auto;
+    margin-bottom: 8px;
+}
+#addProductFont {
+    font-size: 30px 
+  }
+#spacingOfForm {
+    margin-top: 8px;
+    margin-bottom: 8px;
+    border-width: 1px;
+    border-color: black;
+    border-style: solid
+}
+#buttonBoxes {
+    text-align: center;
+}
+#addProductButton {
+    margin-top: 65px; 
+    width: 120px; 
+    margin-right: 5px; 
+    justify-content: center
+}
+  #resetCountryButton {
+    margin-top: 65px; 
+    width: 120px; 
+    margin-left: 5px; 
+    justify-content: center
+}
+  #addToCountrySelect {
+    width: 400px
+}
+
+
+
+
+/* CountriesDatabase */
+#chooseCountry {
+    margin-top: 13px;
+}
+/* #buttonBoxes {
+    text-align: center;
+} */
+
+
+
+
+
+
+/* getProduct */
+#table_margin {
+    margin-top: -25px
+}
 #productDescription {
     margin: 0;
     width: 100%;
 }
-
 .table_format_name {
     width: 15%
 }
@@ -18,24 +84,140 @@
 .table_format_update {
     width: 9%
 }
+#refresh {
+    padding-left: 10px;
+    padding-right: 5px;
+    margin-right: 13px
+  }
+#trash {
+    padding-left: 10px;
+    padding-right: 5px;
+}
+    
 
-#wrapperStyles {
+
+
+/* navbar */
+#navbarStyle {
+    margin-bottom: 50px
+}
+#navbar-end {
+    margin-right: 20px;
+}
+#adminMapButton {
+    padding-right: 10px
+}
+
+
+/* productDeleteModal */
+/* #productForm {
+    width: 55%;
+    margin-right: auto;
+    margin-left: auto;
+    margin-bottom: 8px;
+} */
+#confirmationText {
+    font-size: 20px
+}
+#wrapperStylesDelete {
     width: 100%;
     max-width: 980px;
     margin: 0 auto;
     margin-bottom: 100px;
-    margin-top: 50px;
-    padding: 30px;
+    padding: 60px 30px;
     background-color: hsl(0, 0%, 86%);
-    height: 800px
-  };
+    height: 400px;
+    text-align: center;
+}
+/* #spacingOfForm {
+    margin-top: 8px;
+    margin-bottom: 8px;
+    border-width: 1px;
+    border-color: black;
+    border-style: solid
+} */
+/* #buttonBoxes {
+    text-align: center;
+} */
+#confirmButton {
+    margin-top: 7px;
+    width: 88px;
+    margin-right: 10px
+}
+#exitButton {
+    margin-top: 7px;
+    width: 88px;
+    margin-left: 10px
+}
 
-.productForm {
+
+/* productModal */
+#wrapperStylesUpdate {
+    width: 100%;
+    max-width: 990px;
+    margin: 0 auto;
+    padding: 10px;
+    background-color: hsl(0, 0%, 86%)
+}
+#confirmationText {
+    font-size: 20px
+}
+#productFormUpdate {
     width: 55%;
     margin-left: auto;
     margin-right: auto;
-    text-align: center
-  };
-#inline-listing {
-    display: inline;
+    text-align: center;
+    margin-bottom: -15px;
+    font-size: 35px
 }
+#spacingOfFormUpdate {
+    margin-top: 1px;
+    margin-bottom: 3px;
+    border-width: 1px;
+    border-color: black;
+    border-style: solid;
+}
+#productFormUpdate1 {
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    font-size: 22px;
+    margin-bottom: 10px;
+    margin-top: 9px;
+}
+#listingStyle {
+    font-size: 15px;
+}
+#updateToCountryButton {
+    margin-top: 10px;
+    width: 88px;
+    margin-bottom: 20px;
+}
+#unorderedListings{
+    display: inline-block; 
+    float: none; 
+    padding-left: 5px; 
+    padding-right: 5px; 
+    margin-right: 3px;
+    margin-left: 3px;
+    color: blue; 
+    border-width: 1px; 
+    border-style: solid; 
+    border-color: black;
+    background-color: lightgrey;
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
