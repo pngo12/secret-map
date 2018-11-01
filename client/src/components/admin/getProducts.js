@@ -4,7 +4,7 @@ import "./admin.css";
 import axios from "axios";
 import ProductModal from "../../components/admin/productModal";
 import NavBar from "./navbar";
-import { getProducts } from "../../redux/actions";
+import { _getProducts } from "../../redux/actions";
 import ProductDeleteModal from "./productDeleteModal";
 
 class AdminHome extends Component {
@@ -17,9 +17,6 @@ class AdminHome extends Component {
 
   displayModal = () => this.setState({ modalOn: true });
   closeModal = () => this.setState({ modalOn: false });
-
-  displayModal1 = () => this.setState({ modalOn1: true });
-  closeModal1 = () => this.setState({ modalOn1: false });
 
   sortByName = sortKey => {
     // this.setState({
@@ -155,7 +152,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-getProducts: product => dispatch(getProducts())
+// _getProducts: product => dispatch(_getProducts())
 });
 
 export default connect(

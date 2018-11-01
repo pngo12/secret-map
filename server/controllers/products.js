@@ -18,9 +18,9 @@ const getProduct = async (req, res) => {
 const findOneProduct = async (req, res) => {
     let name = req.params;
     try {
-        const findOne = await Product.findOne(name).populate('countries', 'name');
-        if (findOne) {
-            res.status(200).send(findOne);
+        const product = await Product.findOne(name).populate('countries', 'name');
+        if (product) {
+            res.status(200).send(product);
         } else {
             res.status(404).send({ success: false, message: 'Sorry could not locate product' });
         }
@@ -31,19 +31,54 @@ const findOneProduct = async (req, res) => {
 }
 
 const newProduct = async (req, res) => {
-    const { name, type, description } = req.body;
+
+    const { name, type, description, countryName } = req.body;
+
     try {
-        const findOne = await Product.findOne({ name });
-        if (findOne) {
-            res.status(418).send({ message: 'Product already exists in database' })
-        } else {
-            const newProduct = await Product.create({ name, type, description });
-            res.status(200).send(newProduct)
+        const product = await Product.findOne({ name });
+        const country = await Country.findOne({ name: countryName });
+        console.log(product)
+        console.log(country)
+
+        // If the product exists in DB, let the user know
+        if (product) {
+            res.status(418).send({ message: 'Product already exists in database' });
         }
-        if (newProduct) {
-            res.status(200).send(newProduct);
-        } else {
-            res.status(400).send({ success: false, message: 'Could not create product' })
+
+        // If the country exists in DB, create a new product and eachother's ID
+        // in their respective arrays
+        if (country) {
+            const newProduct = await Product.create({ name, type, description })
+            const addCountryToProduct = await Product.findOneAndUpdate(
+                { _id: newProduct._id },
+                { $push: { countries: country._id } },
+                { upsert: false, new: true, runValidators: true }
+            );
+            const addProductToCountry = await Country.findOneAndUpdate(
+                { _id: country._id },
+                { $push: { products: newProduct._id } },
+                { upsert: false, new: true, runValidators: true }
+            );
+            res.status(200).send({ message: `Created: ${newProduct.name}` })
+        }
+
+        // If the country does not exist, create it in the DB
+        // and add it eachothers ID to their respective arrays
+        if (country === null) {
+            const newCountry = await Country.create({ name: country });
+            const newProduct = await Product.create({ name, type, description });
+            console.log(newProduct)
+            // const addCountryToProduct = await Product.findOneAndUpdate(
+            //     { _id: newProduct._id },
+            //     { $push: { countries: country._id } },
+            //     { upsert: false, new: true, runValidators: true }
+            // );
+            // const addProductToCountry = await Country.findOneAndUpdate(
+            //     { _id: newCountry._id },
+            //     { $push: { products: newProduct._id } },
+            //     { upsert: false, new: true, runValidators: true }
+            // );
+            // res.status(200).send({ message: `Created ${newProduct.name}` })
         }
     }
     catch (err) {
@@ -107,11 +142,16 @@ const removeCountryFromProduct = async (req, res) => {
 }
 
 const removeProduct = async (req, res) => {
+    // do this route pls
     const name = req.body.name
     try {
         const findProduct = await Product.findOne({ name })
         const removeProduct = await Product.findOneAndDelete({ name });
- 
+        // Find the product, and access the country array,
+        // 
+
+
+
     }
     catch (err) {
         res.status(404).send({ success: false, message: err.message });
@@ -152,6 +192,16 @@ const editProduct = async (req, res) => {
     }
 }
 
+const upload = (req, res) => {
+    Product.updateMany(data, function (error, docs) {
+        if (error) {
+            console.log(error)
+        } else {
+            res.send(docs)
+        }
+    })
+}
+
 module.exports = {
     getProduct,
     findOneProduct,
@@ -160,4 +210,5 @@ module.exports = {
     newProduct,
     editProduct,
     removeProduct,
+    upload
 }

@@ -9,7 +9,8 @@ const {
     editProduct,
     addCountryToProduct,
     removeCountryFromProduct,
-} = require ('../controllers/products')
+    upload
+} = require('../controllers/products')
 
 // Get all products in the database
 router.get('/', getProduct);
@@ -29,6 +30,8 @@ router.post('/addcountry', addCountryToProduct);
 
 // Remove a proudct to a country
 router.post('/removecountry', removeCountryFromProduct);
+
+router.get('/data/upload', upload)
 
 
 
