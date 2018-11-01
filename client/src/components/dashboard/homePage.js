@@ -3,6 +3,7 @@ import Logo from './logo';
 import WorldMap from './worldmap';
 import Search from './search';
 import Footer from '../footer/footer'
+import './dashboard.css';
 
 class HomePage extends Component {
     state = {
@@ -31,7 +32,5 @@ class HomePage extends Component {
         )
     }
 }
-
-
 
 export default HomePage;
