@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './admin.css'
+import axios from 'axios'
 
     const wrapperStyles = {
         width: "100%",
@@ -8,7 +9,7 @@ import './admin.css'
         borderWidth: 1,
         borderColor: 'black',
         borderStyle: 'solid',
-        padding: 30,
+        padding: 20,
         backgroundColor: 'hsl(0, 0%, 86%)'
       }
       const productForm = {
@@ -18,11 +19,32 @@ import './admin.css'
         textAlign: 'center',
         fontSize: 35
       }
+      const productForm1 = {
+        width: '100%',
+        marginLeft: 'auto',
+        marginRight: 'auto',
+        textAlign: 'center',
+        fontSize: 35
+      }
+
+      const unordereredListings ={
+        display: 'inline-block', 
+        float: 'none', 
+        paddingLeft: 5, 
+        paddingRight: 5, 
+        marginRight: 3,
+        marginLeft: 3,
+        color: 'red', 
+        borderWidth: 1, 
+        borderStyle: 'solid', 
+        borderColor: 'black',
+        backgroundColor: 'lightgrey',
+      }
       
       
       const spacingOfForm = {
-        marginTop: 8,
-        marginBottom: 8,
+        marginTop: 1,
+        marginBottom: 5,
         borderWidth: 1,
         borderColor: 'black',
         borderStyle: 'solid',
@@ -31,8 +53,17 @@ class ProductModal extends Component {
     state = {
         name: '',
         type: '',
-        description: ''
+        description: '',
+        country: ''
       };
+      async componentDidMount() {
+        // const fetch = await axios.get(
+        //   `http://localhost:5000/products/${this.props.tempData}`
+        // );
+        // console.log(this.props.data)
+        // console.log(fetch.data.Countries)
+        // this.setState({ data: fetch.data.countries });
+      }
     
       handleOnChange = e => this.setState({ [e.target.name]: e.target.value })
     
@@ -52,7 +83,7 @@ class ProductModal extends Component {
           <div>
             <div className="container" style={wrapperStyles}>
               <div style={productForm}>
-                <h2 style={{ fontSize: 35 }}> Name</h2>
+                <h2 style={{ fontSize: 20 }}> Name</h2>
                 <input
                   className='input is-small'
                   type="text"
@@ -64,7 +95,7 @@ class ProductModal extends Component {
                 />
               </div>
               <div style={productForm}>
-                <h2 style={{ fontSize: 35 }}> Type </h2>
+                <h2 style={{ fontSize: 20 }}> Type </h2>
                 <input
                   className='input is-small'
                   onChange={this.handleOnChange}
@@ -76,9 +107,9 @@ class ProductModal extends Component {
                 />
               </div>
               <div style={productForm}>
-                <h2 style={{ fontSize: 35 }}> Description </h2>
+                <h2 style={{ fontSize: 20 }}> Description </h2>
                 <textarea
-                  className='textarea'
+                  className='textarea is-small'
                   onChange={this.handleOnChange}
                   type="text"
                   style={spacingOfForm}
@@ -86,6 +117,46 @@ class ProductModal extends Component {
                   value={this.state.description}
                   name="description"
                 />
+
+
+
+
+                <div style={productForm1}>
+                <h2 style={{ fontSize: 20 }}> Currently Sold in: </h2>
+                { 
+                  Object.values(this.props.data.countries).map((item, index)=> {
+                    console.log(item.name)
+                  return (
+                    <ul key={index} style={unordereredListings}>
+                    <li style={{fontSize: 15}}>
+                    {item.name} 
+                    </li>
+                    </ul>
+                  )
+                })
+                }
+
+
+
+
+              </div>
+              <div style={productForm}>
+                <h2 style={{ fontSize: 20 }}> Add To Country </h2>
+                <input
+                  className='input is-small'
+                  onChange={this.handleOnChange}
+                  type="text"
+                  style={spacingOfForm}
+                  placeholder="Type"
+                  value={this.state.country}
+                  name="type"
+                />
+              </div>
+
+
+
+
+
                 <div>
                   <button
                     style={{ marginTop: 7, width: 88 }}
