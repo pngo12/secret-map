@@ -1,4 +1,3 @@
-const Product = require('../models/products');
 const Country = require('../models/countries');
 
 const getCountryAll = async (req, res) => {
