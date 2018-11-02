@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './admin.css';
-import { deleteProduct } from '../../redux/actions/index';
+import { deleteProduct,  } from '../../redux/actions/index';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 
@@ -13,10 +13,7 @@ class ProductDeleteModal extends Component {
   deleteButton = e => {
     e.preventDefault();
 
-    const name = {
-      name: this.state.name
-    };
-    if (this.state.name != 'Confirm') {
+    if (this.state.name !== 'Confirm') {
       window.alert('Please confirm again');
     } else {
       this.props.deleteProduct(this.props.data._id).then(
@@ -94,7 +91,4 @@ const mapDispatchToProps = dispatch => ({
   deleteProduct: name => dispatch(deleteProduct(name))
 });
 
-export default connect(
-  null,
-  mapDispatchToProps
-)(ProductDeleteModal);
+export default connect(null,mapDispatchToProps)(ProductDeleteModal);

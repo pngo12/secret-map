@@ -117,7 +117,6 @@ const removeCountryFromProduct = async (req, res) => {
     const productName = req.body.productName;
 
     try {
-
         const country = await Country.findOne({ name: countryName });
         const product = await Product.findOne({ name: productName });
 
@@ -140,9 +139,7 @@ const removeCountryFromProduct = async (req, res) => {
 }
 
 const removeProduct = async (req, res) => {
-
     const id = req.params.id;
-
     try {
         const removeProduct = await Product.findByIdAndDelete({ _id: id });
         if (removeProduct === null) {

@@ -7,7 +7,6 @@ import {
 } from "react-simple-maps"
 import { connect } from 'react-redux';
 import { searchForCountryOrProduct, getCountry } from '../../redux/actions';
-import chroma from "chroma-js";
 import ZoomObject from "../static/world-50m.json";
 import './dashboard.css';
 
@@ -16,7 +15,6 @@ const wrapperStyles = {
     maxWidth: 1100,
     margin: "0 auto",
 }
-
 
 class WorldMap extends Component {
     constructor() {
@@ -46,7 +44,6 @@ class WorldMap extends Component {
             center: region.coordinates,
             zoom: 2,
         })
-        console.log(region)
     }
 
     handleReset() {
@@ -57,7 +54,6 @@ class WorldMap extends Component {
     }
 
     passToParent = e => {
-        console.log(e);
         this.props.updateCountryName(e.properties.name)
         this.props.searchForCountryOrProduct(e.properties.name)
         console.log(e.properties.name)
@@ -68,9 +64,9 @@ class WorldMap extends Component {
     }
 
     componentDidUpdate(prevProps) {
-       
+
         if (this.props.cache !== prevProps.cache) {
-            let colorCountries = {...this.state.colorCountries};
+            let colorCountries = { ...this.state.colorCountries };
             // reset the colors
             for (let name in colorCountries) {
                 colorCountries[name] = '#a8c9ff'
@@ -136,7 +132,7 @@ class WorldMap extends Component {
                         {"Reset"}
                     </button>
                 </div>
-                {countries.length != 0 &&
+                {countries.length !== 0 &&
                     <div style={wrapperStyles} id="mapBox">
                         <ComposableMap
                             projectionConfig={{ scale: 245 }}

@@ -118,7 +118,7 @@ class AdminHome extends Component {
                           id='refresh'
                         >
                           {' '}
-                          🔄{' '}
+                          <span role='img' aria-label='refresh'>🔄</span>{' '}
                         </button>
                         <button
                           onClick={() => this.displayTrashModal(item)}
@@ -158,11 +158,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  searchForCountryOrProduct: searchTerm =>
-    dispatch(searchForCountryOrProduct(searchTerm))
+  searchForCountryOrProduct: searchTerm => dispatch(searchForCountryOrProduct(searchTerm))
 });
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(AdminHome);
+export default connect(mapStateToProps, mapDispatchToProps)(AdminHome);

@@ -36,7 +36,7 @@ class CountryDatabase extends Component {
                 <div className='control' id='buttonBoxes'>
                   <div className='select'>
                     <select >
-                      {this.state.data && this.state.data.map((item, index) => {
+                      {this.state.data.map((item, index) => {
                         return (
                           <option             
                             key={index}

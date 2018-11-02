@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { addProduct, newProduct } from '../../redux/actions/index';
+import { addProduct } from '../../redux/actions/index';
 import NavBar from './navbar';
 import './admin.css';
 import { Redirect } from 'react-router-dom';
 import CountryDatabase from './countriesDatabase';
 
-class ProductCRUD extends Component {
+class CreateNewProduct extends Component {
   state = {
     addedToCountry: '',
     toggleOnContinent: false,
@@ -153,7 +153,4 @@ const mapDispatchToProps = dispatch => ({
   addProduct: newProduct => dispatch(addProduct(newProduct))
 });
 
-export default connect(
-  null,
-  mapDispatchToProps
-)(ProductCRUD);
+export default connect(null,mapDispatchToProps)(CreateNewProduct);
