@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { addProduct } from '../../redux/actions/index';
+import { addProduct, newProduct } from '../../redux/actions/index';
 import NavBar from './navbar';
 import './admin.css';
 import { Redirect } from 'react-router-dom';
@@ -16,26 +16,23 @@ class ProductCRUD extends Component {
     name: '',
     type: '',
     description: '',
-    redirect: false
+    redirect: false,
+    countryName: ''
   };
 
-  handleOnChange = e => {
-    this.setState({
-      [e.target.name]: e.target.value
-    });
-  };
+  updateCountryName = countryName =>  this.setState({countryName: countryName })
+  
+
+  handleOnChange = e => this.setState({[e.target.name]: e.target.value});
 
   submitNewProduct = e => {
     const product = {
       name: this.state.name,
       type: this.state.type,
-      description: this.state.description
+      description: this.state.description,
     };
-    const country = {
-      country: this.state.addedToCountry
-    };
-    this.props.addProduct(product);
-    this.props.addCountryToProduct(country).then(
+    this.props.addProduct(product)
+    .then(
       this.setState({
         redirect: !this.state.redirect
       })
@@ -118,7 +115,10 @@ class ProductCRUD extends Component {
                       <option value='South America'> South America </option>
                     </select>
                     {this.state.continent && (
-                      <CountryDatabase continent={this.state.continent} />
+                      <CountryDatabase 
+                      updateCountryName={this.updateCountryName} 
+                      continent={this.state.continent} 
+                      />
                     )}
                   </div>
                 </div>

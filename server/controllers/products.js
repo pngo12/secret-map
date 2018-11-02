@@ -139,18 +139,6 @@ const removeCountryFromProduct = async (req, res) => {
     }
 }
 
-// const removeProduct = async (req, res) => {
-//     const name = req.body.name
-//     try {
-//         const findProduct = await Product.findOne({ name })
-//         const removeProduct = await Product.findOneAndDelete({ name });
-//     res.status(200).send({ success: true, message: `Removed ${removeProduct.name}`})
-//     }
-//     catch (err) {
-//         res.status(404).send({ success: false, message: err.message });
-//     }
-// }
-
 const removeProduct = async (req, res) => {
 
     const id = req.params.id;
@@ -170,18 +158,18 @@ const removeProduct = async (req, res) => {
 
 const editProduct = async (req, res) => {
 
-    const { name, type, image, description, id } = req.body;
+    const { name, type, description, id } = req.body;
 
     try {
         const editProduct = await Product.findByIdAndUpdate(
             { _id: id },
-            { $set: { name, type, image, description } },
+            { $set: { name, type, description } },
             { upsert: false, new: true, runValidators: true }
         );
         if (editProduct) {
             res.status(200).send(editProduct);
         } else {
-            res.status(400).send({ success: false, message: 'Could not find product' })
+            res.status(404).send({ success: false, message: 'Could not find product' })
         }
     }
     catch (err) {
