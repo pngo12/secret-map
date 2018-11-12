@@ -14,7 +14,7 @@ class ProductModal extends Component {
     let { country, product } = this.state;
     this.props.addProductToCountry({ country, product });
   };
-  
+
   render() {
     return (
       <div className='modal is-active'>

@@ -6,7 +6,7 @@ import { createStore, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
 import rootReducer from './redux/reducer'
 import App from './App';
-import ProductCRUD from './components/admin/addProduct';
+import CreateNewProduct from './components/admin/addProduct';
 import GetProducts from './components/admin/getProducts'
 import AdminMap from '../src/components/admin/map';
 
@@ -25,7 +25,7 @@ ReactDOM.render(
 
         <Route exact path='/' component={App} />
         <Route path='/dashboard' component={GetProducts} />
-        <Route path='/productcrud' component={ProductCRUD} />
+        <Route path='/admin/addproduct' component={CreateNewProduct} />
         <Route path='/adminMap' component={AdminMap} />
 
       </Switch>

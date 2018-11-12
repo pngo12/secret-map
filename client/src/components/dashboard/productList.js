@@ -21,14 +21,14 @@ class ProductList extends Component {
             const direction = this.state.direction === 'asc' ? 'desc' : 'asc';
             const sortedData = products.sort((a, b) => {
 
-                if (sortKey == 'name') {
+                if (sortKey === 'name') {
                     let nameA = a.name.toLowerCase();
                     let nameB = b.name.toLowerCase();
 
                     if (nameA < nameB) return -1;
                     if (nameA > nameB) return 1;
                     return 0;
-                } else if (sortKey == 'type') {
+                } else if (sortKey === 'type') {
                     let nameA = a.type.toLowerCase();
                     let nameB = b.type.toLowerCase();
 
@@ -48,7 +48,10 @@ class ProductList extends Component {
 
     render() {
         return (
-            this.props.products.length > 0 && (
+            
+            this.props.invalid ? 'Sorry no products found for this country' :
+            
+            // this.props.products.length > 0 && (
                 <div className="productList">
                     <h2>Products in: {this.props.title}</h2>
                     <table id="productDescription" border="1" className="table is-hoverable is-bordered">
@@ -56,13 +59,13 @@ class ProductList extends Component {
                             <tr>
                                 <th>Name
                                         <span className="icon">
-                                            <i className="fas fa-sort" onClick={() => this.sortByName('name')}></i>
-                                        </span>   
+                                        <i className="fas fa-sort" onClick={() => this.sortByName('name')}></i>
+                                    </span>
                                 </th>
                                 <th><span>Type</span>
-                                        <span className="icon">
-                                            <i className="fas fa-sort" onClick={() => this.sortByName('type')}></i>
-                                        </span>
+                                    <span className="icon">
+                                        <i className="fas fa-sort" onClick={() => this.sortByName('type')}></i>
+                                    </span>
                                 </th>
                                 <th><span>Description</span></th>
                             </tr>
@@ -83,13 +86,14 @@ class ProductList extends Component {
                     </table>
                 </div>
             )
-        );
+        // );
     }
 }
 
 const mapStateToProps = state => ({
     country: state.country,
-    products: state.products
+    products: state.products,
+    invalid: state.invalid
 })
 
 export default connect(mapStateToProps, null)(ProductList)

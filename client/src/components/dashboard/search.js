@@ -15,9 +15,7 @@ class Search extends Component {
 
     componentDidUpdate(prevProps) {
         if (this.props.countryName !== prevProps.countryName) {
-            this.setState({
-                title: this.props.countryName
-            })
+            this.setState({ title: this.props.countryName })
         }
     }
 
@@ -52,7 +50,7 @@ class Search extends Component {
                 return <ProductList title={title} />
             }
             if (category === 'invalid') {
-                return '';
+                return 'No Products available';
             }
         }
         return '';
