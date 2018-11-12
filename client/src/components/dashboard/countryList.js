@@ -55,6 +55,7 @@ class ProductList extends Component {
 
     render() {
         return (
+            this.props.invalid ? 'Sorry no products found for this country' :
             <div className="productList">
                 <h2>{this.props.title} are sold in these countries:</h2>
                 <table id="productDescription" border="1" className="table is-hoverable is-bordered">
@@ -86,7 +87,8 @@ class ProductList extends Component {
 
 const mapStateToProps = state => ({
     country: state.country,
-    products: state.products
+    products: state.products,
+    invalid: state.invalid
 })
 
 export default connect(mapStateToProps, null)(ProductList)

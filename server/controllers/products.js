@@ -38,12 +38,12 @@ const newProduct = async (req, res) => {
         const product = await Product.findOne({ name });
         const country = await Country.findOne({ name: countryName });
 
-        // If the product exists in DB, let the user know
+        // If the product already exists in DB, let the user know
         if (product) {
             res.status(418).send({ message: 'Product already exists in database' });
         }
 
-        // If the country exists in DB, create a new product and eachother's ID
+        // If the country exists in DB, create a new product and add eachother's ID
         // in their respective arrays
         if (country) {
             const newProduct = await Product.create({ name, type, description })
@@ -87,13 +87,13 @@ const newProduct = async (req, res) => {
 const addCountryToProduct = async (req, res) => {
 
     const countryName = req.body.countryName;
-    const productName = req.body.productName
+    const productName = req.body.productName;
 
     try {
         const product = await Product.findOne({ name: productName });
         const country = await Country.findOne({ name: countryName });
 
-        // Find the product, push a new country to the product array
+        // Find the product and push a new country to the product array
         const addCountry = await Product.findOneAndUpdate(
             { _id: product._id },
             { $push: { countries: country._id } },
@@ -151,7 +151,7 @@ const removeProduct = async (req, res) => {
     catch (err) {
         res.status(404).send({ success: false, message: err.message });
     }
-  }
+}
 
 const editProduct = async (req, res) => {
 

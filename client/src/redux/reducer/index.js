@@ -14,7 +14,8 @@ const initialState = {
     category: '',
     highlightCountries: {},
     cache: 0,
-    dropDownCountries: []
+    dropDownCountries: [],
+    invalid: false
 }
 
 const rootReducer = (state = initialState, action) => {
@@ -55,7 +56,8 @@ const rootReducer = (state = initialState, action) => {
             return {
                 ...state,
                 products: [],
-                countries: []
+                countries: [],
+                invalid: true
             }
         default: return state
     }

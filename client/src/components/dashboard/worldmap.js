@@ -71,7 +71,7 @@ class WorldMap extends Component {
             for (let name in colorCountries) {
                 colorCountries[name] = '#a8c9ff'
             }
-            // remap the new highligh colors
+            // remap the new highlighted colors
             for (let countryName in this.props.highlightCountries) {
                 colorCountries[countryName] = this.props.highlightCountries[countryName];
             }
@@ -98,14 +98,11 @@ class WorldMap extends Component {
             colorCountries[countryName] = highlightCountries[countryName];
         }
         if (colorCountries[geographyName]) {
-            console.log("HIGHLIGHT:", highlightCountries);
-            console.log("COLORCOUNTRIES:", colorCountries);
             return colorCountries[geographyName]
         } else {
             return "#ECEFF1"
         }
     }
-
 
     render() {
         let { countries, colorCountries } = this.state;
@@ -146,9 +143,6 @@ class WorldMap extends Component {
                             <ZoomableGroup center={this.state.center} zoom={this.state.zoom}>
                                 <Geographies geography={ZoomObject} disableOptimization>
                                     {(geographies, projection) => geographies.map((geography, i) => {
-                                        // if (geography.properties.name === "United States") {
-                                        //     console.log("(3) COLOR:", this.getColor(highlightCountries, geography.properties.name))
-                                        // }
                                         return geography.id !== "ATA" && (
                                             <Geography
                                                 key={i}
